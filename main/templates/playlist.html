@@ -1,0 +1,24 @@
+{% extends "layout.html" %}{% load static %}{% block body %}
+<div class="container-fluid main-container">
+    <div class="row my-4 mx-4">
+        {% for year in year %}
+        <div class="col-md-6 col-lg-4 text-center aos-init">
+            <img class="rounded-circle" src="{{year.yearpic.url}}" width="140" height="140" data-aos="fade-down" />
+            <h2 data-aos="zoom-in">{{year.year}}</h2>
+            <p data-aos="zoom-in">
+                {{year.yeardesc}}
+            </p>
+            {% if videos %} {% for video in videos %}{% ifequal year.id video.yearmodel %}
+            <p>
+                <a href="{% url 'Videos' year=year.year day='S' %}" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">Start Watching »</button></a>
+            </p>
+            {% endifequal %} {% endfor %} {% else %}
+            <p>
+                <a href="#" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">Coming Soon »</button></a>
+            </p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

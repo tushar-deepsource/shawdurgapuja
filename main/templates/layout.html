@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Shaw Durga Puja Live | {{title}} | {{yearpassed}}</title>
+    <meta name="description" content="I am Dhruva Shaw, a cuber, student from Kolkata, India.I love cubing.On my YouTube Channel, I basically post videos about about cubing and some YouTube Video Templates.">
+    <meta name="author" content="ShawDurgaPujaLive">
+    <meta name="robots" content="INDEX, FOLLOW">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/default.png' %}" rel="icon">
+    <link href="{% static 'assets/img/default.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+<style>
+    a {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container">
+
+            <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
+            <div class="logo d-block d-lg-none">
+                <a href="{% url 'Home' %}"><img src="{% static 'assets/img/default1.png' %}" alt="Logo" class="img-fluid"></a>
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul class="nav-inner">
+                    <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="">About the year puja</a></li>
+
+                    <li class="nav-logo">
+                        <a href="{% url 'Home' %}"><img src="{% static 'assets/img/default1.png' %}" alt="" class="img-fluid"></a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li><a href='{% url "admin:index" %}'>Admin Panel</a></li>
+                    <li><a href="{% url 'signout' %}" style='color:#e70808'>LOGOUT <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
+                    {% else %}
+                    <li><a href='{% url "admin:login" %}'>Admin Login</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+        <!-- ==Flashed Message== -->
+        {% if messages %} {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert" id="alertdismissible">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %} {% endif %}
+        <!-- ==Ends== -->
+
+        {% block body %} {% endblock %}
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+
+            <div class="container">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <a href="#header" class="scrollto footer-logo"><img src="{% static 'assets/img/default.png' %}" alt=""></a>
+                        <h3>Shaw Durga Puja</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#header" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+
+<script>
+    /**
+     * Disable right-click of mouse, F12 key, and save key combinations on page
+     */
+    window.onload = function() {
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        }, false);
+        document.addEventListener("keydown", function(e) {
+            //document.onkeydown = function(e) {
+            // "I" key
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                disabledEvent(e);
+            }
+            // "J" key
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                disabledEvent(e);
+            }
+            // "S" key + macOS
+            if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                disabledEvent(e);
+            }
+            // "U" key
+            if (e.ctrlKey && e.keyCode == 85) {
+                disabledEvent(e);
+            }
+            // "F12" key
+            if (event.keyCode == 123) {
+                disabledEvent(e);
+            }
+        }, false);
+
+        function disabledEvent(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            } else if (window.event) {
+                window.event.cancelBubble = true;
+            }
+            e.preventDefault();
+            return false;
+        }
+    };
+</script>
+
+</html>

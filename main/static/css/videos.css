@@ -1,0 +1,66 @@
+/*--------------------------------------------------------------
+# nav
+--------------------------------------------------------------*/
+
+#navid {
+    margin-left: 10px;
+    height: 460px;
+}
+
+#yearshow {
+    padding: 10px;
+    border-left: 6px solid #ff7707;
+    background-color: rgba(255, 230, 0, 0.70);
+}
+
+#hr {
+    background: rgb(253, 207, 0);
+    color: #ff7707;
+    font-weight: bold;
+}
+
+#navid1 {
+    margin: 10px;
+    padding: 10px;
+    height: 350px;
+}
+
+#navbutton {
+    background: #ff7707;
+    color: #fff;
+    margin-right: 10px;
+    margin-top: 5px;
+    float: right;
+    display: none;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.iframe {
+    margin: 10px, 10px, 5px, 10px;
+}
+
+@media (max-width: 992px) {
+    #navid,
+    #hr {
+        display: none;
+    }
+    .iframe {
+        height: 300px;
+    }
+    #navbutton {
+        display: block;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Active Class
+--------------------------------------------------------------*/
+
+.active1 {
+    padding: 10px;
+    background: rgba(255, 230, 0, 0.61);
+}
