@@ -24,6 +24,7 @@ def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
     videos = Videos.objects.values('yearmodel').distinct().all()
+    videoslive = Videos.objects.values('yearmodel','live').filter(live=True).all()
     return render(
         request,
         'playlist.html',
@@ -31,7 +32,8 @@ def home(request):
             'year':year,
             'videos':videos, 
             'title':name1,
-            'view': 'Home'
+            'view': 'Home',
+            'videoslive':videoslive
         }
     ) 
 

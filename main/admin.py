@@ -48,6 +48,42 @@ class VideosAdmin(admin.ModelAdmin):
         (_('Streaming Video Links Data'),{'fields':('streamingvideolink','live',)+readonly_fields})
     )
 
+    ## Custom Actions
+    #live
+    def make_videos_live(self, request, queryset):
+        if len(queryset) > 1:
+            self.message_user(
+                request,
+                'Please select only one video',
+                messages.ERROR
+            )
+        else:
+            updated  = queryset.update(live=True)
+            
+            self.message_user(
+                    request, 
+                    ngettext(
+                    '%d video was succesfully made live',
+                    '%d videos were succesfully made live',
+                    updated,
+                ) % updated, 
+                messages.SUCCESS
+            )
+    make_videos_live.short_description = "Make the selected videos go live"
+
+    #offline
+    def make_videos_offline(self, request, queryset):
+        updated = queryset.update(live=False)
+        self.message_user(request, ngettext(
+            '%d video was succesfully made offline',
+            '%d videos were succesfully made offline',
+            updated,
+        ) % updated, messages.SUCCESS)
+    make_videos_offline.short_description = "Make the selected videos go offline"
+
+    #Registering the custom actions
+    actions = [make_videos_live, make_videos_offline]
+
 
 
 class LogEntryAdmin(admin.ModelAdmin):
@@ -59,8 +95,8 @@ class LogEntryAdmin(admin.ModelAdmin):
                 ngettext(
                 '%d log was successfully deleted.',
                 '%d logs were successfully deleted.',
-                len(querysetmsg),
-            ) % int(str(int(len(querysetmsg)))), 
+                len(queryset),
+            ) % int(len(queryset)), 
             messages.SUCCESS
         )
     delete_admin_logs.short_description = "Delete the selected ADMIN Logs without sticking"

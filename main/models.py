@@ -178,7 +178,7 @@ class Videos(models.Model):
     def __str__(self):
         try:
             aname = self.streamingvideoheader + ' ' +str(Year.objects.values('year').filter(id=self.yearmodel.id).get()['year'] )
-        except: aname = "Deleted " + self.day + " " + self.streamingvideoheader
+        except: aname = "Deleted Year" + " " + self.streamingvideoheader + " " + f'({self.day})'
         return aname
     
 
