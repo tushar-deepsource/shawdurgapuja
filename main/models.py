@@ -200,6 +200,9 @@ class Videos(models.Model):
         self.usernamefb = lista[0]
         self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
 
+        Videos.objects.update(live=False)
+        self.live = self.live
+
         return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
     

@@ -35,8 +35,8 @@ class YearAdmin(admin.ModelAdmin):
 
 
 class VideosAdmin(admin.ModelAdmin):
-    list_display = ('streamingvideoheader','streamingplatform','yearmodel','day')
-    list_filter = ('yearmodel','day')
+    list_display = ('streamingvideoheader','streamingplatform','yearmodel','day','live')
+    list_filter = ('yearmodel','day','live')
     search_fields = list_display + list_filter + ('streamingvideolink',)
     readonly_fields = ('videoid','usernamefb','facebook_posts')
     list_per_page = 100

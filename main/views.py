@@ -50,6 +50,11 @@ def video(request,year,day):
     yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
 
     videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+
+    try:
+        livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
+    except Videos.DoesNotExist:
+        livevideo = Videos.objects.none()
     return render(
         request,'videos.html',
         {
@@ -58,6 +63,7 @@ def video(request,year,day):
             'yearpassed':year,
             'dayname':dayname.upper(),
             'lengthday': len(dayname),
-            'view': ''
+            'view': '',
+            'livevideo':livevideo
         }
     )
