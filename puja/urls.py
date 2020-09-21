@@ -36,3 +36,6 @@ urlpatterns = [
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'main.views.handler404'
+handler500 = 'main.views.handler500'

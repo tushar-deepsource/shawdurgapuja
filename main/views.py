@@ -3,6 +3,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
+from django.template import RequestContext
 from django.urls import reverse
 
 from .models import *
@@ -94,5 +95,32 @@ def video(request,year,day):
             'lengthday': len(dayname),
             'view': '',
             'livevideo':livevideo
+        }
+    )
+
+
+
+def handler404(request, *args, **argv):
+    from datetime import datetime
+    x = datetime.now()
+    return render(
+        None,
+        '404.html', 
+        {
+            'title':'404 Ohh Snap!!! Sorry!',
+            'yearpassed': x.strftime("%Y")
+        }
+    )
+
+
+def handler500(request, *args, **argv):
+    from datetime import datetime
+    x = datetime.now()
+    return  render(
+        None,
+        '500.html', 
+        {
+            'title':'500 Ohh Snap!!! Sorry!',
+            'yearpassed': x.strftime("%Y")
         }
     )
