@@ -54,6 +54,8 @@ class Year(models.Model):
 
     ashtamit = models.TimeField(_('Start Time of Ashtami Puja'), blank=True, null=True)
     ashtamite = models.TimeField(_('End Time of Ashtami Puja'), blank=True, null=True)
+    mahabhog = models.BooleanField(_('Maha Bhog is there ?'),help_text=_('Click only when Maha Bhog is organised.'),default=False)
+    mahabhogdttime = models.DateTimeField(_('Maha Bhog Date and Time'),help_text=_('Fill this only when "Maha Bhog checkbox" is clicked.'),null=True,blank=True)
 
     sandhit = models.TimeField(_('Start Time of Sandhi Puja'), blank=True, null=True)
     sandhite = models.TimeField(_('End Time of Sandhi Puja'), blank=True, null=True)
@@ -65,8 +67,6 @@ class Year(models.Model):
     dashamite = models.TimeField(_('End Time of Dashami Puja'), blank=True, null=True)
 
     #File and Photos
-    pujadatetime = FilerFileField(verbose_name=_('Puja schedule file'), related_name='puja_schedule',help_text='This must be a file a pdf, or an image', blank=True, null=True, on_delete=models.SET_NULL)
-
     maadurgaphoto = FilerFileField(verbose_name=_('Corresponding year Maa Durga Photo'), related_name='maa_durga_photo', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:

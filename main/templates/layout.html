@@ -49,11 +49,13 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
                     <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">Home</a></li>
-                    <li><a href="">About the year puja</a></li>
+                    <li><a href="">About the current year puja</a></li>
 
                     <li class="nav-logo">
                         <a href="{% url 'Home' %}"><img src="{% static 'assets/img/default1.png' %}" alt="" class="img-fluid"></a>
                     </li>
+
+                    <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=3031 %}' onclick="changegetyear(this); return false;">See current year schedule</a></li>
 
                     {% if user.is_authenticated %}
                     <li><a href='{% url "admin:index" %}'>Admin Panel</a></li>
@@ -61,6 +63,7 @@
                     {% else %}
                     <li><a href='{% url "admin:login" %}'>Admin Login</a></li>
                     {% endif %}
+
 
                 </ul>
             </nav>

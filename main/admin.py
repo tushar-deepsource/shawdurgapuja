@@ -25,10 +25,10 @@ class YearAdmin(admin.ModelAdmin):
         (_('Saptami Puja Time'),{'fields':('saptamit','saptamite',)}),
         (_('Ashtami Puja Time'),{'fields':('ashtamit','ashtamite',)}),
         (_('Sandhi Puja Time'),{'fields':('sandhit','sandhite',)}),
+        (_('Maha Bhog Date and Time'),{'fields':('mahabhog','mahabhogdttime')}),
         (_('Navami Puja Time'),{'fields':('navamit','navamite')}),
         (_('Dashami Puja Time'),{'fields':('dashamit','dashamite',)}),
         
-        (_('Puja Schedule'),{'fields':('pujadatetime',)}),
         (_('Puja Photo'),{'fields':('maadurgaphoto',)})
 
     )

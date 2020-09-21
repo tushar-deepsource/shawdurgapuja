@@ -1,0 +1,8 @@
+@media (max-width: 992px) {
+    #tableinner {
+        width: 700px;
+    }
+    #outer {
+        overflow-x: scroll;
+    }
+}

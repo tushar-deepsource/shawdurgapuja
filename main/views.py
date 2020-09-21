@@ -16,8 +16,32 @@ def user_logout(request):
 
 
 # Create your views here.
-def pdf(request,file_path):
-    return HttpResponse(f'<embed type="application/pdf" src="{file_path}" width="100%" height="100%">')
+def schedule(request,year):
+    name1 = f'Durga Puja Schedule for {year}'
+    try: year,show=Year.objects.filter(year=year).get(), True
+    except Year.DoesNotExist: show = False
+    except: show=False
+
+    if show:
+        params = {
+            'year':year,
+            'show':show,
+            'title':name1,
+            'view':'schedule'
+        }
+    else:
+        params = {
+            'show':show,
+            'title':name1,
+            'view':'schedule',
+            'yearpass': year
+        }
+    
+    return render(
+        request,
+        'schedule.html',
+        params
+    )
 
 
 def home(request):
@@ -49,9 +73,12 @@ def video(request,year,day):
     else: raise Http404("The day you requested in not available")
     
     name1 = f"Maha {dayname}"
-    yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
-
-    videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+    try:
+        yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
+        videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+    except:
+        from django.http import Http404
+        raise Http404("The year in our database does not exist!")
 
     try:
         livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()

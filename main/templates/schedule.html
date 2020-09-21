@@ -1,0 +1,114 @@
+{% extends "layout.html" %}{% load static %}{% block body %}
+
+<div class="container main-container" id="outer">
+    <div class="row my-4 mx-4" id="tableinner">
+        {% if show %}
+        <link href="{% static 'css/schedule.css' %}" rel="stylesheet">
+
+        <table class="table table-hover">
+            <tbody>
+                <!-- ==Shashti Puja== -->
+                <tr>
+                    <th scope="row">{{year.shashti|date:"dS F Y, l"}}</th>
+                    <td><img src="{% static 'images/shashti.png' %}"></td>
+                    <td>
+                        <h3 style="text-align: center;">Maha Shashti (মহাষষ্ঠী)</h3>
+                        <br/>
+                        <h5 style="text-align: center;">{{year.shashtit}} - {{year.shashtite}}</h5>
+                        <div style="text-align: center;">
+                            <h6>"Kalparambho"</h6>
+                            <h6>Durga Devi "BODHON" "Amantran" & "Adhibas"</h6>
+                        </div>
+                        <br/>
+                    </td>
+                </tr>
+                <!-- ==Ends== -->
+
+                <!-- ==Saptami== -->
+                <tr>
+                    <th scope="row">{{year.saptami|date:"dS F Y, l"}}</th>
+                    <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'images/saptami.png' %}"></td>
+                    <td>
+                        <h3 style="text-align: center;">Maha Saptami (মহাসপ্তমী)</h3>
+                        <br/>
+                        <h5 style="text-align: center;">{{year.saptamit}} - {{year.saptamite}}</h5>
+                        <div style="text-align: center;">
+                            <h6>Bathing of "Kolabou"</h6>
+                            <h6>"Nabo Patrika" "Saptami Puja"</h6>
+                        </div>
+                        <br/>
+                    </td>
+                </tr>
+                <!-- ==Ends== -->
+
+                <!-- ==Ashtami== -->
+                <tr>
+                    <th scope="row">{{year.ashtami|date:"dS F Y, l"}}</th>
+                    <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'images/ashtami.png' %}"></td>
+                    <td>
+                        <h3 style="text-align: center;">Maha Ashtami (মহাঅষ্টমী)</h3>
+                        <br/>
+                        <h5 style="text-align: center;"><strong>Ashtami Puja (অষ্টমী পূজা):</strong> &nbsp; {{year.ashtamit}} - {{year.ashtamite}}</h5>
+                        <br/>
+                        <h5 style="text-align: center;"><strong>Sandhi Puja (সন্ধি পূজা):</strong> &nbsp; {{year.sandhit}} <b>to</b> {{year.sandhite}}</h5>
+                        {% if year.mahabhog %}
+                        <div style="text-align: center;">
+                            <h6>Maha-Bhog Prasad for all starts at {{year.mahabhogdttime}} @ our Home</h6>
+                        </div>
+                        {% endif %}
+                        <br/>
+                    </td>
+                </tr>
+                <!-- ==Ends== -->
+
+                <!-- ==Navami== -->
+                <tr>
+                    <th scope="row">{{year.navami|date:"dS F Y, l"}}</th>
+                    <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'assets/img/default.png' %}" width="111px" height="111px"></td>
+                    <td>
+                        <h3 style="text-align: center;">Maha Navami (মহানবমী)</h3>
+                        <br/>
+                        <h5 style="text-align: center;">{{year.navamit}} - {{year.navamite}}</h5>
+                        <div style="text-align: center;">
+                            <h6>Navami Puja (নবমী পূজা)</h6>
+                            <h6>"Navami Home/Yagna"</h6>
+                        </div>
+                        <br/>
+                    </td>
+                </tr>
+                <!-- ==Ends== -->
+
+
+                <!-- ==Dashami== -->
+                <tr>
+                    <th scope="row">{{year.dashami|date:"dS F Y, l"}}</th>
+                    <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'images/dashami.png' %}" width="111px" height="111px"></td>
+                    <td>
+                        <h3 style="text-align: center;">Maha Dashami (মহাদশমী / বিজয়াদশমী)</h3>
+                        <br/>
+                        <h5 style="text-align: center;">{{year.dashamit}} - {{year.dashamite}}</h5>
+                        <div style="text-align: center;">
+                            <h6>Dashami Puja (দশমী পূজা)</h6>
+                            <h6>Bisharjan Ritual after the Dashami Puja</h6>
+                        </div>
+                        <br/>
+                    </td>
+                </tr>
+                <!-- ==Ends== -->
+
+            </tbody>
+        </table>
+        {% else %}
+        <div class="container-fluid main-container">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2 style="color:rgb(253, 194, 0);">Sorry!! (404)</h2>
+                    <h4>The <strong style="color:rgb(253, 194, 0);">Durga Puja</strong> schedule for the year {{year}} has not been released yet.</h4>
+                    <p style="color:rgb(253, 194, 0);">Please visit our home page</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

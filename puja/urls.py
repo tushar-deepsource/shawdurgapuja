@@ -27,7 +27,7 @@ register_converter(converters.FourDigitYearConverter, 'yyyy')
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
-    path('pdf/<slug:file_path>/',pdf,name="PDF Viewer"),
+    path('schedule/<yyyy:year>/',schedule,name="schedule"),
 
     url(r'^logout/$', user_logout, name='signout'),
    
