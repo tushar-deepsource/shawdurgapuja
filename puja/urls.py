@@ -17,10 +17,17 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path, register_converter
 
 from main import converters
 from main.views import *
+
+from .sitemaps import StaticViewSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap
+}
 
 register_converter(converters.FourDigitYearConverter, 'yyyy')
 
@@ -34,6 +41,9 @@ urlpatterns = [
     path('', home,name="Home"),
     path('videos/<yyyy:year>/<str:day>',video,name="Videos"),
 
+    url(r'^filer/', include('filer.urls')),
+    
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
