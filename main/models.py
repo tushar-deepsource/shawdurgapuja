@@ -11,7 +11,6 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from filer.fields.file import FilerFileField
 from filer.fields.image import FilerImageField
 from filer.models import Image as Images
 from PIL import Image, ImageDraw, ImageOps
@@ -67,7 +66,8 @@ class Year(models.Model):
     dashamite = models.TimeField(_('End Time of Dashami Puja'), blank=True, null=True)
 
     #File and Photos
-    maadurgaphoto = FilerFileField(verbose_name=_('Corresponding year Maa Durga Photo'), related_name='maa_durga_photo', blank=True, null=True, on_delete=models.SET_NULL)
+    maadurgaphoto = FilerImageField(verbose_name=_('Corresponding year Maa Durga Photo'), related_name='maa_durga_photo', blank=True, null=True, on_delete=models.SET_NULL)
+    maadurgaphoto1 = FilerImageField(verbose_name=_('Corresponding year Maa Durga Photo Extra'), related_name='maa_durga_photo_extra', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-year',)

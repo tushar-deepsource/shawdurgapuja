@@ -9,7 +9,7 @@
             <p data-aos="zoom-in">
                 {{year.yeardesc}}
             </p>
-            {% for video in videos %}{% ifequal year.id video.yearmodel %}
+            {% if videos %} {% for video in videos %}{% ifequal year.id video.yearmodel %}
             <p>
                 <a href="{% url 'Videos' year=year.year day='S' %}" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-danger" data-aos="flip-right">Start Watching »</button></a>
             </p>
@@ -17,7 +17,11 @@
             <p>
                 <a href="#" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">Coming Soon »</button></a>
             </p>
-            {% endifequal %}{% endfor %}
+            {% endifequal %}{% endfor %} {% else %}
+            <p>
+                <a href="#" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">Coming Soon »</button></a>
+            </p>
+            {% endif %}
 
         </div>
         {% endfor %}
