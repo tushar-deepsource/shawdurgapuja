@@ -50,7 +50,7 @@
                         <br/>
                         <h5 style="text-align: center;"><strong>Ashtami Puja (অষ্টমী পূজা):</strong> &nbsp; {{year.ashtamit}} - {{year.ashtamite}}</h5>
                         <br/>
-                        <h5 style="text-align: center;"><strong>Sandhi Puja (সন্ধি পূজা):</strong> &nbsp; {{year.sandhit}} <b>to</b> {{year.sandhite}}</h5>
+                        <h5 style="text-align: center;"><strong>Sandhi Puja (সন্ধি পূজা):</strong> &nbsp; {{year.sandhit}} <b>to</b> {{year.sandhite}} <strong>({{year.sandhi}})</strong></h5>
                         {% if year.mahabhog %}
                         <div style="text-align: center;">
                             <h6>Maha-Bhog Prasad for all starts at {{year.mahabhogdttime}} @ our Home</h6>
@@ -105,6 +105,8 @@
                     <h2 style="color:rgb(253, 194, 0);">Sorry!! (404)</h2>
                     <h4>The <strong style="color:rgb(253, 194, 0);">Durga Puja</strong> schedule for the year {{year}} has not been released yet.</h4>
                     <p style="color:rgb(253, 194, 0);">Please visit our home page</p>
+                    <br/>
+                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">GoTo HomePage</button></a>
                 </div>
             </div>
         </div>

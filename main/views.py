@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -76,15 +78,15 @@ def video(request,year,day):
     name1 = f"Maha {dayname}"
     try:
         yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
-        videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
     except:
-        from django.http import Http404
         raise Http404("The year in our database does not exist!")
+    
+    videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+    show = False if videos.count() <= 0 else True
 
-    try:
-        livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
-    except Videos.DoesNotExist:
-        livevideo = Videos.objects.none()
+    try: livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
+    except Videos.DoesNotExist: livevideo = Videos.objects.none()
+
     return render(
         request,'videos.html',
         {
@@ -94,14 +96,14 @@ def video(request,year,day):
             'dayname':dayname.upper(),
             'lengthday': len(dayname),
             'view': '',
-            'livevideo':livevideo
+            'livevideo':livevideo,
+            'show': show,
         }
     )
 
 
-
+##Error 404
 def handler404(request, *args, **argv):
-    from datetime import datetime
     x = datetime.now()
     return render(
         None,
@@ -112,9 +114,8 @@ def handler404(request, *args, **argv):
         }
     )
 
-
+#Error 500
 def handler500(request, *args, **argv):
-    from datetime import datetime
     x = datetime.now()
     return  render(
         None,

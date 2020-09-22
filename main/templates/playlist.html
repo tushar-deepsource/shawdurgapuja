@@ -11,7 +11,7 @@
             </p>
             {% for video in videos %}{% ifequal year.id video.yearmodel %}
             <p>
-                <a href="{% url 'Videos' year=year.year day='S' %}" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">Start Watching »</button></a>
+                <a href="{% url 'Videos' year=year.year day='S' %}" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-danger" data-aos="flip-right">Start Watching »</button></a>
             </p>
             {% else %}
             <p>
