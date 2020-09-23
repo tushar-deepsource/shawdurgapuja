@@ -1,0 +1,38 @@
+{% extends "layout.html" %}{% load static %}{% block body %}{% load thumbnail %}
+
+<section id="portfolio-details" class="portfolio-details" data-aos="fade-up" data-aos-delay="100" style="margin-top: 30px;">
+    <div class="container">
+
+        <div class="portfolio-details-container">
+
+            <div class="owl-carousel portfolio-details-carousel">
+                <img src="{{year.maadurgaphoto.url}}" class="img-fluid" alt="Marr Durga Photo"> {% if year.maadurgaphoto1 %}<img src="{{year.maadurgaphoto1.url}}" class="img-fluid" alt="">{% endif %}
+            </div>
+
+            <div class="portfolio-info">
+                <h3 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px "><strong>Durga Puja {{yearpassed}}</strong></h3>
+                <ul>
+                    <li><strong style="color:rgb(253, 114, 0);">Shashti</strong>: {{year.shashti|date:"d M, Y"}}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Saptami</strong>: {{year.saptami|date:"d M, Y"}}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Ashtami</strong>: {{year.ashtami|date:"d M, Y"}}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Sandhi Puja</strong>: {{year.sandhi|date:"d M, Y"}}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Navami</strong>: {{year.navami|date:"d M, Y"}}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Dashami</strong>: {{year.dashami|date:"d M, Y"}}</li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-description">
+            {% if year.yeardesc %}
+            <h2 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px;color:rgb(253, 114, 0);"><strong>Durga Puja {{yearpassed}}</strong></h2>
+            {% endif %}
+            <p>
+                {{year.yeardesc}}
+            </p>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

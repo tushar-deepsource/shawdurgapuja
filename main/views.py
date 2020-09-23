@@ -101,6 +101,21 @@ def video(request,year,day):
         }
     )
 
+def about_year(request, year): 
+    try:
+        yearid = Year.objects.filter(year=int(year)).get()
+    except:
+        raise Http404("The year in our database does not exist!")
+    return render(
+        request,'about_year.html',
+        {
+            'yearpassed': year,
+            'title': f'About the year puja {year}',
+            'year': yearid ,
+            'view': 'about',
+        }
+    )
+
 
 ##Error 404
 def handler404(request, *args, **argv):

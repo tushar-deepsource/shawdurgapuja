@@ -67,7 +67,7 @@ class Year(models.Model):
 
     #File and Photos
     maadurgaphoto = FilerImageField(verbose_name=_('Corresponding year Maa Durga Photo'), related_name='maa_durga_photo', blank=True, null=True, on_delete=models.SET_NULL)
-    maadurgaphoto1 = FilerImageField(verbose_name=_('Corresponding year Maa Durga Photo Extra'), related_name='maa_durga_photo_extra', blank=True, null=True, on_delete=models.SET_NULL)
+    maadurgaphoto1 = FilerImageField(verbose_name=_('Corresponding year Maa Durga Photo Extra'), related_name='maa_durga_photo_extra', blank=True, null=True, on_delete=models.SET_NULL, help_text=_('It could be also previous year photo'))
 
     class Meta:
         ordering = ('-year',)

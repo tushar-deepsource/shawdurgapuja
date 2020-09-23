@@ -29,7 +29,7 @@ class YearAdmin(admin.ModelAdmin):
         (_('Navami Puja Time'),{'fields':('navamit','navamite')}),
         (_('Dashami Puja Time'),{'fields':('dashamit','dashamite',)}),
         
-        (_('Puja Photo'),{'fields':('maadurgaphoto',)})
+        (_('Puja Photo'),{'fields':('maadurgaphoto','maadurgaphoto1')})
 
     )
 

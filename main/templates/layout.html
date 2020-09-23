@@ -49,7 +49,7 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
                     <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">Home</a></li>
-                    <li><a href="" title="About the {{yearpassed}} year puja">About the current year puja</a></li>
+                    <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=3031 %}" onclick="replacehrefwithdate(this);" title="About the {{yearpassed}} year puja">About the current year puja</a></li>
 
                     <li class="nav-logo">
                         <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="" class="img-fluid"></a>

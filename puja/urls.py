@@ -40,6 +40,7 @@ urlpatterns = [
    
     path('', home,name="Home"),
     path('videos/<yyyy:year>/<str:day>',video,name="Videos"),
+    path('aboutyear/<yyyy:year>',about_year,name="About Year"),
 
     url(r'^filer/', include('filer.urls')),
     

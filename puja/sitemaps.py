@@ -11,13 +11,13 @@ class StaticViewSitemap(Sitemap):
     def items(self):
         year, l = Year.objects.values('year').all() , []
         for i in year: 
-            l.extend([f'Videos/{i["year"]}/{day}' for day in ['S','SA','A','SAN','N','D']]+[f'schedule/{i["year"]}'])
+            l.extend([f'Videos/{i["year"]}/{day}' for day in ['S','SA','A','SAN','N','D']]+[f'schedule/{i["year"]}',f'About Year/{i["year"]}'])
         return ['Home'] + l
     
     def location(self, item):
         if item == 'Home':
             return reverse(item)
-        elif item[0].lower() == 's':
+        elif item[0].lower() in ('s','A','a','Y'):
             return reverse(str(item.split('/')[0]),args=[int(item.split('/')[1])])
         else:
             return reverse(str(item.split('/')[0]),args=[int(item.split('/')[1]),item.split('/')[2]])
