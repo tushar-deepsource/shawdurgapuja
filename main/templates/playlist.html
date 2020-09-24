@@ -6,9 +6,6 @@
             <img class="rounded-circle" src="{{year.yearpic.url}}" width="140" height="140" data-aos="fade-down" />
             <h2 data-aos="zoom-in">{{year.year}} {% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}
                 <div class="btn btn-danger live"><b>LIVE</b></div>{% endifequal %}{% endfor %}</h2>
-            <p data-aos="zoom-in">
-                {{year.yeardesc}}
-            </p>
             {% if videos %} {% for video in videos %}{% ifequal year.id video.yearmodel %}
             <p>
                 <a href="{% url 'Videos' year=year.year day='S' %}" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-danger" data-aos="flip-right">Start Watching »</button></a>
