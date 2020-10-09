@@ -41,6 +41,7 @@ urlpatterns = [
     path('', home,name="Home"),
     path('videos/<yyyy:year>/<str:day>',video,name="Videos"),
     path('aboutyear/<yyyy:year>',about_year,name="About Year"),
+    path('redirect/', redirect_view_puja,name="Redirect"),
 
     url(r'^filer/', include('filer.urls')),
     

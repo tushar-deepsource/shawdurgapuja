@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -9,6 +7,7 @@ from django.template import RequestContext
 from django.urls import reverse
 
 from .models import *
+from datetime import datetime
 
 
 @login_required
@@ -115,6 +114,27 @@ def about_year(request, year):
             'view': 'about',
         }
     )
+
+
+def redirect_view_puja(request):
+    #Year
+    x = datetime.now()
+    year = x.strftime("%Y")
+    try: yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
+    except Year.DoesNotExist: 
+        yearid=None
+        return redirect(reverse('Home'))
+
+    #Day requiring
+    try: videodict = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
+    except Videos.DoesNotExist: 
+        videodict = Videos.objects.filter(yearmodel=yearid).values('day').latest('yearmodel')
+    except Videos.DoesNotExist: 
+        return redirect(reverse('Home'))
+
+    #redirecting the user to the correct page
+    return redirect(reverse('Videos',args=[int(year),videodict['day']]))
+
 
 
 ##Error 404
