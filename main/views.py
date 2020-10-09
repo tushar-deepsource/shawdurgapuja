@@ -120,17 +120,23 @@ def redirect_view_puja(request):
     #Year
     x = datetime.now()
     year = x.strftime("%Y")
-    try: yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
+    try: 
+        yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
     except Year.DoesNotExist: 
         yearid=None
         return redirect(reverse('Home'))
 
     #Day requiring
-    try: videodict = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
-    except Videos.DoesNotExist: 
-        videodict = Videos.objects.filter(yearmodel=yearid).values('day').latest('yearmodel')
-    except Videos.DoesNotExist: 
-        return redirect(reverse('Home'))
+    n=0
+    try: 
+        videodict = Videos.objects.filter(yearmodel=yearid,live=True).values('day').get()
+    except: 
+        n,videodict=1,{'day':'None'}
+    if n==1:
+        try:
+            videodict = Videos.objects.filter(yearmodel=yearid).values('day').latest('yearmodel')
+        except: 
+            return redirect(reverse('Home'))
 
     #redirecting the user to the correct page
     return redirect(reverse('Videos',args=[int(year),videodict['day']]))
