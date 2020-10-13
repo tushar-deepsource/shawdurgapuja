@@ -139,7 +139,7 @@ def redirect_view_puja(request):
             return redirect(reverse('Home'))
 
     #redirecting the user to the correct page
-    return redirect(reverse('Videos',args=[int(year),videodict['day']]))
+    return redirect(reverse('Videos',args=[int(year),videodict['day']])+'#live')
 
 
 

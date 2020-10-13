@@ -6,16 +6,16 @@ from main.models import Year
 class StaticViewSitemap(Sitemap):
     changefreq = 'yearly'
 
-    priority = lambda self, item: 1.0 if item[0] in ('H','s') else 0.80
+    priority = lambda self, item: 1.0 if item[0] in ('H','s','R') else 0.80
     
     def items(self):
         year, l = Year.objects.values('year').all() , []
         for i in year: 
             l.extend([f'Videos/{i["year"]}/{day}' for day in ['S','SA','A','SAN','N','D']]+[f'schedule/{i["year"]}',f'About Year/{i["year"]}'])
-        return ['Home'] + l
+        return ['Home','Redirect'] + l
     
     def location(self, item):
-        if item == 'Home':
+        if item in ('Home','Redirect'):
             return reverse(item)
         elif item[0].lower() in ('s','A','a','Y'):
             return reverse(str(item.split('/')[0]),args=[int(item.split('/')[1])])
