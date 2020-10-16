@@ -36,7 +36,9 @@ class Year(models.Model):
     colourback = ColorField(_('colourback'),default='rgb(73, 109, 137)')
     colourtext = ColorField(_('colourtext'),default='#FFF00C')
     yeardesc = models.TextField(_('About the year'),blank=True, null=True)
-    
+
+    maacomevid = models.BooleanField(_('Will there be any video for the Maa Durga coming to home'),default=True,help_text='Check this checkbox if there will be any video of the Maa coming to home')
+
     shashti = models.DateField(_('Date of Shashti Puja'), blank=True, null=True)
     saptami = models.DateField(_('Date of Saptami Puja'), blank=True, null=True)
     ashtami = models.DateField(_('Date of Ashtami Puja'), blank=True, null=True)
@@ -161,7 +163,26 @@ class Videos(models.Model):
     according the day of uploading (Maha Shashti, Maha Saptami, Maha Ashtami, Maha Navami, Maha Dashami)
     """
     yearmodel = models.ForeignKey(Year,verbose_name= _('Year'),null=True, default=get_default_year,on_delete=models.SET_NULL)
-    day = models.CharField(_('Day of Uploading'),null=True, blank=True,choices=(('S','Maha Shashti'),('SA','Maha Saptami'),('A','Maha Ashtami'),('SAN','Sandhi Puja'),('N','Maha Navami'),('D','Maha Dashami')),max_length=50)
+    day = models.CharField(
+        _('Day of Uploading'),
+        null=True, 
+        blank=True,
+        choices=(
+            ('E','Ekum'),
+            ('DI','Dvitia'),
+            ('T','Tritiya'),
+            ('C','Maha Chathurti'),
+            ('P','Maha Panchami'),
+            ('S','Maha Shashti'),
+            ('SA','Maha Saptami'),
+            ('A','Maha Ashtami'),
+            ('SAN','Sandhi Puja'),
+            ('N','Maha Navami'),
+            ('D','Maha Dashami')
+        ),
+        max_length=50,
+        default='S'
+    )
     
     streamingplatform = models.CharField(_('Streaming Platform'),null=True, blank=True,choices=(('F','Facebook'),('Y','YouTube')),max_length=10,default="F",validators=[validate_platform])
     streamingvideoheader = models.CharField(_('Live Streaming Video Header'),null=True,blank=True,max_length=600)

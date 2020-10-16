@@ -65,38 +65,54 @@ def home(request):
 
 
 def video(request,year,day):
+    try:
+        yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
+    except:
+        raise Http404("The year in our database does not exist!")
+
     day = day.upper()
-    if day == 'S': dayname = "Shashti"
+    if day in ('E','DI','T','C','P'): return redirect(reverse('Videos',args=[int(year),'MAA']))
+    elif day == 'S': dayname = "Shashti"
     elif day == 'SA': dayname = "Sapatami"
     elif day == 'A': dayname = "Ashtami"
     elif day == 'SAN': dayname = "Sandhi"
     elif day == 'N': dayname = "Navami"
     elif day == 'D': dayname = "Dashami"
+    elif day == 'MAA':
+        maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
+        if not maahome:
+            raise Http404("The day you requested in not available")
     else: raise Http404("The day you requested in not available")
     
-    name1 = f"Maha {dayname}"
-    try:
-        yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
-    except:
-        raise Http404("The year in our database does not exist!")
-    
-    videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+    if day == 'MAA': 
+        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).all()
+        day = videos[0].day
+        if day == 'E': dayname = "Ekami"
+        elif day == 'DI': dayname = "Dvutia"
+        elif day == 'T': dayname = "Tritiya"
+        elif day == 'C': dayname = "Chathurti"
+        elif day == 'P': dayname = "Panchami"
+    else: videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
     show = False if videos.count() <= 0 else True
 
     try: livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
     except Videos.DoesNotExist: livevideo = Videos.objects.none()
 
+    maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
+
     return render(
         request,'videos.html',
         {
             'videos':videos, 
-            'title':name1,
+            'title':f"Maha {dayname}",
             'yearpassed':year,
             'dayname':dayname.upper(),
             'lengthday': len(dayname),
             'view': '',
             'livevideo':livevideo,
             'show': show,
+            'maahome':maahome,
+            'day':day
         }
     )
 

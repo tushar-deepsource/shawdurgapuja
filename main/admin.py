@@ -19,6 +19,7 @@ class YearAdmin(admin.ModelAdmin):
         (_('Year'),{'fields':('year',)}), 
         (_('Year Description'),{'fields':('yeardesc',)}),
         (_('Pictures of Background'),{'fields':('yearpic','colourback','colourtext')}),
+        (_('Live Video of Maa Durga coming from potuapara to Home'),{'fields':('maacomevid',)}),
         (_('Puja Dates'),{'fields':('shashti','saptami','ashtami','sandhi','navami','dashami')}),
         
         (_('Shashti Puja Time'),{'fields':('shashtit','shashtite',)}),

@@ -12,6 +12,11 @@
             <div class="container" style="border-bottom: 2px dashed #ff7707;"></div>
 
             <ul class="selecton brdr-b-primary mb-70 navbar-nav" data-aos="fade-right">
+                {% if maahome %}
+                <div class="container {% ifequal day 'MAA' %}active1{% endifequal %}" style="margin-top: 20px; margin-bottom: 20px;">
+                    <li class="nav-item scrollto overflow-x" id="li"><a href="{% url 'Videos' year=yearpassed day='MAA' %}#live" title="MAA HOMECOMING" class="overflow-x"><b>Maa Durga Homecoming &nbsp; {% if livevideo.day in 'E,DI,T,C,P' %}<div class="btn btn-danger live"><b>LIVE</b></div>{% endif %}</b></a></li>
+                </div>
+                {% endif %}
                 <div class="container {% ifequal dayname 'SHASHTI' %}active1{% endifequal %}">
                     <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='S' %}#live" title="SHASHTI PUJA"><b>Maha Shashti &nbsp; {% ifequal livevideo.day 'S' %}<div class="btn btn-danger live"><b>LIVE</b></div>{% endifequal %}</b></a></li>
                 </div>
@@ -56,6 +61,9 @@
                         <nav class="navbar overflow-auto " id="navid1">
 
                             <ul class="selecton brdr-b-primary mb-70 navbar-nav">
+                                {% if maahome %}
+                                <li class="nav-item scrollto {% ifequal day 'MAA' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='MAA' %}#live" title="MAA HOMECOMING"><b>Maa Durga Homecoming &nbsp; {% if livevideo.day in 'E,DI,T,C,P' %}<div class="btn btn-danger live"><b>LIVE</b></div>{% endif %}</b></a></li>
+                                <hr/> {% endif %}
                                 <li class="nav-item scrollto {% ifequal dayname 'SHASHTI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='S' %}#live" title="SAHSHTI PUJA"><b>Maha Shashti &nbsp; {% ifequal livevideo.day 'S' %}<div class="btn btn-danger live"><b>LIVE</b></div>{% endifequal %}</b></a></li>
                                 <hr/>
                                 <li class="nav-item scrollto {% ifequal dayname 'SAPATAMI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='SA' %}#live" title="SAPTAMI PUJA"><b>Maha Sapatami &nbsp; {% ifequal livevideo.day 'SA' %}<div class="btn btn-danger live"><b>LIVE</b></div>{% endifequal %}</b></a></li>
