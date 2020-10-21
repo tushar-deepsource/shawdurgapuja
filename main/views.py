@@ -79,14 +79,16 @@ def video(request,year,day):
     elif day == 'N': dayname = "Navami"
     elif day == 'D': dayname = "Dashami"
     elif day == 'MAA':
-        maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
+        try: maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
+        except IndexError: return redirect(reverse('Videos', args=[2020,'S']))
         if not maahome:
             raise Http404("The day you requested in not available")
     else: raise Http404("The day you requested in not available")
     
     if day == 'MAA': 
         videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).all()
-        day = videos[0].day
+        try: day = videos[0].day
+        except IndexError: return redirect(reverse('Videos',args=[2020,'S']))
         if day == 'E': dayname = "Ekami"
         elif day == 'DI': dayname = "Dvutia"
         elif day == 'T': dayname = "Tritiya"
