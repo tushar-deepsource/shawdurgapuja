@@ -145,14 +145,12 @@ def redirect_view_puja(request):
         return redirect(reverse('Home'))
 
     #Day requiring
-    n=0
     try: 
         videodict = Videos.objects.filter(yearmodel=yearid,live=True).values('day').get()
     except: 
-        n,videodict=1,{'day':'None'}
-    if n==1:
+        videodict={'day':'None'}
         try:
-            videodict = Videos.objects.filter(yearmodel=yearid).values('day').latest('yearmodel')
+            videodict = Videos.objects.filter(yearmodel=yearid).values('day').latest('yearmodel','day')
         except: 
             return redirect(reverse('Home'))
 
