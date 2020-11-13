@@ -217,7 +217,7 @@ class Videos(models.Model):
         if len(lista) == 4:
             self.videoid = lista[-2]
         elif len(lista) == 3:
-            self.videoid = list[-1]
+            self.videoid = lista[-1]
         self.usernamefb = lista[0]
         self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
 
