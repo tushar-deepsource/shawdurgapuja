@@ -92,6 +92,8 @@ else:
     PRODUCTION_SERVER = True
     DEBUG = False
 
+    GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
+
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     DEFAULT_FILE_STORAGE = 'gdstorage.storage.GoogleDriveStorage'
 
