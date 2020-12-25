@@ -95,7 +95,7 @@ else:
     GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    DEFAULT_FILE_STORAGE = 'puja.storage.GoogleDriveStorageSystemPuja'
+    DEFAULT_FILE_STORAGE = 'gdstorage.storage.GoogleDriveStorage'
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
     ALLOWED_HOSTS = ['*']
