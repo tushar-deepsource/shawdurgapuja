@@ -61,6 +61,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'puja.wsgi.application'
 
+##The filemanager
+THUMBNAIL_HIGH_RESOLUTION = True
+FILER_CANONICAL_URL = 'sharing/'
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -84,48 +95,13 @@ else:
     GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    DEFAULT_FILE_STORAGE = 'gdstorage.storage.GoogleDriveStorage'
+    DEFAULT_FILE_STORAGE = 'puja.storage.GoogleDriveStorageSystemPuja'
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = os.environ['SECRET_KEY']
     MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
     INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
-
-##The filemanager
-FILER_STORAGES = {
-    'public': {
-        'main': {
-            'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-            'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
-            'UPLOAD_TO_PREFIX': 'filer_public',
-        },
-        'thumbnails': {
-            'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-        },
-    },
-    'private': {
-        'main': {
-            'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-            'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
-            'UPLOAD_TO_PREFIX': 'filer_public',
-        },
-        'thumbnails': {
-            'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-        },
-    },
-}
-
-THUMBNAIL_HIGH_RESOLUTION = True
-FILER_CANONICAL_URL = 'sharing/'
-
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters',
-)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
