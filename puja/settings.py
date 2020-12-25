@@ -98,7 +98,6 @@ FILER_STORAGES = {
         'main': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
             'OPTIONS': {
-                'location': '/path/to/media/filer',
                 'base_url': '/media/filer/',
             },
             'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
@@ -107,7 +106,6 @@ FILER_STORAGES = {
         'thumbnails': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
             'OPTIONS': {
-                'location': '/path/to/media/filer_thumbnails',
                 'base_url': '/media/filer_thumbnails/',
             },
         },
@@ -116,7 +114,6 @@ FILER_STORAGES = {
         'main': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
             'OPTIONS': {
-                'location': '/path/to/smedia/filer',
                 'base_url': '/smedia/filer/',
             },
             'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
@@ -125,7 +122,6 @@ FILER_STORAGES = {
         'thumbnails': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
             'OPTIONS': {
-                'location': '/path/to/smedia/filer_thumbnails',
                 'base_url': '/smedia/filer_thumbnails/',
             },
         },
