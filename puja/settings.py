@@ -97,33 +97,21 @@ FILER_STORAGES = {
     'public': {
         'main': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-            'OPTIONS': {
-                'base_url': '/media/filer/',
-            },
             'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
             'UPLOAD_TO_PREFIX': 'filer_public',
         },
         'thumbnails': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-            'OPTIONS': {
-                'base_url': '/media/filer_thumbnails/',
-            },
         },
     },
     'private': {
         'main': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-            'OPTIONS': {
-                'base_url': '/smedia/filer/',
-            },
             'UPLOAD_TO': 'filer.utils.generate_filename.randomized',
             'UPLOAD_TO_PREFIX': 'filer_public',
         },
         'thumbnails': {
             'ENGINE': 'puja.storage.GoogleDriveStorageSystemPuja',
-            'OPTIONS': {
-                'base_url': '/smedia/filer_thumbnails/',
-            },
         },
     },
 }
