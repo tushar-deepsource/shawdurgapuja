@@ -3,6 +3,8 @@ from pathlib import Path
 
 import dj_database_url
 import dotenv
+from google.oauth2 import service_account
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,13 +97,19 @@ else:
     GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    DEFAULT_FILE_STORAGE = 'gdstorage.storage.GoogleDriveStorage'
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = os.environ['SECRET_KEY']
     MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
     INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic','gdstorage']+[INSTALLED_APPS[-1]]
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    
+    import json
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+        json.loads(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
+    )
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -139,6 +147,7 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
+GS_BUCKET_NAME = 'YOUR_BUCKET_NAME_GOES_HERE'
 
 # # Deployment check
 if PRODUCTION_SERVER:
