@@ -3,7 +3,7 @@ from pathlib import Path
 
 import dj_database_url
 import dotenv
-from google.oauth2 import service_account
+from oauth2client.service_account import ServiceAccountCredentials
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -106,7 +106,7 @@ else:
     DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
     
     import json
-    GS_CREDENTIALS = service_account.Credentials.from_json_keyfile_dict(
+    GS_CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_dict(
         json.loads(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
     )
 
