@@ -102,7 +102,7 @@ else:
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = os.environ['SECRET_KEY']
     MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
-    INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic','gdstorage']+[INSTALLED_APPS[-1]]
+    INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
     DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
     
     import json
