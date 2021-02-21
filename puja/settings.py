@@ -107,7 +107,7 @@ else:
     
     import json
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        json.loads(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
+        str(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
     )
 
 
