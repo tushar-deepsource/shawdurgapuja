@@ -106,8 +106,8 @@ else:
     DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
     
     import json
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        str(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
+    GS_CREDENTIALS = service_account.Credentials.from_json_keyfile_dict(
+        json.loads(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
     )
 
 
