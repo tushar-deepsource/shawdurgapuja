@@ -32,6 +32,8 @@ sitemaps = {
 register_converter(converters.FourDigitYearConverter, 'yyyy')
 
 urlpatterns = [
+url(r'^attachments/', include('attachments.urls', namespace='attachments')),
+
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('schedule/<yyyy:year>/',schedule,name="schedule"),

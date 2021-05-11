@@ -1,7 +1,6 @@
 from django.contrib import admin, messages
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth.admin import Group
-from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
@@ -113,4 +112,4 @@ admin.site.register(Videos, VideosAdmin)
 admin.site.register(LogEntry, LogEntryAdmin)
 
 admin.site.site_header = admin.site.site_title = 'Shaw Durga Puja Live'
-admin.site.index_title = 'Welcome to ShawDurgaPujaLive cPanel'
+admin.site.index_title = 'ShawDurgaPujaLive cPanel'

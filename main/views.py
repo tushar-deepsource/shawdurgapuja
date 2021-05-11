@@ -1,9 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import redirect, render
-from django.template import RequestContext
 from django.urls import reverse
 
 from .models import *
@@ -86,7 +85,7 @@ def video(request,year,day):
     else: raise Http404("The day you requested in not available")
     
     if day == 'MAA': 
-        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).all()
+        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).iterator()
         try: day = videos[0].day
         except IndexError: return redirect(reverse('Videos',args=[2020,'S']))
         if day == 'E': dayname = "Ekami"
@@ -94,7 +93,7 @@ def video(request,year,day):
         elif day == 'T': dayname = "Tritiya"
         elif day == 'C': dayname = "Chathurti"
         elif day == 'P': dayname = "Panchami"
-    else: videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+    else: videos = Videos.objects.filter(yearmodel=yearid, day=day).iterator()
     show = False if videos.count() <= 0 else True
 
     try: livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()

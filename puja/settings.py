@@ -14,6 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
+    'attachments',
 
     'django.contrib.admin',
     'django.contrib.auth',
