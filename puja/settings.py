@@ -95,8 +95,6 @@ else:
     PRODUCTION_SERVER = True
     DEBUG = False
 
-    GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
-
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
@@ -104,12 +102,6 @@ else:
     SECRET_KEY = os.environ['SECRET_KEY']
     MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
     INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-    
-    import json
-    GS_CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_dict(
-        json.loads(os.environ['GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE_CONTENTS']),
-    )
 
 
 # Password validation
