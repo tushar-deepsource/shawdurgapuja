@@ -1,12 +1,25 @@
-{% extends "admin/login.html" %} {% load i18n static %} {% block extrastyle %} {{ block.super }}
+{% extends "admin/login.html" %} {% load i18n static %}
+<style>
+    body {
+        background-image: url('https://i.imgur.com/hRoLERI.jpeg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: repeat-y;
+    }
+</style>
+{% block extrastyle %} {{ block.super }}
 <style>
     #header {
         background-color: transparent !important;
     }
+    
+    #main-container {
+        display: none;
+    }
 </style>
 {% endblock %} {% block branding %}
 <h1>
-    <span style="color: #57C5A5 !important">ActionPlanNow.com</span>
+    <span style="color: #57C5A5 !important ; font-weight: bold;">Shaw Durga Puja</span>
     <br />
     <small>{% block head_title %}{% endblock %}</small>
 </h1>

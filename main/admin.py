@@ -28,8 +28,6 @@ class YearAdmin(admin.ModelAdmin):
         (_('Maha Bhog Date and Time'),{'fields':('mahabhog','mahabhogdttime')}),
         (_('Navami Puja Time'),{'fields':('navamit','navamite')}),
         (_('Dashami Puja Time'),{'fields':('dashamit','dashamite',)}),
-        
-        (_('Puja Photo'),{'fields':('maadurgaphoto','maadurgaphoto1')})
 
     )
 
@@ -112,4 +110,4 @@ admin.site.register(Videos, VideosAdmin)
 admin.site.register(LogEntry, LogEntryAdmin)
 
 admin.site.site_header = admin.site.site_title = 'Shaw Durga Puja Live'
-admin.site.index_title = 'ShawDurgaPujaLive cPanel'
+

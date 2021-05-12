@@ -1,4 +1,4 @@
-{% extends "admin/base_site.html" %}{% load static %}{% block branding %}{% endblock %} {% block breadcrumbs %}{% endblock %} {% block bodyclass %}bg-dark pb-4{% endblock %} {% block extrastyle %}
+{% extends "admin/base_site.html" %}{% load static %}{% block branding %}{% endblock %} {% block breadcrumbs %}{% endblock %} {% block bodyclass %}bg-secondary pb-4{% endblock %} {% block extrastyle %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <style>
     div.module caption {
@@ -8,35 +8,34 @@
     .jumbotron {
         padding: 2rem 1rem;
         margin-top: 2rem;
-        margin-bottom: 2rem;
         border-radius: .3rem;
     }
     
-    #main-container {
-        background-image: url('https://i.imgur.com/7bxLOAm.png');
+    body {
+        background-image: url('https://i.imgur.com/hRoLERI.jpeg');
         background-position: center;
         background-size: cover;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
     }
     
-    @media screen and (prefers-color-scheme: dark) {
-        body {
-            background-color: black;
-            color: white;
-        }
+    #container {
+        height: auto;
+        padding: 10px;
     }
 </style>
+<script src="{% static 'assets/js/main.js' %}"></script>
 {% endblock %} {% block bodyheader %}
-<div class="bg-white container pb-5 mt-3" style="border-radius: 10px;" id="main-container">
+<div class="bg-white container" style="border-radius: 10px;" id="main-container">
 
     <div class="jumbotron">
-        <h1 class="display-4">Hacking the Django Admin with Bootstrap</h1>
+        <h1 class="display-4">Shaw Durga Puja</h1>
+
         <p class="lead">
             The <a ref="https://docs.djangoproject.com/en/dev/ref/contrib/admin/">Django administration site</a> is great—full-featured, easy to use, secure by design, rock solid… and somewhat ugly, which can be something of a downside when you want to
             integrate it with the look-and-feel of the rest of the website. Let’s sort that out.
         </p>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -44,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <div class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/author/">Current Year Schedule</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'schedule' year=3031 %}" onclick="changegetyear(this); return false;">Current Year Schedule</a>
                     </div>
                     {% if user.is_authenticated %}
                     <div class="nav-item dropdown">
@@ -59,15 +58,7 @@
                     {% endif %}
                 </ul>
             </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-            </div>
         </div>
     </nav>
-    {% endblock %} {% block bodyfooter %}
 </div>
-
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 {% endblock %}
