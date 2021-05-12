@@ -11,8 +11,6 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from filer.fields.image import FilerImageField
-from filer.models import Image as Images
 from PIL import Image, ImageDraw, ImageOps
 
 from .get_username import get_request
@@ -32,7 +30,6 @@ class Year(models.Model):
     '''
     year = models.IntegerField(_('Year'),unique=True, null=True,blank=True, default=now,validators=[MinValueValidator(2003), max_value_current_year])
     
-    yearpic = FilerImageField(verbose_name='Year Background Image', related_name='year_back_picture',blank=True, null=True, on_delete=models.SET_NULL)
     colourback = ColorField(_('colourback'),default='rgb(73, 109, 137)')
     colourtext = ColorField(_('colourtext'),default='#FFF00C')
     yeardesc = models.TextField(_('About the year'),blank=True, null=True)
@@ -83,6 +80,7 @@ class Year(models.Model):
             pass
         else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
         #Generating the Image!
+        '''
         if self.yearpic == None or self.yearpic == "" or self.yearpic == " ":
             #The main image var
             output_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(self.year) + 'output' +'.png')
@@ -132,7 +130,7 @@ class Year(models.Model):
             os.remove(main_image1)
             try: os.rmdir(os.path.join(settings.MEDIA_ROOT, "yearpic"))
             except: pass
-        
+        '''
         return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
 

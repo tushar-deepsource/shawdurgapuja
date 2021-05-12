@@ -3,7 +3,7 @@ from pathlib import Path
 
 import dj_database_url
 import dotenv
-from oauth2client.service_account import ServiceAccountCredentials
+from django.utils.translation import ugettext_lazy as _
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +14,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
-    'attachments',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,11 +23,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'django.contrib.sitemaps',
+    
+    'django_admin_listfilter_dropdown',
 
     'colorfield',
-    'easy_thumbnails',
-    'filer',
-    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 
     'main.get_username.RequestMiddleware',
 ]
@@ -132,6 +131,9 @@ TIME_ZONE = 'Asia/Calcutta'
 
 USE_TZ = True
 
+USE_L10N = True
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -154,3 +156,12 @@ if PRODUCTION_SERVER:
 
 if os.getenv('DATABASE_URL')[0] == 'm':
     DATABASES['default']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB',}
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('bn', _('Bengali')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)

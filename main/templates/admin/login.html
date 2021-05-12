@@ -1,20 +1,23 @@
-{% extends "admin/login.html" %} {% load i18n static %}
+{% extends "admin/login.html" %} {% load i18n static %} {% block extrastyle %} {{ block.super }}
 <style>
     body {
-        background-image: url('https://i.imgur.com/hRoLERI.jpeg');
-        background-position: center;
-        background-size: cover;
-        background-repeat: repeat-y;
+        background-image: url('https://i.imgur.com/mktY446.jpeg') !important;
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
     }
-</style>
-{% block extrastyle %} {{ block.super }}
-<style>
+    
     #header {
         background-color: transparent !important;
     }
     
     #main-container {
         display: none;
+    }
+    
+    #container {
+        margin-top: 15% !important;
+        margin-bottom: 0% !important;
     }
 </style>
 {% endblock %} {% block branding %}
@@ -25,6 +28,6 @@
 </h1>
 {% endblock %} {% block content_title %}
 <p class="lead" style="font-size: larger">
-    A Simple Tool for Leaders, Coaches, and Counselors.
+    Admin Panel for managing this amazing site
 </p>
 {% endblock %}

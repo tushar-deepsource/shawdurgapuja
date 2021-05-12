@@ -1,4 +1,5 @@
-{% load static %}
+{% load static %}{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Shaw Durga Puja Live | {{title}} | {{yearpassed}}</title>
+    <title>{% blocktranslate %}Shaw Durga Puja Live | {{title}} | {{yearpassed}}{% endblocktranslate %}</title>
     <meta name="author" content="ShawDurgaPujaLive">
     <meta name="robots" content="NOINDEX, NOFOLLOW">
     <meta name="robots" content="NO INDEX, NO FOLLOW">
@@ -50,18 +51,18 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
-                    <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">Home</a></li>
-                    <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=3031 %}" onclick="replacehrefwithdate(this);" title="About the {{yearpassed}} year puja">About the current year puja</a></li>
+                    <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">{% trans 'Home' %}</a></li>
+                    <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=0000 %}" onclick="replacehrefwithdate(this);" title="{% blocktrans %}About the {{yearpassed}} year puja{% endblocktrans %}">{% trans 'About the current year puja' %}</a></li>
 
                     <li class="nav-logo">
                         <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="" class="img-fluid"></a>
                     </li>
 
-                    <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=3031 %}' onclick="changegetyear(this); return false;" title="View the current {{yearpassed}} schedule">See current year schedule</a></li>
+                    <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=0000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
 
                     {% if user.is_authenticated %}
-                    <li><a href='{% url "admin:index" %}' title="Visit the Admin Panel">Admin Panel</a></li>
-                    <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">LOGOUT <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
+                    <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}">{% trans 'Admin Panel' %}</a></li>
+                    <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
                     {% else %}
                     <li><a href='{% url "admin:login" %}' title="Admin Login">Admin Login</a></li>
                     {% endif %}
@@ -79,7 +80,7 @@
         <!-- ==Flashed Message== -->
         {% if messages %} {% for message in messages %}
         <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert" id="alertdismissible">
-            {{message}}
+            {% blocktrans %}{{message}}{% endblocktrans %}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -101,7 +102,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
                         <a href="#header" class="scrollto footer-logo"><img src="{% static 'assets/img/default.png' %}" alt=""></a>
-                        <h3>Shaw Durga Puja</h3>
+                        <h3>{% trans 'Shaw Durga Puja' %}</h3>
                     </div>
                 </div>
 

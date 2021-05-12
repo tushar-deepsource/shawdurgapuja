@@ -122,6 +122,8 @@ def about_year(request, year):
         yearid = Year.objects.filter(year=int(year)).get()
     except:
         raise Http404("The year in our database does not exist!")
+    img_dir = os.listdir(settings.BASE_DIR / os.path.join('main','static','img'))
+    addimg = lambda a: 'img/'+a
     return render(
         request,'about_year.html',
         {
@@ -129,6 +131,7 @@ def about_year(request, year):
             'title': f'About the year puja {year}',
             'year': yearid ,
             'view': 'about',
+            'img_dir': list(map(addimg,img_dir)),
         }
     )
 

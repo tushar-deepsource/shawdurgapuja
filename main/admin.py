@@ -3,6 +3,7 @@ from django.contrib.admin.models import LogEntry
 from django.contrib.auth.admin import Group
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
+from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter, ChoiceDropdownFilter
 
 from .models import Videos, Year
 
@@ -34,7 +35,11 @@ class YearAdmin(admin.ModelAdmin):
 
 class VideosAdmin(admin.ModelAdmin):
     list_display = ('streamingvideoheader','streamingplatform','yearmodel','day','live')
-    list_filter = ('yearmodel','day','live')
+    list_filter = (
+        ('yearmodel',RelatedDropdownFilter),
+        ('day',ChoiceDropdownFilter),
+        'live'
+    )
     search_fields = list_display + list_filter + ('streamingvideolink',)
     readonly_fields = ('videoid','usernamefb','facebook_posts')
     list_per_page = 100

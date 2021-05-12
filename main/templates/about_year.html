@@ -1,4 +1,4 @@
-{% extends "layout.html" %}{% load static %}{% block body %}{% load thumbnail %}
+{% extends "layout.html" %}{% load static %}{% block body %}{% load i18n %}{% load tz %}
 
 <section id="portfolio-details" class="portfolio-details" data-aos="fade-up" data-aos-delay="100" style="margin-top: 30px;">
     <div class="container">
@@ -6,18 +6,19 @@
         <div class="portfolio-details-container">
 
             <div class="owl-carousel portfolio-details-carousel">
-                <img src="{{year.maadurgaphoto.url}}" class="img-fluid" alt="Marr Durga Photo"> {% if year.maadurgaphoto1 %}<img src="{{year.maadurgaphoto1.url}}" class="img-fluid" alt="">{% endif %}
+                {% for i in img_dir %}
+                <img src="{% static i %}" alt="{% trans 'Maa Durga Photo' %}"> {% endfor %}
             </div>
-
+            {% blocktrans %}
             <div class="portfolio-info">
                 <h3 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px "><strong>Durga Puja {{yearpassed}}</strong></h3>
                 <ul>
-                    <li><strong style="color:rgb(253, 114, 0);">Shashti</strong>: {{year.shashti|date:"d M, Y"}}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Saptami</strong>: {{year.saptami|date:"d M, Y"}}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Ashtami</strong>: {{year.ashtami|date:"d M, Y"}}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Sandhi Puja</strong>: {{year.sandhi|date:"d M, Y"}}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Navami</strong>: {{year.navami|date:"d M, Y"}}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Dashami</strong>: {{year.dashami|date:"d M, Y"}}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Shashti</strong>: {% timezone "Asia/Calcutta" %}{{year.shashti|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Saptami</strong>: {% timezone "Asia/Calcutta" %}{{year.saptami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Ashtami</strong>: {% timezone "Asia/Calcutta" %}{{year.ashtami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Sandhi Puja</strong>: {% timezone "Asia/Calcutta" %}{{year.sandhi|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Navami</strong>: {% timezone "Asia/Calcutta" %}{{year.navami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">Dashami</strong>: {% timezone "Asia/Calcutta" %}{{year.dashami|date:"d M, Y"}}{% endtimezone %}</li>
                 </ul>
             </div>
 
@@ -32,6 +33,7 @@
                 {{year.yeardesc}}
             </p>
         </div>
+        {% endblocktrans %}
 
     </div>
 </section>
