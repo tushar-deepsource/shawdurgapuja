@@ -147,7 +147,7 @@ blink('.live');
 function changegetyear(element) {
     var d = new Date();
     var datenow = d.getFullYear();
-    element.href = element.href.replace(3031, datenow.toString());
+    element.href = element.href.replace(2000, datenow.toString());
     var windowname = 'Schedule of year';
     window.open(element.href, windowname.replace('year', datenow.toString()), 'resizable=yes,status=yes,location=no,toolbar=no,menubar=no,fullscreen=yes,scrollbars=yes,dependent=no,width=580,height=600');
     return false;
@@ -156,5 +156,5 @@ function changegetyear(element) {
 function replacehrefwithdate(element) {
     var d = new Date();
     var datenow = d.getFullYear();
-    element.href = element.href.replace(3031, datenow.toString());
+    element.href = element.href.replace(2000, datenow.toString());
 }

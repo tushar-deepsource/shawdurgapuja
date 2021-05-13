@@ -44,7 +44,6 @@ def schedule(request,year):
         params
     )
 
-
 def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
@@ -85,7 +84,7 @@ def video(request,year,day):
     else: raise Http404("The day you requested in not available")
     
     if day == 'MAA': 
-        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).iterator()
+        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).all()
         try: day = videos[0].day
         except IndexError: return redirect(reverse('Videos',args=[2020,'S']))
         if day == 'E': dayname = "Ekami"
@@ -93,7 +92,7 @@ def video(request,year,day):
         elif day == 'T': dayname = "Tritiya"
         elif day == 'C': dayname = "Chathurti"
         elif day == 'P': dayname = "Panchami"
-    else: videos = Videos.objects.filter(yearmodel=yearid, day=day).iterator()
+    else: videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
     show = False if videos.count() <= 0 else True
 
     try: livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()

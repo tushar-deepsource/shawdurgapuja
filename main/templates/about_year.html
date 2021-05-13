@@ -9,31 +9,29 @@
                 {% for i in img_dir %}
                 <img src="{% static i %}" alt="{% trans 'Maa Durga Photo' %}"> {% endfor %}
             </div>
-            {% blocktrans %}
             <div class="portfolio-info">
-                <h3 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px "><strong>Durga Puja {{yearpassed}}</strong></h3>
+                <h3 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px "><strong>{% blocktrans %}Durga Puja {{yearpassed}}{% endblocktrans %}</strong></h3>
                 <ul>
-                    <li><strong style="color:rgb(253, 114, 0);">Shashti</strong>: {% timezone "Asia/Calcutta" %}{{year.shashti|date:"d M, Y"}}{% endtimezone %}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Saptami</strong>: {% timezone "Asia/Calcutta" %}{{year.saptami|date:"d M, Y"}}{% endtimezone %}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Ashtami</strong>: {% timezone "Asia/Calcutta" %}{{year.ashtami|date:"d M, Y"}}{% endtimezone %}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Sandhi Puja</strong>: {% timezone "Asia/Calcutta" %}{{year.sandhi|date:"d M, Y"}}{% endtimezone %}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Navami</strong>: {% timezone "Asia/Calcutta" %}{{year.navami|date:"d M, Y"}}{% endtimezone %}</li>
-                    <li><strong style="color:rgb(253, 114, 0);">Dashami</strong>: {% timezone "Asia/Calcutta" %}{{year.dashami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">{% trans 'Shashti' %}</strong>: {% timezone "Asia/Calcutta" %}{{year.shashti|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">{% trans 'Saptami' %}</strong>: {% timezone "Asia/Calcutta" %}{{year.saptami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">{% trans 'Ashtami' %}</strong>: {% timezone "Asia/Calcutta" %}{{year.ashtami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">{% trans 'Sandhi Puja' %}</strong>: {% timezone "Asia/Calcutta" %}{{year.sandhi|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">{% trans 'Navami' %}</strong>: {% timezone "Asia/Calcutta" %}{{year.navami|date:"d M, Y"}}{% endtimezone %}</li>
+                    <li><strong style="color:rgb(253, 114, 0);">{% trans 'Dashami' %}</strong>: {% timezone "Asia/Calcutta" %}{{year.dashami|date:"d M, Y"}}{% endtimezone %}</li>
                 </ul>
             </div>
 
         </div>
 
-
         <div class="portfolio-description">
             {% if year.yeardesc %}
-            <h2 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px;color:rgb(253, 114, 0);"><strong>Durga Puja {{yearpassed}}</strong></h2>
-            {% endif %}
+            <h2 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px;color:rgb(253, 114, 0);"><strong>{% blocktrans %}Durga Puja {{yearpassed}}{% endblocktrans %}</strong></h2>
+            {% endif %} {% blocktrans %}
             <p>
                 {{year.yeardesc}}
             </p>
+            {% endblocktrans %}
         </div>
-        {% endblocktrans %}
 
     </div>
 </section>

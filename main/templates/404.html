@@ -1,14 +1,16 @@
-{% extends "layout.html" %}{% load static %}{% block body %}
+{% extends "layout.html" %}{% load static %}{% load i18n %}{% block body %}
 <div class="container main-container" id="outer">
     <div class="row my-4 mx-4">
         <div class="container-fluid main-container">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
+                {% blocktrans %}
                     <u><h2 style="color:rgb(253, 194, 0);">Sorry!! (404)</h2></u>
                     <h4>The <strong style="color:rgb(253, 194, 0);">resource</strong> you requested is not available on this server!</h4>
                     <p style="color:rgb(253, 194, 0);">Why don't you visit the home page in meantime</p>
                     <br/>
-                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">GoTo HomePage</button></a>
+                    {% endblocktrans %}
+                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">{% trans 'GoTo HomePage' %}</button></a>
                 </div>
             </div>
         </div>

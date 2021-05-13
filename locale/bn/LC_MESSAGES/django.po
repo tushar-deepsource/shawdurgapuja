@@ -1,0 +1,264 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-13 14:36+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\main\templates\404.html:7
+msgid ""
+"\n"
+"                    <u><h2 style=\"color:rgb(253, 194, 0);\">Sorry!! (404)</"
+"h2></u>\n"
+"                    <h4>The <strong style=\"color:rgb(253, 194, 0);"
+"\">resource</strong> you requested is not available on this server!</h4>\n"
+"                    <p style=\"color:rgb(253, 194, 0);\">Why don't you visit "
+"the home page in meantime</p>\n"
+"                    <br/>\n"
+"                    "
+msgstr ""
+
+#: .\main\templates\404.html:13 .\main\templates\500.html:13
+#: .\main\templates\schedule.html:117
+msgid "GoTo HomePage"
+msgstr ""
+
+#: .\main\templates\500.html:7
+msgid ""
+"\n"
+"                    <u><h2 style=\"color:rgb(253, 194, 0);\">Ohh noo sorry!! "
+"(500)</h2></u>\n"
+"                    <h4>There was some <strong style=\"color:rgb(253, 194, "
+"0);\">problem at</strong> backend in the server</h4>\n"
+"                    <p style=\"color:rgb(253, 194, 0);\">Why don't you visit "
+"the home page in meantime while the error gets resolved!</p>\n"
+"                    <br/>\n"
+"                    "
+msgstr ""
+
+#: .\main\templates\about_year.html:10
+msgid "Maa Durga Photo"
+msgstr ""
+
+#: .\main\templates\about_year.html:13 .\main\templates\about_year.html:28
+#, python-format
+msgid "Durga Puja %(yearpassed)s"
+msgstr ""
+
+#: .\main\templates\about_year.html:15
+msgid "Shashti"
+msgstr ""
+
+#: .\main\templates\about_year.html:16
+msgid "Saptami"
+msgstr ""
+
+#: .\main\templates\about_year.html:17
+msgid "Ashtami"
+msgstr ""
+
+#: .\main\templates\about_year.html:18 .\main\templates\schedule.html:57
+msgid "Sandhi Puja"
+msgstr ""
+
+#: .\main\templates\about_year.html:19
+msgid "Navami"
+msgstr ""
+
+#: .\main\templates\about_year.html:20
+msgid "Dashami"
+msgstr ""
+
+#: .\main\templates\about_year.html:29
+#, python-format
+msgid ""
+"\n"
+"            <p>\n"
+"                %(year.yeardesc)s\n"
+"            </p>\n"
+"            "
+msgstr ""
+
+#: .\main\templates\admin\base.html:34
+msgid "Welcome,"
+msgstr ""
+
+#: .\main\templates\admin\base.html:36
+msgid "View site"
+msgstr ""
+
+#: .\main\templates\admin\base.html:37
+msgid "Documentation"
+msgstr ""
+
+#: .\main\templates\admin\base.html:38
+msgid "Change password"
+msgstr ""
+
+#: .\main\templates\admin\base.html:39
+msgid "Log out"
+msgstr ""
+
+#: .\main\templates\admin\base.html:46 .\main\templates\layout.html:54
+msgid "Home"
+msgstr ""
+
+#: .\main\templates\layout.html:10
+#, python-format
+msgid "Shaw Durga Puja Live | %(title)s | %(yearpassed)s"
+msgstr ""
+
+#: .\main\templates\layout.html:55
+#, python-format
+msgid "About the %(yearpassed)s year puja"
+msgstr ""
+
+#: .\main\templates\layout.html:55
+msgid "About the current year puja"
+msgstr ""
+
+#: .\main\templates\layout.html:61
+#, python-format
+msgid "View the current %(yearpassed)s schedule"
+msgstr ""
+
+#: .\main\templates\layout.html:61
+msgid "See current year schedule"
+msgstr ""
+
+#: .\main\templates\layout.html:64
+msgid "Visit the Admin Panel"
+msgstr ""
+
+#: .\main\templates\layout.html:64
+msgid "Admin Panel"
+msgstr ""
+
+#: .\main\templates\layout.html:65
+msgid "LOGOUT"
+msgstr ""
+
+#: .\main\templates\layout.html:83
+#, python-format
+msgid "%(message)s"
+msgstr ""
+
+#: .\main\templates\layout.html:105
+msgid "Shaw Durga Puja"
+msgstr ""
+
+#: .\main\templates\playlist.html:7
+#, python-format
+msgid "%(year.year)s"
+msgstr ""
+
+#: .\main\templates\playlist.html:8
+msgid "LIVE"
+msgstr ""
+
+#: .\main\templates\playlist.html:11
+msgid "Start Watching"
+msgstr ""
+
+#: .\main\templates\playlist.html:15 .\main\templates\playlist.html:19
+msgid "Coming Soon"
+msgstr ""
+
+#: .\main\templates\schedule.html:15
+msgid "Maha Shashti"
+msgstr ""
+
+#: .\main\templates\schedule.html:19
+msgid ""
+"\n"
+"                            <h6>\"Kalparambho\"</h6>\n"
+"                            <h6>Durga Devi \"BODHON\" \"Amantran\" & "
+"\"Adhibas\"</h6>\n"
+"                            "
+msgstr ""
+
+#: .\main\templates\schedule.html:34
+msgid "Maha Saptami"
+msgstr ""
+
+#: .\main\templates\schedule.html:38
+msgid ""
+"\n"
+"                            <h6>Bathing of \"Kolabou\"</h6>\n"
+"                            <h6>\"Nabo Patrika\" \"Saptami Puja\"</h6>\n"
+"                            "
+msgstr ""
+
+#: .\main\templates\schedule.html:53
+msgid "Maha Ashtami"
+msgstr ""
+
+#: .\main\templates\schedule.html:55
+msgid "Ashtami Puja"
+msgstr ""
+
+#: .\main\templates\schedule.html:60
+msgid "Maha-Bhog Prasad for all starts at"
+msgstr ""
+
+#: .\main\templates\schedule.html:60
+msgid "@ our Home"
+msgstr ""
+
+#: .\main\templates\schedule.html:73
+msgid "Maha Navami"
+msgstr ""
+
+#: .\main\templates\schedule.html:77
+msgid ""
+"\n"
+"                            <h6>Navami Puja</h6>\n"
+"                            <h6>\"Navami Home/Yagna\"</h6>\n"
+"                            "
+msgstr ""
+
+#: .\main\templates\schedule.html:93
+msgid "Maha Dashami"
+msgstr ""
+
+#: .\main\templates\schedule.html:97
+msgid ""
+"\n"
+"                            <h6>Dashami Puja</h6>\n"
+"                            <h6>Bisharjan Ritual after the Dashami Puja</"
+"h6>\n"
+"                            "
+msgstr ""
+
+#: .\main\templates\schedule.html:113
+msgid "Sorry!! (404)"
+msgstr ""
+
+#: .\main\templates\schedule.html:114
+msgid "Durga Puja"
+msgstr ""
+
+#: .\main\templates\schedule.html:114
+msgid "schedule for the year"
+msgstr ""
+
+#: .\main\templates\schedule.html:114
+msgid "has not been released yet."
+msgstr ""
+
+#: .\main\templates\schedule.html:115
+msgid "Please visit our home page"
+msgstr ""

@@ -1,4 +1,4 @@
-{% extends "layout.html" %}{% load static %}{% block body %}
+{% extends "layout.html" %}{% load static %}{% load i18n %}{% load tz %}{% block body %}
 
 <div class="container main-container" id="outer">
     <div class="row my-4 mx-4" id="tableinner">
@@ -9,15 +9,17 @@
             <tbody>
                 <!-- ==Shashti Puja== -->
                 <tr>
-                    <th scope="row">{{year.shashti|date:"dS F Y, l"}}</th>
+                    <th scope="row">{% timezone "Asia/Calcutta" %}{{year.shashti|date:"dS F Y, l"}}{% endtimezone %}</th>
                     <td><img src="{% static 'images/shashti.png' %}"></td>
                     <td>
-                        <h3 style="text-align: center;">Maha Shashti (মহাষষ্ঠী)</h3>
+                        <h3 style="text-align: center;">{% trans 'Maha Shashti' %}</h3>
                         <br/>
-                        <h5 style="text-align: center;">{{year.shashtit}} - {{year.shashtite}}</h5>
+                        <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.shashtit}} - {{year.shashtite}}{% endtimezone %}</h5>
                         <div style="text-align: center;">
+                            {% blocktrans %}
                             <h6>"Kalparambho"</h6>
                             <h6>Durga Devi "BODHON" "Amantran" & "Adhibas"</h6>
+                            {% endblocktrans %}
                         </div>
                         <br/>
                     </td>
@@ -26,15 +28,17 @@
 
                 <!-- ==Saptami== -->
                 <tr>
-                    <th scope="row">{{year.saptami|date:"dS F Y, l"}}</th>
+                    <th scope="row">{% timezone "Asia/Calcutta" %}{{year.saptami|date:"dS F Y, l"}}{% endtimezone %}</th>
                     <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'images/saptami.png' %}"></td>
                     <td>
-                        <h3 style="text-align: center;">Maha Saptami (মহাসপ্তমী)</h3>
+                        <h3 style="text-align: center;">{% trans 'Maha Saptami' %}</h3>
                         <br/>
-                        <h5 style="text-align: center;">{{year.saptamit}} - {{year.saptamite}}</h5>
+                        <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.saptamit}} - {{year.saptamite}}{% endtimezone %}</h5>
                         <div style="text-align: center;">
+                            {% blocktrans %}
                             <h6>Bathing of "Kolabou"</h6>
                             <h6>"Nabo Patrika" "Saptami Puja"</h6>
+                            {% endblocktrans %}
                         </div>
                         <br/>
                     </td>
@@ -43,17 +47,17 @@
 
                 <!-- ==Ashtami== -->
                 <tr>
-                    <th scope="row">{{year.ashtami|date:"dS F Y, l"}}</th>
+                    <th scope="row">{% timezone "Asia/Calcutta" %}{{year.ashtami|date:"dS F Y, l"}}{% endtimezone %}</th>
                     <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'images/ashtami.png' %}"></td>
                     <td>
-                        <h3 style="text-align: center;">Maha Ashtami (মহাঅষ্টমী)</h3>
+                        <h3 style="text-align: center;">{% trans 'Maha Ashtami' %}</h3>
                         <br/>
-                        <h5 style="text-align: center;"><strong>Ashtami Puja (অষ্টমী পূজা):</strong> &nbsp; {{year.ashtamit}} - {{year.ashtamite}}</h5>
+                        <h5 style="text-align: center;"><strong>{% trans 'Ashtami Puja' %}:</strong> &nbsp; {% timezone "Asia/Calcutta" %}{{year.ashtamit}} - {{year.ashtamite}}{% endtimezone %}</h5>
                         <br/>
-                        <h5 style="text-align: center;"><strong>Sandhi Puja (সন্ধি পূজা):</strong> &nbsp; {{year.sandhit}} <b>to</b> {{year.sandhite}} <strong>({{year.sandhi}})</strong></h5>
+                        <h5 style="text-align: center;"><strong>{% trans 'Sandhi Puja' %}:</strong> &nbsp; {% timezone "Asia/Calcutta" %}{{year.sandhit}} <b>to</b> {{year.sandhite}}{% endtimezone %} <strong>{% timezone "Asia/Calcutta" %}({{year.sandhi}}){% endtimezone %}</strong></h5>
                         {% if year.mahabhog %}
                         <div style="text-align: center;">
-                            <h6>Maha-Bhog Prasad for all starts at {{year.mahabhogdttime}} @ our Home</h6>
+                            <h6>{% trans 'Maha-Bhog Prasad for all starts at' %} {% timezone "Asia/Calcutta" %}{{year.mahabhogdttime}}{% endtimezone %} {% trans '@ our Home' %}</h6>
                         </div>
                         {% endif %}
                         <br/>
@@ -63,15 +67,17 @@
 
                 <!-- ==Navami== -->
                 <tr>
-                    <th scope="row">{{year.navami|date:"dS F Y, l"}}</th>
+                    <th scope="row">{% timezone "Asia/Calcutta" %}{{year.navami|date:"dS F Y, l"}}{% endtimezone %}</th>
                     <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'assets/img/default.png' %}" width="111px" height="111px"></td>
                     <td>
-                        <h3 style="text-align: center;">Maha Navami (মহানবমী)</h3>
+                        <h3 style="text-align: center;">{% trans 'Maha Navami' %}</h3>
                         <br/>
-                        <h5 style="text-align: center;">{{year.navamit}} - {{year.navamite}}</h5>
+                        <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.navamit}} - {{year.navamite}}{% endtimezone %}</h5>
                         <div style="text-align: center;">
-                            <h6>Navami Puja (নবমী পূজা)</h6>
+                            {% blocktrans %}
+                            <h6>Navami Puja</h6>
                             <h6>"Navami Home/Yagna"</h6>
+                            {% endblocktrans %}
                         </div>
                         <br/>
                     </td>
@@ -81,15 +87,17 @@
 
                 <!-- ==Dashami== -->
                 <tr>
-                    <th scope="row">{{year.dashami|date:"dS F Y, l"}}</th>
+                    <th scope="row">{% timezone "Asia/Calcutta" %}{{year.dashami|date:"dS F Y, l"}}{% endtimezone %}</th>
                     <td>&nbsp;&nbsp;&nbsp; <img src="{% static 'images/dashami.png' %}" width="111px" height="111px"></td>
                     <td>
-                        <h3 style="text-align: center;">Maha Dashami (মহাদশমী / বিজয়াদশমী)</h3>
+                        <h3 style="text-align: center;">{% trans 'Maha Dashami' %}</h3>
                         <br/>
-                        <h5 style="text-align: center;">{{year.dashamit}} - {{year.dashamite}}</h5>
+                        <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.dashamit}} - {{year.dashamite}}{% endtimezone %}</h5>
                         <div style="text-align: center;">
-                            <h6>Dashami Puja (দশমী পূজা)</h6>
+                            {% blocktrans %}
+                            <h6>Dashami Puja</h6>
                             <h6>Bisharjan Ritual after the Dashami Puja</h6>
+                            {% endblocktrans %}
                         </div>
                         <br/>
                     </td>
@@ -102,11 +110,11 @@
         <div class="container-fluid main-container">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
-                    <h2 style="color:rgb(253, 194, 0);">Sorry!! (404)</h2>
-                    <h4>The <strong style="color:rgb(253, 194, 0);">Durga Puja</strong> schedule for the year {{year}} has not been released yet.</h4>
-                    <p style="color:rgb(253, 194, 0);">Please visit our home page</p>
+                    <h2 style="color:rgb(253, 194, 0);">{% trans 'Sorry!! (404)' %}</h2>
+                    <h4>The <strong style="color:rgb(253, 194, 0);">{% trans 'Durga Puja' %}</strong> {% trans 'schedule for the year' %} {% timezone "Asia/Calcutta" %}{{year}}{% endtimezone %} {% trans 'has not been released yet.' %}</h4>
+                    <p style="color:rgb(253, 194, 0);">{% trans 'Please visit our home page' %}</p>
                     <br/>
-                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">GoTo HomePage</button></a>
+                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">{% trans 'GoTo HomePage' %}</button></a>
                 </div>
             </div>
         </div>
