@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-13 14:36+0530\n"
+"POT-Creation-Date: 2021-05-13 20:40+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,7 @@ msgid "Ashtami"
 msgstr ""
 
 #: .\main\templates\about_year.html:18 .\main\templates\schedule.html:57
+#: .\main\templates\videos.html:33 .\main\templates\videos.html:73
 msgid "Sandhi Puja"
 msgstr ""
 
@@ -165,7 +166,14 @@ msgstr ""
 msgid "%(year.year)s"
 msgstr ""
 
-#: .\main\templates\playlist.html:8
+#: .\main\templates\playlist.html:8 .\main\templates\videos.html:17
+#: .\main\templates\videos.html:21 .\main\templates\videos.html:25
+#: .\main\templates\videos.html:29 .\main\templates\videos.html:33
+#: .\main\templates\videos.html:37 .\main\templates\videos.html:41
+#: .\main\templates\videos.html:65 .\main\templates\videos.html:67
+#: .\main\templates\videos.html:69 .\main\templates\videos.html:71
+#: .\main\templates\videos.html:73 .\main\templates\videos.html:75
+#: .\main\templates\videos.html:77 .\main\templates\videos.html:112
 msgid "LIVE"
 msgstr ""
 
@@ -177,7 +185,8 @@ msgstr ""
 msgid "Coming Soon"
 msgstr ""
 
-#: .\main\templates\schedule.html:15
+#: .\main\templates\schedule.html:15 .\main\templates\videos.html:21
+#: .\main\templates\videos.html:67
 msgid "Maha Shashti"
 msgstr ""
 
@@ -202,7 +211,8 @@ msgid ""
 "                            "
 msgstr ""
 
-#: .\main\templates\schedule.html:53
+#: .\main\templates\schedule.html:53 .\main\templates\videos.html:29
+#: .\main\templates\videos.html:71
 msgid "Maha Ashtami"
 msgstr ""
 
@@ -218,7 +228,8 @@ msgstr ""
 msgid "@ our Home"
 msgstr ""
 
-#: .\main\templates\schedule.html:73
+#: .\main\templates\schedule.html:73 .\main\templates\videos.html:37
+#: .\main\templates\videos.html:75
 msgid "Maha Navami"
 msgstr ""
 
@@ -230,7 +241,8 @@ msgid ""
 "                            "
 msgstr ""
 
-#: .\main\templates\schedule.html:93
+#: .\main\templates\schedule.html:93 .\main\templates\videos.html:41
+#: .\main\templates\videos.html:77
 msgid "Maha Dashami"
 msgstr ""
 
@@ -261,4 +273,74 @@ msgstr ""
 
 #: .\main\templates\schedule.html:115
 msgid "Please visit our home page"
+msgstr ""
+
+#: .\main\templates\videos.html:9 .\main\templates\videos.html:58
+msgid "Year"
+msgstr ""
+
+#: .\main\templates\videos.html:17 .\main\templates\videos.html:65
+msgid "Maa Durga Homecoming"
+msgstr ""
+
+#: .\main\templates\videos.html:25 .\main\templates\videos.html:69
+msgid "Maha Sapatami"
+msgstr ""
+
+#: .\main\templates\videos.html:57
+msgid "Days"
+msgstr ""
+
+#: .\main\templates\videos.html:116
+msgid ""
+"Having problem in viewing this video in the browser? Then go ahead and watch "
+"directly in Facebook "
+msgstr ""
+
+#: .\main\templates\videos.html:116
+msgid "( Click Here and go watch directly in the YouTube )"
+msgstr ""
+
+#: .\main\templates\videos.html:126
+msgid "The"
+msgstr ""
+
+#: .\main\templates\videos.html:126
+msgid "PUJA"
+msgstr ""
+
+#: .\main\templates\videos.html:126
+msgid "MAHA"
+msgstr ""
+
+#: .\main\templates\videos.html:127
+msgid "hasn't been"
+msgstr ""
+
+#: .\main\templates\videos.html:128
+msgid "uploaded"
+msgstr ""
+
+#: .\main\templates\videos.html:128
+msgid "or"
+msgstr ""
+
+#: .\main\templates\videos.html:128
+msgid "gone live."
+msgstr ""
+
+#: .\main\templates\videos.html:129
+msgid "Why don't you check the "
+msgstr ""
+
+#: .\main\templates\videos.html:129
+msgid "year's schedule"
+msgstr ""
+
+#: .\main\templates\videos.html:129
+msgid "in the meantime"
+msgstr ""
+
+#: .\main\templates\videos.html:131
+msgid "Check the schedule"
 msgstr ""
