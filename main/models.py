@@ -11,9 +11,6 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from PIL import Image, ImageDraw, ImageOps
-
-from .get_username import get_request
 
 
 def current_year():
@@ -73,65 +70,6 @@ class Year(models.Model):
     def view_puja_dates_and_time(self):
         '''A button to view the pdf puja schedule file'''
         return mark_safe(f'<a href="pdf/{self.pujadatetime.url}" onclick="return showAddAnotherPopup(this)" class="submit-row">Click Here</a>')
-
-
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        if os.path.isdir(os.path.join(settings.MEDIA_ROOT)):
-            pass
-        else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
-        #Generating the Image!
-        '''
-        if self.yearpic == None or self.yearpic == "" or self.yearpic == " ":
-            #The main image var
-            output_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(self.year) + 'output' +'.png')
-            main_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(self.year) + '.png')
-                
-            main_imagename = str(self.year) + '.png'
-
-            #IMage initialisation and darwing
-            img = Image.new('RGBA', (100, 30), color = str(self.colourback))
-            d = ImageDraw.Draw(img)
-            w, h = d.textsize(str(self.year))
-
-            d.text(((100-w)/2,(30-h)/2), str(self.year), fill=str(self.colourtext))
-
-            #Try Except Block
-            output_image1 = output_image
-            try: img.save(output_image1)
-            except:
-                os.mkdir(os.path.join(settings.MEDIA_ROOT, "yearpic"))
-                img.save(output_image1)
-
-            #Making the image circular
-            mask = Image.open(os.path.join(settings.BASE_DIR,'main','imagesreq','mask.png')).convert('L')
-            im = Image.open(output_image)
-
-            output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
-            output.putalpha(mask)
-
-            #Saving the cropped Image
-            main_image1 = main_image
-            output.save(main_image1)
-            #Deleting the first image made
-            os.remove(output_image1)
-
-            #Saving the image
-            req = get_request().user
-            with open(main_image1, "rb") as f:
-                file_obj = File(f, name=main_imagename)
-                image = Images.objects.create(
-                    owner=req,
-                    original_filename=main_imagename,
-                    file=file_obj
-                )
-                self.yearpic = image
-                
-            #Removing the playlist image and playlist folder
-            os.remove(main_image1)
-            try: os.rmdir(os.path.join(settings.MEDIA_ROOT, "yearpic"))
-            except: pass
-        '''
-        return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
 
     def delete(self, using=None, keep_parents=False):

@@ -1,9 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, FileResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.views.decorators.http import require_GET
+import bangla
+from PIL import Image, ImageDraw, ImageOps, ImageFont
+
 
 from .models import *
 from datetime import datetime
@@ -14,6 +18,51 @@ def user_logout(request):
     logout(request)
     messages.success(request, "You have been successfully logged out!")
     return redirect(reverse('Home'))
+
+@require_GET
+def getimages(request):
+    if os.path.isdir(os.path.join(settings.MEDIA_ROOT)): pass
+    else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
+    
+    text = request.GET['text']
+    back = request.GET.get('back','#FFF00C')
+    textc = request.GET.get('textc','#496d89')
+    
+    img = Image.new('RGBA', (100, 30),color = str(back))
+    d = ImageDraw.Draw(img)
+    w, h = d.textsize(str(text))
+    
+    if request.LANGUAGE_CODE == 'bn' and text.replace('/','').isdigit():
+        font = os.path.join(settings.BASE_DIR,'main','static','fonts','Siyamrupali.ttf')
+        text = bangla.convert_english_digit_to_bangla_digit(str(text))
+        d.text(((97-w)/2,(25-h)/2), str(text), fill=str(textc),font=ImageFont.truetype(font,11,layout_engine=ImageFont.LAYOUT_RAQM))
+    else:
+        d.text(((100-w)/2,(30-h)/2), str(text), fill=str(textc))
+    
+    output_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(text) + 'output' +'.png')
+    main_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(text) + '.png')
+    
+    #Try Except Block
+    output_image1 = output_image
+    try: img.save(output_image1)
+    except:
+        os.mkdir(os.path.join(settings.MEDIA_ROOT, "yearpic"))
+        img.save(output_image1)
+
+    #Making the image circular
+    mask = Image.open(os.path.join(settings.BASE_DIR,'main','imagesreq','mask.png')).convert('L')
+    im = Image.open(output_image)
+
+    output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
+    output.putalpha(mask)
+
+    #Saving the cropped Image
+    main_image1 = main_image
+    output.save(main_image1)
+    #Deleting the first image made
+    os.remove(output_image1)
+    return FileResponse(open(main_image1, 'rb'))
+        
 
 
 # Create your views here.
