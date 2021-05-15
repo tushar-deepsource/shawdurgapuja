@@ -61,10 +61,15 @@
                     <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=2000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
 
                     {% if user.is_authenticated %}
-                    <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}" target="_blank">{% trans 'Admin Panel' %}</a></li>
-                    <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
+                    <div class="nav-item dropdown">
+                        <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Admin</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}" target="_blank">{% trans 'Admin Panel' %}</a></li>
+                            <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
+                        </ul>
+                    </div>
                     {% else %}
-                    <li><a href='{% url "admin:login" %}' title="Admin Login" target="_blank">Admin Login</a></li>
+                    <li><a class="text-primary" href='{% url "admin:login" %}' title="Admin Login" target="_blank">Admin Login</a></li>
                     {% endif %}
 
 
