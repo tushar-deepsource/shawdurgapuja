@@ -18,7 +18,7 @@ class YearAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Year'),{'fields':('year',)}), 
         (_('Year Description'),{'fields':('yeardesc',)}),
-        (_('Pictures of Background'),{'fields':('yearpic','colourback','colourtext')}),
+        (_('Pictures of Background'),{'fields':('colourback','colourtext')}),
         (_('Live Video of Maa Durga coming from potuapara to Home'),{'fields':('maacomevid',)}),
         (_('Puja Dates'),{'fields':('shashti','saptami','ashtami','sandhi','navami','dashami')}),
         

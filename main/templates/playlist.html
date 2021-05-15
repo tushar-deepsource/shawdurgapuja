@@ -1,25 +1,26 @@
 {% extends "layout.html" %}{% load static %}}{% load i18n %}{% block body %}
-<div class="container-fluid main-container">
-    <div class="row my-4 mx-4">
-        {% for year in year %}
-        <div class="col-md-6 col-lg-4 text-center aos-init">
-            <img class="rounded-circle" src="{% url 'GetImages' %}?text={{year.year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" />
-            <h2 data-aos="zoom-in">{% blocktrans %}{{year.year}}{% endblocktrans %} {% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}
-                <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}{% endfor %}</h2>
-            {% if videos %} {% for video in videos %}{% ifequal year.id video.yearmodel %}
-            <p>
-                <a class="scrollto" href="{% url 'Videos' year=year.year day='MAA' %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-danger" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
-            </p>
-            {% else %}
-            <p>
-                <a href="#" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
-            </p>
-            {% endifequal %}{% endfor %} {% else %}
-            <p>
-                <a href="#" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
-            </p>
-            {% endif %}
-
+<div class="container-fluid main-container mt-3">
+    <div class="row my-2 mx-2 text-center mt-3">
+        {% for year in yearmodel %}
+        <div class="col-md-6 col-lg-2 text-center aos-init">
+            <div class='card' style="border-style: hidden;">
+                <div class="card-img-top">
+                    <img class="rounded-circle" src="{% url 'GetImages' %}?text={{year.year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" />
+                </div>
+                <div class="card-body">
+                    <h2 data-aos="zoom-in">{% blocktrans %}{{year.year}}{% endblocktrans %} {% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}
+                        <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}{% endfor %}</h2>
+                    {% for video in videos %}{% ifequal year.id video.yearmodel %}
+                    <p>
+                        <a class="scrollto" href="{% url 'Videos' year=year.year day='MAA' %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-danger" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
+                    </p>
+                    {% else %}
+                    <p>
+                        <a href="#" data-aos="flip-right"><button class="btn btn-outline-danger" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
+                    </p>
+                    {% endifequal %}{% endfor %}
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>

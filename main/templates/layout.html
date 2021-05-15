@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.css" rel="stylesheet">
@@ -61,10 +61,10 @@
                     <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=2000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
 
                     {% if user.is_authenticated %}
-                    <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}">{% trans 'Admin Panel' %}</a></li>
+                    <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}" target="_blank">{% trans 'Admin Panel' %}</a></li>
                     <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
                     {% else %}
-                    <li><a href='{% url "admin:login" %}' title="Admin Login">Admin Login</a></li>
+                    <li><a href='{% url "admin:login" %}' title="Admin Login" target="_blank">Admin Login</a></li>
                     {% endif %}
 
 
@@ -79,11 +79,9 @@
     <main id="main">
         <!-- ==Flashed Message== -->
         {% if messages %} {% for message in messages %}
-        <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert" id="alertdismissible">
+        <div class="alert  {% if message.tags %} alert-{{message.tags}} {% endif %} alert-dismissible fade show" role="alert">
             {% blocktrans %}{{message}}{% endblocktrans %}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %} {% endif %}
         <!-- ==Ends== -->
@@ -91,7 +89,15 @@
         {% block body %} {% endblock %}
     </main>
     <!-- End #main -->
-
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+        new Crate({
+            server: '836841841114480651',
+            channel: '842021199390834728',
+            location: ['bottom', 'left'],
+            notificationsL: true,
+            indicator: true,
+        })
+    </script>
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
@@ -122,6 +128,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Template Main JS File -->

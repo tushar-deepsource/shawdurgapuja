@@ -22,6 +22,10 @@
         height: auto;
         padding: 10px;
     }
+    
+    .deletelink {
+        padding-bottom: 25px !important;
+    }
 </style>
 <script src="{% static 'assets/js/main.js' %}"></script>
 {% endblock %} {% block bodyheader %}
@@ -49,10 +53,10 @@
                     <div class="nav-item dropdown">
                         <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Admin</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/admin/main/videos/">Manage Years</a>
-                            <a class="dropdown-item" href="/admin/main/year/">Manage Videos</a>
+                            <a class="dropdown-item" href="/admin/main/year/">Manage Years</a>
+                            <a class="dropdown-item" href="/admin/main/videos/">Manage Videos</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'admin:logout' %}">Logout</a>
+                            <a class="dropdown-item text-danger" href="{% url 'admin:logout' %}">Logout</a>
                         </ul>
                     </div>
                     {% endif %}

@@ -19,6 +19,7 @@ def user_logout(request):
     messages.success(request, "You have been successfully logged out!")
     return redirect(reverse('Home'))
 
+#Images Api, which generates the cards images
 @require_GET
 def getimages(request):
     if os.path.isdir(os.path.join(settings.MEDIA_ROOT)): pass
@@ -33,9 +34,9 @@ def getimages(request):
     w, h = d.textsize(str(text))
     
     if request.LANGUAGE_CODE == 'bn' and text.replace('/','').isdigit():
-        font = os.path.join(settings.BASE_DIR,'main','static','fonts','Siyamrupali.ttf')
+        font = os.path.join(settings.BASE_DIR,'main','static','fonts','Baloo_Da-Regular.ttf')
         text = bangla.convert_english_digit_to_bangla_digit(str(text))
-        d.text(((97-w)/2,(25-h)/2), str(text), fill=str(textc),font=ImageFont.truetype(font,11,layout_engine=ImageFont.LAYOUT_RAQM))
+        d.text(((100-w)/2,(25-h)/2), str(text), fill=str(textc),font=ImageFont.truetype(font,11,layout_engine=ImageFont.LAYOUT_RAQM))
     else:
         d.text(((100-w)/2,(30-h)/2), str(text), fill=str(textc))
     
@@ -102,7 +103,7 @@ def home(request):
         request,
         'playlist.html',
         {
-            'year':year,
+            'yearmodel':year,
             'videos':videos, 
             'title':name1,
             'view': 'Home',
@@ -135,7 +136,7 @@ def video(request,year,day):
     if day == 'MAA': 
         videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).all()
         try: day = videos[0].day
-        except IndexError: return redirect(reverse('Videos',args=[2020,'S']))
+        except IndexError: return redirect(reverse('Videos',args=[int(year),'S']))
         if day == 'E': dayname = "Ekami"
         elif day == 'DI': dayname = "Dvutia"
         elif day == 'T': dayname = "Tritiya"

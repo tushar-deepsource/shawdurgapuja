@@ -88,7 +88,7 @@
         </div>
 
     </div>
-    <div class="col-sm-auto text-justify" id="hr">
+    <div class="col-sm-auto text-justify-center" id="hr">
         {% if dayname != 'SANDHI' %}
         <div class="row" style="margin-top: 60px;">
             &nbsp; M<br/> &nbsp; A<br/> &nbsp; H<br/> &nbsp; A<br/>
@@ -112,8 +112,25 @@
             <h3>{{videos.streamingvideoheader}} {% if videos.live %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</h3>
         </span>
         <iframe class="iframe" width="95%" height="100%" src="{{videos.embeedlink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <h6>{{videos.streamingvideodescription}}</h6>
-        <h6 style="margin-bottom:20px;"><strong>{% trans 'Having problem in viewing this video in the browser? Then go ahead and watch directly in Facebook ' %}<br/><a href="{{videos.streamingvideolink}}" target="_blank">{% trans '( Click Here and go watch directly in the YouTube )' %}</a></strong></h6>
+        <span style="margin-top:0px;">
+            <h6>{{videos.streamingvideodescription}}</h6>
+            <h6><strong>{% trans 'Having problem in viewing this video in the browser? Then go ahead and watch directly in Facebook ' %}<br/><a href="{{videos.streamingvideolink}}" target="_blank">{% trans '( Click Here and go watch directly in the YouTube )' %}</a></strong></h6>         
+        </span>
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function() {
+                this.page.url = window.location.href; // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '{{forloop.counter}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document,
+                    s = d.createElement('script');
+                s.src = 'https://shaw-durga-puja.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <hr/>
         <hr/> {% endfor %}
     </div>
