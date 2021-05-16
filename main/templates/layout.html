@@ -39,7 +39,7 @@
     }
 </style>
 
-<body>
+<body style="background-color: #e6e6e6;">
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div class="container">
@@ -81,7 +81,7 @@
     </header>
     <!-- End Header -->
 
-    <main id="main">
+    <main id="main" style="background-color: white; border-radius: 10px;">
         <!-- ==Flashed Message== -->
         {% if messages %} {% for message in messages %}
         <div class="alert  {% if message.tags %} alert-{{message.tags}} {% endif %} alert-dismissible fade show" role="alert">
@@ -114,6 +114,8 @@
                     <div class="col-lg-5">
                         <a href="#header" class="scrollto footer-logo"><img src="{% static 'assets/img/default.png' %}" alt=""></a>
                         <h3>{% trans 'Shaw Durga Puja' %}</h3>
+                        <hr/>
+                        <h5> Made with <i class='bx bxs-heart'></i> on <a href="https://github.com/Dhruvacube/shawdurgapuja" target="_blank"><i class='bx bxl-github'></i></a></h5>
                     </div>
                 </div>
 

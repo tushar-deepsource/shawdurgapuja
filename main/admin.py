@@ -11,7 +11,7 @@ from .models import Videos, Year
 # Register your models here.
 class YearAdmin(admin.ModelAdmin):
     list_display = ('year','shashti','saptami','ashtami','sandhi','navami','dashami')
-    list_filter = ('year',)
+    list_filter = (('year',DropdownFilter),)
     search_fields = list_display + ('yeardesc',)
     list_per_page = 30
 

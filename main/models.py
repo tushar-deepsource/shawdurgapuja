@@ -1,11 +1,9 @@
 import datetime
 import os
-from random import randint
 
 from colorfield.fields import ColorField
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.files import File
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import mark_safe
@@ -17,7 +15,7 @@ def current_year():
     return datetime.date.today().year
 
 def max_value_current_year(value):
-    return MaxValueValidator(current_year()+1)(value) 
+    return MaxValueValidator(current_year()+10)(value) 
 
 
 # Create your models here.

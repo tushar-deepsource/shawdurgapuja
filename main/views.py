@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_GET
 import bangla
 from PIL import Image, ImageDraw, ImageOps, ImageFont
+from django.core.paginator import Paginator
 
 
 from .models import *
@@ -67,6 +68,7 @@ def getimages(request):
 
 
 # Create your views here.
+@require_GET
 def schedule(request,year):
     name1 = f'Durga Puja Schedule for {year}'
     try: year,show=Year.objects.filter(year=year).get(), True
@@ -94,16 +96,21 @@ def schedule(request,year):
         params
     )
 
+@require_GET
 def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
-    videos = Videos.objects.values('yearmodel').distinct().all()
-    videoslive = Videos.objects.values('yearmodel','live').filter(live=True).all()
+    videos = Videos.objects.distinct('yearmodel')
+    videoslive = Videos.objects.values('yearmodel','live').filter(live=True)
+    
+    paginator = Paginator(year, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     return render(
         request,
         'playlist.html',
         {
-            'yearmodel':year,
+            'yearmodel':page_obj,
             'videos':videos, 
             'title':name1,
             'view': 'Home',
@@ -111,7 +118,7 @@ def home(request):
         }
     ) 
 
-
+@require_GET
 def video(request,year,day):
     try:
         yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
@@ -128,7 +135,7 @@ def video(request,year,day):
     elif day == 'D': dayname = "Dashami"
     elif day == 'MAA':
         try: maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
-        except IndexError: return redirect(reverse('Videos', args=[2020,'S']))
+        except IndexError: return redirect(reverse('Videos', args=[int(year),'S']))
         if not maahome:
             raise Http404("The day you requested in not available")
     else: raise Http404("The day you requested in not available")
@@ -145,9 +152,9 @@ def video(request,year,day):
     else: videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
     show = False if videos.count() <= 0 else True
 
-    try: livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').get()
-    except Videos.DoesNotExist: livevideo = Videos.objects.none()
-
+    livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').exists()
+    if not livevideo: livevideo = Videos.objects.none()
+    
     maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
 
     return render(
@@ -166,6 +173,7 @@ def video(request,year,day):
         }
     )
 
+@require_GET
 def about_year(request, year): 
     try:
         yearid = Year.objects.filter(year=int(year)).get()
