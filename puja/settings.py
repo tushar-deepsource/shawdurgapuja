@@ -81,8 +81,9 @@ if os.path.isfile(dotenv_file):
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
 else:
+    import ast
     PRODUCTION_SERVER = True
-    DEBUG = os.environ['DEBUG']
+    DEBUG = ast.literal_eval(os.environ['DEBUG'].strip('\n'))
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
