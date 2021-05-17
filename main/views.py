@@ -7,7 +7,8 @@ from django.urls import reverse
 from django.views.decorators.http import require_GET
 import bangla
 from PIL import Image, ImageDraw, ImageOps, ImageFont
-from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.utils import translation
 
 
 from .models import *
@@ -19,6 +20,14 @@ def user_logout(request):
     logout(request)
     messages.success(request, "You have been successfully logged out!")
     return redirect(reverse('Home'))
+
+def changelang(request):
+    old_lang = translation.get_language()
+    if old_lang == 'en':
+        translation.activate("bn")
+    else:
+        translation.activate("en")
+        
 
 #Images Api, which generates the cards images
 @require_GET
@@ -102,10 +111,16 @@ def home(request):
     year = Year.objects.all()
     videos = Videos.objects.distinct('yearmodel')
     videoslive = Videos.objects.values('yearmodel','live').filter(live=True)
-    
-    paginator = Paginator(year, 6)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(year,6)
+
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
     return render(
         request,
         'playlist.html',

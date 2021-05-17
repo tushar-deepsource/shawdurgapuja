@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'^logout/$', user_logout, name='signout'),
+    path('changelang/', changelang, name='ChangeLang'),
     
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
 
