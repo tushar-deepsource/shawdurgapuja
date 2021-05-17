@@ -85,7 +85,7 @@ if os.path.isfile(dotenv_file):
     if not os.path.exists(BASE_DIR / 'media'): os.makedirs(BASE_DIR / 'media')
 
     PRODUCTION_SERVER = False
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+    ALLOWED_HOSTS = ['*']
     DEBUG = True
     SECRET_KEY = '0ssv!ort)z+7ueg4b0*@qpxb-1a#eme!xu=e6-n%g(t++&0heo'
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
