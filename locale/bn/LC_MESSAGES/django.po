@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-13 20:40+0530\n"
+"POT-Creation-Date: 2021-05-17 21:41+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,16 +83,6 @@ msgstr ""
 msgid "Dashami"
 msgstr ""
 
-#: .\main\templates\about_year.html:29
-#, python-format
-msgid ""
-"\n"
-"            <p>\n"
-"                %(year.yeardesc)s\n"
-"            </p>\n"
-"            "
-msgstr ""
-
 #: .\main\templates\admin\base.html:34
 msgid "Welcome,"
 msgstr ""
@@ -113,75 +103,88 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-#: .\main\templates\admin\base.html:46 .\main\templates\layout.html:54
+#: .\main\templates\admin\base.html:46 .\main\templates\layout.html:57
 msgid "Home"
 msgstr ""
 
-#: .\main\templates\layout.html:10
+#: .\main\templates\layout.html:9
 #, python-format
 msgid "Shaw Durga Puja Live | %(title)s | %(yearpassed)s"
 msgstr ""
 
-#: .\main\templates\layout.html:55
+#: .\main\templates\layout.html:58
 #, python-format
 msgid "About the %(yearpassed)s year puja"
 msgstr ""
 
-#: .\main\templates\layout.html:55
+#: .\main\templates\layout.html:58
 msgid "About the current year puja"
 msgstr ""
 
-#: .\main\templates\layout.html:61
+#: .\main\templates\layout.html:64
 #, python-format
 msgid "View the current %(yearpassed)s schedule"
 msgstr ""
 
-#: .\main\templates\layout.html:61
+#: .\main\templates\layout.html:64
 msgid "See current year schedule"
 msgstr ""
 
-#: .\main\templates\layout.html:64
+#: .\main\templates\layout.html:70
 msgid "Visit the Admin Panel"
 msgstr ""
 
-#: .\main\templates\layout.html:64
+#: .\main\templates\layout.html:70
 msgid "Admin Panel"
 msgstr ""
 
-#: .\main\templates\layout.html:65
+#: .\main\templates\layout.html:71
 msgid "LOGOUT"
 msgstr ""
 
-#: .\main\templates\layout.html:83
+#: .\main\templates\layout.html:78
+msgid "Change Language"
+msgstr ""
+
+#: .\main\templates\layout.html:93
 #, python-format
 msgid "%(message)s"
 msgstr ""
 
-#: .\main\templates\layout.html:105
+#: .\main\templates\layout.html:121
 msgid "Shaw Durga Puja"
 msgstr ""
 
-#: .\main\templates\playlist.html:7
-#, python-format
-msgid "%(year.year)s"
+#: .\main\templates\layout.html:123
+msgid "Made with"
 msgstr ""
 
-#: .\main\templates\playlist.html:8 .\main\templates\videos.html:17
-#: .\main\templates\videos.html:21 .\main\templates\videos.html:25
-#: .\main\templates\videos.html:29 .\main\templates\videos.html:33
-#: .\main\templates\videos.html:37 .\main\templates\videos.html:41
-#: .\main\templates\videos.html:65 .\main\templates\videos.html:67
-#: .\main\templates\videos.html:69 .\main\templates\videos.html:71
-#: .\main\templates\videos.html:73 .\main\templates\videos.html:75
-#: .\main\templates\videos.html:77 .\main\templates\videos.html:112
+#: .\main\templates\layout.html:123
+msgid "on"
+msgstr ""
+
+#: .\main\templates\playlist.html:26 .\main\templates\playlist.html:52
+#, python-format
+msgid "%(year)s"
+msgstr ""
+
+#: .\main\templates\playlist.html:27 .\main\templates\playlist.html:53
+#: .\main\templates\videos.html:17 .\main\templates\videos.html:21
+#: .\main\templates\videos.html:25 .\main\templates\videos.html:29
+#: .\main\templates\videos.html:33 .\main\templates\videos.html:37
+#: .\main\templates\videos.html:41 .\main\templates\videos.html:65
+#: .\main\templates\videos.html:67 .\main\templates\videos.html:69
+#: .\main\templates\videos.html:71 .\main\templates\videos.html:73
+#: .\main\templates\videos.html:75 .\main\templates\videos.html:77
+#: .\main\templates\videos.html:112
 msgid "LIVE"
 msgstr ""
 
-#: .\main\templates\playlist.html:11
+#: .\main\templates\playlist.html:30 .\main\templates\playlist.html:56
 msgid "Start Watching"
 msgstr ""
 
-#: .\main\templates\playlist.html:15 .\main\templates\playlist.html:19
+#: .\main\templates\playlist.html:34 .\main\templates\playlist.html:60
 msgid "Coming Soon"
 msgstr ""
 
@@ -291,56 +294,56 @@ msgstr ""
 msgid "Days"
 msgstr ""
 
-#: .\main\templates\videos.html:116
+#: .\main\templates\videos.html:117
 msgid ""
 "Having problem in viewing this video in the browser? Then go ahead and watch "
 "directly in Facebook "
 msgstr ""
 
-#: .\main\templates\videos.html:116
+#: .\main\templates\videos.html:117
 msgid "( Click Here and go watch directly in the YouTube )"
 msgstr ""
 
-#: .\main\templates\videos.html:126
+#: .\main\templates\videos.html:143
 msgid "The"
 msgstr ""
 
-#: .\main\templates\videos.html:126
+#: .\main\templates\videos.html:143
 msgid "PUJA"
 msgstr ""
 
-#: .\main\templates\videos.html:126
+#: .\main\templates\videos.html:143
 msgid "MAHA"
 msgstr ""
 
-#: .\main\templates\videos.html:127
+#: .\main\templates\videos.html:144
 msgid "hasn't been"
 msgstr ""
 
-#: .\main\templates\videos.html:128
+#: .\main\templates\videos.html:145
 msgid "uploaded"
 msgstr ""
 
-#: .\main\templates\videos.html:128
+#: .\main\templates\videos.html:145
 msgid "or"
 msgstr ""
 
-#: .\main\templates\videos.html:128
+#: .\main\templates\videos.html:145
 msgid "gone live."
 msgstr ""
 
-#: .\main\templates\videos.html:129
+#: .\main\templates\videos.html:146
 msgid "Why don't you check the "
 msgstr ""
 
-#: .\main\templates\videos.html:129
+#: .\main\templates\videos.html:146
 msgid "year's schedule"
 msgstr ""
 
-#: .\main\templates\videos.html:129
+#: .\main\templates\videos.html:146
 msgid "in the meantime"
 msgstr ""
 
-#: .\main\templates\videos.html:131
+#: .\main\templates\videos.html:148
 msgid "Check the schedule"
 msgstr ""

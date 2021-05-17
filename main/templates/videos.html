@@ -1,16 +1,6 @@
 {% extends "layout.html" %}{% load static %}{% load i18n %}{% load tz %}{% block body %}
 <link href="{% static 'css/videos.css' %}" rel="stylesheet">
-<script>
-    function viewcomments(counter) {
-        var a = document.getElementById(counter).style.display;
-        if (a == 'none') {
-            document.getElementById(counter).style.display = 'block';
-        } else {
-            document.getElementById(counter).style.display = 'none';
-        }
-    }
-</script>
-<!-- ==The links to navigate between through links== -->
+
 <div class="row aos-init " style="margin-bottom: 20px;margin-top: 20px;">
     <div class="col-sm-3">
         <nav class="navbar overflow-auto" id="navid">
@@ -98,7 +88,7 @@
         </div>
 
     </div>
-    <div class="col-sm-auto text-justify-center" id="hr" style="height: 518px; border-radius: 10px; margin-left:10px; margin-right:10px;">
+    <div class="col-sm-auto text-justify-center rounded-top" id="hr" style="height: 518px; margin-left:10px; margin-right:10px;">
         {% if dayname != 'SANDHI' %}
         <div class="row" style="margin-top: 60px;">
             &nbsp; &nbsp;M<br/>&nbsp; &nbsp;A<br/>&nbsp; &nbsp;H<br/>&nbsp; &nbsp;A<br/>
@@ -119,34 +109,33 @@
     <div class="col-lg  overflow-auto mt-3" style="height: 500px;overflow-x: hidden !important; margin-left: 20px;">
         {% for videos in videos %}
         <span style="margin-top:20px; text-align:center;" {% if videos.live %}id="live" {% endif %}>
-            <h3>{{videos.streamingvideoheader}} {% if videos.live %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</h3>
+            <h3><u>{{videos.streamingvideoheader}}</u> {% if videos.live %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</h3>
         </span>
         <iframe class="iframe" width="95%" height="100%" src="{{videos.embeedlink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <span style="margin-top:0px;">
             <h6>{{videos.streamingvideodescription}}</h6>
             <h6><strong>{% trans 'Having problem in viewing this video in the browser? Then go ahead and watch directly in Facebook ' %}<br/><a href="{{videos.streamingvideolink}}" target="_blank">{% trans '( Click Here and go watch directly in the YouTube )' %}</a></strong></h6>         
-            <center><button type="button" style="margin-top: 10px;margin-bottom: 10px;" class="btn btn-outline-info" onclick="viewcomments('{{forloop.counter}}')">{% trans 'Comments' %}</button></center>
         </span>
-        <div id="disqus_thread {{forloop.counter}}" style="display: none;"></div>
-        <script>
-            var disqus_config = function() {
-                this.page.url = window.location.href; // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = '{{forloop.counter}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document,
-                    s = d.createElement('script');
-                s.src = 'https://shaw-durga-puja.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <hr/>
         <hr/> {% endfor %}
     </div>
     <!-- ==Ends== -->
-    {% else %}
+    <span class="bg-warning" style="padding-left: 100%; padding-top: 5px;"></span>
+    <div class="m-2 ms-2 me-2" id="disqus_thread"></div>
+    <script>
+        var disqus_config = function() {
+            this.page.url = window.location.href; // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{yearpassed}}-{{dayname}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://shaw-durga-puja.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <hr/> {% else %}
     <div class="col-lg container-fluid main-container overflow-auto" style="overflow-x: hidden !important; margin-left: 20px;">
         <div class="container">
             <div class="section-title" data-aos="fade-up">

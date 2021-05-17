@@ -63,16 +63,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'puja.wsgi.application'
 
-##The filemanager
-THUMBNAIL_HIGH_RESOLUTION = True
-FILER_CANONICAL_URL = 'sharing/'
-
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters',
-)
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -133,6 +123,8 @@ USE_TZ = True
 
 USE_L10N = True
 
+USE_I18N = True
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -142,7 +134,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-GS_BUCKET_NAME = 'YOUR_BUCKET_NAME_GOES_HERE'
 
 # # Deployment check
 if PRODUCTION_SERVER:

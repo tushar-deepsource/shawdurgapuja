@@ -26,7 +26,7 @@ urlpatterns = [
     
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     
-    url(r'^(?P<path>.*)$', arcproxy, name='ArcProxy'),
+    url('arc-sw.js', arcproxy, name='ArcProxy'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

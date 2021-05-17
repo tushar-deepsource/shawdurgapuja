@@ -6,8 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.http import (FileResponse, Http404, HttpResponse,
-                         HttpResponseNotAllowed)
+from django.http import FileResponse, Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
@@ -17,12 +16,9 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 from .models import *
 
 
-def arcproxy(request,path):
-    if path == 'arc-sw.js':
-        with urllib.request.urlopen('https://arc.io/arc-sw.js') as response:
-            return HttpResponse(response.read(),content_type='application/javascript')
-    else:
-        return HttpResponseNotAllowed(('POST','GET'))
+def arcproxy(request):
+    with urllib.request.urlopen('https://arc.io/arc-sw.js') as response:
+        return HttpResponse(response.read(),content_type='application/javascript')
 
 @login_required
 def user_logout(request):
@@ -43,11 +39,11 @@ def changelang(request):
 #Images Api, which generates the cards images
 @require_GET
 def getimages(request):
-    length = Year.objects.count()
-    for root, dirs, files in os.walk(settings.MEDIA_ROOT):
-        if len(files) > length:
-            for file in files:
-                os.remove(os.path.join(root, file))
+    # length = Year.objects.count()
+    # for root, dirs, files in os.walk(settings.MEDIA_ROOT):
+    #     if len(files) > length:
+    #         for file in files:
+    #             os.remove(os.path.join(root, file))
     if os.path.isdir(os.path.join(settings.MEDIA_ROOT)): pass
     else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
     
