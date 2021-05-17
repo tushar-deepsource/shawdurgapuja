@@ -27,19 +27,21 @@ urlpatterns = [
     url(r'^logout/$', user_logout, name='signout'),
     path('changelang/', changelang, name='ChangeLang'),
     
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps})
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    
+    url(r'^(?P<path>.*)$', arcproxy, name='ArcProxy'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-urlpatterns += i18n_patterns(
+urlpatterns = i18n_patterns(
     path('', home,name="Home"),
     path(_('videos/<yyyy:year>/<str:day>'),video,name="Videos"),
     path(_('aboutyear/<yyyy:year>'),about_year,name="About Year"),
     path(_('schedule/<yyyy:year>/'),schedule,name="schedule"),
     path(_('redirect/'), redirect_view_puja,name="Redirect"),
     url(_(r'^getimages$'), getimages, name="GetImages")
-)
+) + urlpatterns
 
 handler404 = 'main.views.handler404'
 handler500 = 'main.views.handler500'

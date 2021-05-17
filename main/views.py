@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, FileResponse
+from django.http import Http404, FileResponse, HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_GET
@@ -9,11 +9,17 @@ import bangla
 from PIL import Image, ImageDraw, ImageOps, ImageFont
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import translation
-
+import urllib.request
 
 from .models import *
 from datetime import datetime
 
+def arcproxy(request,path):
+    if path == 'arc-sw.js':
+        with urllib.request.urlopen('https://arc.io/arc-sw.js') as response:
+            return HttpResponse(response.read(),content_type='application/javascript')
+    else:
+        return HttpResponseNotAllowed(('POST','GET'))
 
 @login_required
 def user_logout(request):
