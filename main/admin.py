@@ -3,7 +3,9 @@ from django.contrib.admin.models import LogEntry
 from django.contrib.auth.admin import Group
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
-from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter, ChoiceDropdownFilter
+from django_admin_listfilter_dropdown.filters import (ChoiceDropdownFilter,
+                                                      DropdownFilter,
+                                                      RelatedDropdownFilter)
 
 from .models import Videos, Year
 

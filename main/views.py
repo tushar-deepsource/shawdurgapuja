@@ -1,18 +1,21 @@
+import urllib.request
+from datetime import datetime
+
+import bangla
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, FileResponse, HttpResponse, HttpResponseNotAllowed
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http import (FileResponse, Http404, HttpResponse,
+                         HttpResponseNotAllowed)
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.decorators.http import require_GET
-import bangla
-from PIL import Image, ImageDraw, ImageOps, ImageFont
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import translation
-import urllib.request
+from django.views.decorators.http import require_GET
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from .models import *
-from datetime import datetime
+
 
 def arcproxy(request,path):
     if path == 'arc-sw.js':
@@ -28,16 +31,23 @@ def user_logout(request):
     return redirect(reverse('Home'))
 
 def changelang(request):
-    old_lang = translation.get_language()
+    old_lang = translation.to_locale(translation.get_language())
+    l = request.META.get('HTTP_REFERER') if request.META.get('HTTP_REFERER') else reverse('Home')
     if old_lang == 'en':
         translation.activate("bn")
+        return redirect(l.replace('en','bn'))
     else:
         translation.activate("en")
-        
+        return redirect(l.replace('bn','en')) 
 
 #Images Api, which generates the cards images
 @require_GET
 def getimages(request):
+    length = Year.objects.count()
+    for root, dirs, files in os.walk(settings.MEDIA_ROOT):
+        if len(files) > length:
+            for file in files:
+                os.remove(os.path.join(root, file))
     if os.path.isdir(os.path.join(settings.MEDIA_ROOT)): pass
     else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
     

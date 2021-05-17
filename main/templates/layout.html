@@ -1,5 +1,4 @@
-{% load static %}{% load i18n %}
-
+{% load static %}{% load i18n %}{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +30,10 @@
 
     <!-- Template Main CSS File -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    <!-- Arc Installation -->
+    <script async src="https://arc.io/widget.min.js#9N9npYrZ"></script>
+
 
 </head>
 <style>
@@ -71,6 +74,8 @@
                     {% else %}
                     <li><a class="text-primary" href='{% url "admin:login" %}' title="Admin Login" target="_blank">Admin Login</a></li>
                     {% endif %}
+
+                    <li><a class="text-primary" href='{% url "ChangeLang" %}' title="{% trans 'Change Language' %}">{% ifequal LANGUAGE_CODE 'en' %}English{% else %}বাংলা ভাষা{% endifequal %}</a></li>
 
 
                 </ul>
@@ -115,7 +120,9 @@
                         <a href="#header" class="scrollto footer-logo"><img src="{% static 'assets/img/default.png' %}" alt=""></a>
                         <h3>{% trans 'Shaw Durga Puja' %}</h3>
                         <hr/>
-                        <h5> Made with <i class='bx bxs-heart'></i> on <a href="https://github.com/Dhruvacube/shawdurgapuja" target="_blank"><i class='bx bxl-github'></i></a></h5>
+                        <h5> {% trans 'Made with' %} <i class='bx bxs-heart'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" target="_blank"><i class='bx bxl-github'></i></a> +
+                            <a href="https://discord.gg/jPM9NP5ahZ" target="_blank"><i class='bx bxl-discord'></i></a>
+                        </h5>
                     </div>
                 </div>
 

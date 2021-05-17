@@ -1,17 +1,15 @@
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path, register_converter
 from django.utils.translation import gettext_lazy as _
-
 from main import converters
 from main.views import *
 
 from .sitemaps import StaticViewSitemap
-from django.conf.urls.i18n import i18n_patterns
-
 
 sitemaps = {
     'static': StaticViewSitemap
@@ -25,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'^logout/$', user_logout, name='signout'),
-    path('changelang/', changelang, name='ChangeLang'),
     
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     
@@ -40,7 +37,8 @@ urlpatterns = i18n_patterns(
     path(_('aboutyear/<yyyy:year>'),about_year,name="About Year"),
     path(_('schedule/<yyyy:year>/'),schedule,name="schedule"),
     path(_('redirect/'), redirect_view_puja,name="Redirect"),
-    url(_(r'^getimages$'), getimages, name="GetImages")
+    url(_(r'^getimages$'), getimages, name="GetImages"),
+    path(_('changelang/'), changelang, name='ChangeLang'),
 ) + urlpatterns
 
 handler404 = 'main.views.handler404'
