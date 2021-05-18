@@ -27,12 +27,13 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     
     url('arc-sw.js', arcproxy, name='ArcProxy'),
+    path('', homeredirect,name="HomeRedirect"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 urlpatterns = i18n_patterns(
-    path('', home,name="Home"),
+    path(_(''), home,name="Home"),
     path(_('videos/<yyyy:year>/<str:day>'),video,name="Videos"),
     path(_('aboutyear/<yyyy:year>'),about_year,name="About Year"),
     path(_('schedule/<yyyy:year>/'),schedule,name="schedule"),

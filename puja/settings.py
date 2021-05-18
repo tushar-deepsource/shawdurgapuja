@@ -126,6 +126,8 @@ USE_L10N = True
 
 USE_I18N = True
 
+USE_THOUSAND_SEPARATOR = True
+
 
 
 # Static files (CSS, JavaScript, Images)

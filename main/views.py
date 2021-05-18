@@ -1,5 +1,5 @@
 import urllib.request
-from datetime import datetime
+import datetime
 
 import bangla
 from django.contrib import messages
@@ -89,6 +89,9 @@ def getimages(request):
 
 
 # Create your views here.
+def homeredirect(request):
+    return redirect(reverse('Home'))
+    
 @require_GET
 def schedule(request,year):
     name1 = f'Durga Puja Schedule for {year}'
@@ -247,7 +250,7 @@ def redirect_view_puja(request):
 
 ##Error 404
 def handler404(request, *args, **argv):
-    x = datetime.now()
+    x = datetime.datetime.now()
     return render(
         None,
         '404.html', 
@@ -259,7 +262,7 @@ def handler404(request, *args, **argv):
 
 #Error 500
 def handler500(request, *args, **argv):
-    x = datetime.now()
+    x = datetime.datetime.now()
     return  render(
         None,
         '500.html', 
