@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-17 21:41+0530\n"
+"POT-Creation-Date: 2021-05-18 13:52+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,27 +83,27 @@ msgstr ""
 msgid "Dashami"
 msgstr ""
 
-#: .\main\templates\admin\base.html:34
+#: .\main\templates\admin\base.html:36
 msgid "Welcome,"
 msgstr ""
 
-#: .\main\templates\admin\base.html:36
+#: .\main\templates\admin\base.html:38
 msgid "View site"
 msgstr ""
 
-#: .\main\templates\admin\base.html:37
+#: .\main\templates\admin\base.html:39
 msgid "Documentation"
 msgstr ""
 
-#: .\main\templates\admin\base.html:38
+#: .\main\templates\admin\base.html:40
 msgid "Change password"
 msgstr ""
 
-#: .\main\templates\admin\base.html:39
+#: .\main\templates\admin\base.html:41
 msgid "Log out"
 msgstr ""
 
-#: .\main\templates\admin\base.html:46 .\main\templates\layout.html:57
+#: .\main\templates\admin\base.html:48 .\main\templates\layout.html:57
 msgid "Home"
 msgstr ""
 
@@ -297,11 +297,19 @@ msgstr ""
 #: .\main\templates\videos.html:117
 msgid ""
 "Having problem in viewing this video in the browser? Then go ahead and watch "
-"directly in Facebook "
+"directly in "
 msgstr ""
 
 #: .\main\templates\videos.html:117
-msgid "( Click Here and go watch directly in the YouTube )"
+msgid "Facebook"
+msgstr ""
+
+#: .\main\templates\videos.html:117
+msgid "YouTube"
+msgstr ""
+
+#: .\main\templates\videos.html:117
+msgid "( Click Here and go watch directly in the "
 msgstr ""
 
 #: .\main\templates\videos.html:143

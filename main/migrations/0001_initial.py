@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('day', models.CharField(blank=True, choices=[('E', 'Ekum'), ('DI', 'Dvitia'), ('T', 'Tritiya'), ('C', 'Maha Chathurti'), ('P', 'Maha Panchami'), ('S', 'Maha Shashti'), ('SA', 'Maha Saptami'), ('A', 'Maha Ashtami'), ('SAN', 'Sandhi Puja'), ('N', 'Maha Navami'), ('D', 'Maha Dashami')], default='S', max_length=50, null=True, verbose_name='Day of Uploading')),
-                ('streamingplatform', models.CharField(blank=True, choices=[('F', 'Facebook'), ('Y', 'YouTube')], default='F', max_length=10, null=True, validators=[main.models.validate_platform], verbose_name='Streaming Platform')),
+                ('streamingplatform', models.CharField(blank=True, choices=[('F', 'Facebook'), ('Y', 'YouTube')], default='Y', max_length=10, null=True, verbose_name='Streaming Platform')),
                 ('streamingvideoheader', models.CharField(blank=True, max_length=600, null=True, verbose_name='Live Streaming Video Header')),
                 ('streamingvideolink', models.URLField(blank=True, null=True, verbose_name='Live Video Link')),
                 ('live', models.BooleanField(default=True, help_text='Check this only if the video is live', verbose_name='Live Video')),

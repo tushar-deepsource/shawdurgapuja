@@ -76,16 +76,17 @@ class Year(models.Model):
         return super().delete(using=using, keep_parents=keep_parents)
 
 
-def validate_platform(value):
-    if value.upper() == 'Y':
-            raise ValidationError(
-                _('YouTube streaming is not available! Please Choose the other option'),
-            )
-
-
 def get_default_year():
     from datetime import datetime
     return Year.objects.get_or_create(year=int(datetime.now().strftime("%Y")))
+
+def get_video_id(video_url):
+    from urllib.parse import urlparse
+    queryset = urlparse(video_url)
+    if 'https://www.youtube.com/watch?v=' in video_url:
+        return queryset.query[2:]
+    else:
+        return queryset.path[1:]
 
 class Videos(models.Model):
     """
@@ -114,7 +115,7 @@ class Videos(models.Model):
         default='S'
     )
     
-    streamingplatform = models.CharField(_('Streaming Platform'),null=True, blank=True,choices=(('F','Facebook'),('Y','YouTube')),max_length=10,default="F",validators=[validate_platform])
+    streamingplatform = models.CharField(_('Streaming Platform'),null=True, blank=True,choices=(('F','Facebook'),('Y','YouTube')),max_length=10,default="Y")
     streamingvideoheader = models.CharField(_('Live Streaming Video Header'),null=True,blank=True,max_length=600)
     
     streamingvideolink = models.URLField(_('Live Video Link'), null=True, blank=True)
@@ -140,16 +141,31 @@ class Videos(models.Model):
     
     
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        if self.streamingvideolink[-1] != '/':
-            self.streamingvideolink = self.streamingvideolink + '/'
-        a = self.streamingvideolink.lstrip('https://www.facebook.com/')
-        lista = a.split('/')
-        if len(lista) == 4:
-            self.videoid = lista[-2]
-        elif len(lista) == 3:
-            self.videoid = lista[-1]
-        self.usernamefb = lista[0]
-        self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
+        if self.streamingplatform == 'F':
+            if 'youtube.com'  in self.streamingvideolink or 'youtube' in self.streamingvideolink:
+                raise ValidationError(
+                _('Please put Facebook Url !'),
+            )
+            if self.streamingvideolink[-1] != '/':
+                self.streamingvideolink = self.streamingvideolink + '/'
+            a = self.streamingvideolink.lstrip('https://www.facebook.com/')
+            lista = a.split('/')
+            if len(lista) == 4:
+                self.videoid = lista[-2]
+            elif len(lista) == 3:
+                self.videoid = lista[-1]
+            self.usernamefb = lista[0]
+            self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
+        else:
+            if 'facebook.com'  in self.streamingvideolink or 'facebook' in self.streamingvideolink:
+                raise ValidationError(
+                _('Please put YouTube Url !'),
+            )
+            if self.videoid == None or self.videoid == "" or self.videoid == " ":
+                self.videoid = Videos.objects.count()
+
+            a = get_video_id(self.streamingvideolink)
+            self.embeedlink = 'https://www.youtube.com/embed/' + a.strip()
 
         if self.live:
             Videos.objects.update(live=False)

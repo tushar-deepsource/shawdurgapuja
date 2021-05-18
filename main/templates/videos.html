@@ -114,7 +114,7 @@
         <iframe class="iframe" width="95%" height="100%" src="{{videos.embeedlink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <span style="margin-top:0px;">
             <h6>{{videos.streamingvideodescription}}</h6>
-            <h6><strong>{% trans 'Having problem in viewing this video in the browser? Then go ahead and watch directly in Facebook ' %}<br/><a href="{{videos.streamingvideolink}}" target="_blank">{% trans '( Click Here and go watch directly in the YouTube )' %}</a></strong></h6>         
+            <h6><strong>{% trans 'Having problem in viewing this video in the browser? Then go ahead and watch directly in ' %}{% if videos.streamingplatform == 'F' %}{% trans 'Facebook' %}{% else %}{% trans 'YouTube' %}{% endif %}<br/><a href="{{videos.streamingvideolink}}" target="_blank">{% trans '( Click Here and go watch directly in the ' %}{% if videos.streamingplatform == 'F' %}{% trans 'Facebook' %}{% else %}{% trans 'YouTube' %}{% endif %} )</a></strong></h6>         
         </span>
         <hr/> {% endfor %}
     </div>
