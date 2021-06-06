@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.http import FileResponse, Http404, HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
@@ -39,11 +39,6 @@ def changelang(request):
 #Images Api, which generates the cards images
 @require_GET
 def getimages(request):
-    # length = Year.objects.count()
-    # for root, dirs, files in os.walk(settings.MEDIA_ROOT):
-    #     if len(files) > length:
-    #         for file in files:
-    #             os.remove(os.path.join(root, file))
     if os.path.isdir(os.path.join(settings.MEDIA_ROOT)): pass
     else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
     
@@ -82,9 +77,12 @@ def getimages(request):
     #Saving the cropped Image
     main_image1 = main_image
     output.save(main_image1)
+    with open(main_image1, "rb") as image_file:
+        image_data = image_file.read()
     #Deleting the first image made
     os.remove(output_image1)
-    return FileResponse(open(main_image1, 'rb'))
+    os.remove(main_image1)
+    return HttpResponse(image_data, content_type="image/jpeg")
         
 
 
