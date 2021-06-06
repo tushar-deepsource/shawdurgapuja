@@ -39,8 +39,8 @@ def changelang(request):
 #Images Api, which generates the cards images
 @require_GET
 def getimages(request):
-    if os.path.isdir(os.path.join(settings.MEDIA_ROOT)): pass
-    else: os.mkdir(os.path.join(settings.MEDIA_ROOT))
+    if os.path.isdir(os.path.join(settings.BASE_DIR, 'yearpic')): pass
+    else: os.mkdir(os.path.join(settings.BASE_DIR, 'yearpic'))
     
     text = request.GET['text']
     back = request.GET.get('back','#FFF00C')
