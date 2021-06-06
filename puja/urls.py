@@ -26,7 +26,6 @@ urlpatterns = [
     
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     
-    url('arc-sw.js', arcproxy, name='ArcProxy'),
     path('', homeredirect,name="HomeRedirect"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

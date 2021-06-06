@@ -16,10 +16,6 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 from .models import *
 
 
-def arcproxy(request):
-    with urllib.request.urlopen('https://arc.io/arc-sw.js') as response:
-        return HttpResponse(response.read(),content_type='application/javascript')
-
 @login_required
 def user_logout(request):
     logout(request)

@@ -27,7 +27,7 @@
                         <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}{% endfor %}</h2>
                     {% for video in videos|slice:forloop.counter %}{% ifequal year.id video.yearmodel.id %}
                     <p>
-                        <a class="scrollto" href="{% url 'Videos' year=year.year day='MAA' %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
+                        <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
                     </p>
                     {% else %}
                     <p>
