@@ -152,8 +152,8 @@ if os.getenv('DATABASE_URL')[0] == 'm':
     DATABASES['default']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB',}
 
 LANGUAGES = (
-    ('en', _('English')),
     ('bn', _('Bengali')),
+    ('en', _('English')),
 )
 
 LOCALE_PATHS = (
