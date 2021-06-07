@@ -6,5 +6,5 @@ media/
 backups/
 filer
 bng.txt
-wGDWG.HTML
 __pycache__
+env
