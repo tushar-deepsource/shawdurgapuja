@@ -1,4 +1,4 @@
-# SOME DESCRIPTIVE TITLE.
+# THE BENGALI TRANSLATIONS FOR THE SHAWDURGAPUJA SITE
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Dhruva Shaw <dhruvashaw@gmail.com>, 2021.
@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-06 21:35+0530\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2021-06-07 14:41+0530\n"
+"PO-Revision-Date: 2021-05-07 14:24+0530\n"
 "Last-Translator: Dhruva Shaw  <dhruvashaw@gmail.com>\n"
 "Language-Team: Shaw Durga Puja <LL@li.org>\n"
 "Language: \n"
@@ -30,11 +30,20 @@ msgid ""
 "                    <br/>\n"
 "                    "
 msgstr ""
+"\n"
+"                    <u><h2 style=\"color:rgb(253, 194, 0);\">দুঃখিত !! (৪০৪)</"
+"h2></u>\n"
+"                    <h4>আপনার <strong style=\"color:rgb(253, 194, 0);"
+"\">অনুরোধ করা সংস্থানটি</strong> উপলভ্য নয় !</h4>\n"
+"                    <p style=\"color:rgb(253, 194, 0);\">আপনি কেন যান না এরই "
+"মধ্যে হোম পেজে</p>\n"
+"                    <br/>\n"
+"                    "
 
 #: .\main\templates\404.html:13 .\main\templates\500.html:13
 #: .\main\templates\schedule.html:117
 msgid "GoTo HomePage"
-msgstr ""
+msgstr "হোমপেজ"
 
 #: .\main\templates\500.html:7
 msgid ""
@@ -48,125 +57,146 @@ msgid ""
 "                    <br/>\n"
 "                    "
 msgstr ""
+"\n"
+"                    <u><h2 style=\"color:rgb(253, 194, 0);\">দুঃখিত !! (৫০০)</"
+"h2></u>\n"
+"                    <h4>সার্ভারে ব্যাকএন্ডে<strong style=\"color:rgb(253, 194, "
+"0);\">কিছু সমস্যা </strong>ছিল</h4>\n"
+"                    <p style=\"color:rgb(253, 194, 0);\">আপনি কেন যান না এরই "
+"মধ্যে হোম পেজে</p>\n"
+"                    <br/>\n"
+"                    "
 
 #: .\main\templates\about_year.html:10
 msgid "Maa Durga Photo"
-msgstr ""
+msgstr "মা দুর্গার ছবি"
 
 #: .\main\templates\about_year.html:13 .\main\templates\about_year.html:28
 #, python-format
 msgid "Durga Puja %(yearpassed)s"
-msgstr ""
+msgstr "দুর্গা পূজা %(yearpassed)s"
 
 #: .\main\templates\about_year.html:15
 msgid "Shashti"
-msgstr ""
+msgstr "ষষ্ঠী"
 
 #: .\main\templates\about_year.html:16
 msgid "Saptami"
-msgstr ""
+msgstr "সপ্তমী"
 
 #: .\main\templates\about_year.html:17
 msgid "Ashtami"
-msgstr ""
+msgstr "অষ্টমী"
 
 #: .\main\templates\about_year.html:18 .\main\templates\schedule.html:57
 #: .\main\templates\videos.html:33 .\main\templates\videos.html:73
 msgid "Sandhi Puja"
-msgstr ""
+msgstr "সন্ধি পূজা"
 
 #: .\main\templates\about_year.html:19
 msgid "Navami"
-msgstr ""
+msgstr "নবমী"
 
 #: .\main\templates\about_year.html:20
 msgid "Dashami"
-msgstr ""
+msgstr "দশমী"
 
 #: .\main\templates\admin\base.html:34
 msgid "Welcome,"
-msgstr ""
+msgstr "স্বাগত,"
 
 #: .\main\templates\admin\base.html:36
 msgid "View site"
-msgstr ""
+msgstr "সাইট দেখুন"
 
 #: .\main\templates\admin\base.html:37
 msgid "Documentation"
-msgstr ""
+msgstr "ডকুমেন্টেশন"
 
 #: .\main\templates\admin\base.html:38
 msgid "Change password"
-msgstr ""
+msgstr "পাসওয়ার্ড পরিবর্তন করুন"
 
 #: .\main\templates\admin\base.html:39
 msgid "Log out"
-msgstr ""
+msgstr "প্রস্থান"
 
 #: .\main\templates\admin\base.html:46 .\main\templates\layout.html:53
 msgid "Home"
-msgstr ""
+msgstr "হোমপেজ"
 
 #: .\main\templates\layout.html:9
 #, python-format
 msgid "Shaw Durga Puja Live | %(title)s | %(yearpassed)s"
-msgstr ""
+msgstr "সাও দুর্গা পূজা লাইভ | %(title)s | %(yearpassed)s"
 
 #: .\main\templates\layout.html:54
 #, python-format
 msgid "About the %(yearpassed)s year puja"
-msgstr ""
+msgstr " %(yearpassed)s বছরের পূজা সম্পর্কে জানুন"
 
 #: .\main\templates\layout.html:54
 msgid "About the current year puja"
-msgstr ""
+msgstr "চলতি বছরের পূজা সম্পর্কে"
 
 #: .\main\templates\layout.html:60
 #, python-format
 msgid "View the current %(yearpassed)s schedule"
-msgstr ""
+msgstr "বর্তমান %(yearpassed)s সময়সূচী দেখুন"
 
 #: .\main\templates\layout.html:60
 msgid "See current year schedule"
-msgstr ""
+msgstr "বর্তমান বছরের সময়সূচী দেখুন"
+
+#: .\main\templates\layout.html:64
+#, fuzzy
+#| msgid "Admin Panel"
+msgid "Admin"
+msgstr "অ্যাডমিন"
 
 #: .\main\templates\layout.html:66
 msgid "Visit the Admin Panel"
-msgstr ""
+msgstr "অ্যাডমিন প্যানেলটি দেখুন"
 
 #: .\main\templates\layout.html:66
 msgid "Admin Panel"
-msgstr ""
+msgstr "অ্যাডমিন প্যানেলটি দেখুন"
 
 #: .\main\templates\layout.html:67
 msgid "LOGOUT"
-msgstr ""
+msgstr "প্রস্থান"
+
+#: .\main\templates\layout.html:71
+#, fuzzy
+#| msgid "Admin Panel"
+msgid "Admin Login"
+msgstr "অ্যাডমিন লগইন"
 
 #: .\main\templates\layout.html:74
 msgid "Change Language"
-msgstr ""
+msgstr "ভাষা পরিবর্তন করুন"
 
 #: .\main\templates\layout.html:89
 #, python-format
 msgid "%(message)s"
-msgstr ""
+msgstr "%(message)s"
 
 #: .\main\templates\layout.html:117
 msgid "Shaw Durga Puja"
-msgstr ""
+msgstr "সাও দুর্গা পূজা"
 
 #: .\main\templates\layout.html:119
 msgid "Made with"
-msgstr ""
+msgstr "সাইট বানিয়েছে"
 
 #: .\main\templates\layout.html:119
 msgid "on"
-msgstr ""
+msgstr "দিয়ে"
 
 #: .\main\templates\playlist.html:26 .\main\templates\playlist.html:52
 #, python-format
 msgid "%(year)s"
-msgstr ""
+msgstr "%(year)s"
 
 #: .\main\templates\playlist.html:27 .\main\templates\playlist.html:53
 #: .\main\templates\videos.html:17 .\main\templates\videos.html:21
@@ -178,7 +208,7 @@ msgstr ""
 #: .\main\templates\videos.html:75 .\main\templates\videos.html:77
 #: .\main\templates\videos.html:112
 msgid "LIVE"
-msgstr ""
+msgstr "লাইভ"
 
 #: .\main\templates\playlist.html:30 .\main\templates\playlist.html:56
 msgid "Start Watching"
@@ -186,7 +216,7 @@ msgstr "দেখা শুরু করুন্"
 
 #: .\main\templates\playlist.html:34 .\main\templates\playlist.html:60
 msgid "Coming Soon"
-msgstr ""
+msgstr "শীঘ্রই আসছে"
 
 #: .\main\templates\schedule.html:15 .\main\templates\videos.html:21
 #: .\main\templates\videos.html:67
@@ -203,8 +233,8 @@ msgid ""
 msgstr ""
 "\n"
 "                            <h6>\"কলপরম্ভো\"</h6>\n"
-"                            <h6>দুর্গা দেবী \"বোধন\" \"আমান্ত্রান্\" & "
-"\"আধিবাস্\"</h6>\n"
+"                            <h6>দুর্গা দেবী \"বোধন\" \"আমান্ত্রান্\" & \"আধিবাস্"
+"\"</h6>\n"
 "                            "
 
 #: .\main\templates\schedule.html:34
@@ -218,28 +248,32 @@ msgid ""
 "                            <h6>\"Nabo Patrika\" \"Saptami Puja\"</h6>\n"
 "                            "
 msgstr ""
+"\n"
+"                            <h6>\"কলাবৌ \" স্নান্</h6>\n"
+"                            <h6>\"ণাব পত্রিকা\" \"সপ্তমী পূজা\"</h6>\n"
+"                            "
 
 #: .\main\templates\schedule.html:53 .\main\templates\videos.html:29
 #: .\main\templates\videos.html:71
 msgid "Maha Ashtami"
-msgstr ""
+msgstr "মহাঅষ্টমী"
 
 #: .\main\templates\schedule.html:55
 msgid "Ashtami Puja"
-msgstr ""
+msgstr "অষ্টমী পূজা"
 
 #: .\main\templates\schedule.html:60
 msgid "Maha-Bhog Prasad for all starts at"
-msgstr ""
+msgstr "সবার জন্য মহা-ভোগ প্রসাদ"
 
 #: .\main\templates\schedule.html:60
 msgid "@ our Home"
-msgstr ""
+msgstr "অমাদের বারি থেকে শুরু হবে"
 
 #: .\main\templates\schedule.html:73 .\main\templates\videos.html:37
 #: .\main\templates\videos.html:75
 msgid "Maha Navami"
-msgstr ""
+msgstr "মহানবমী"
 
 #: .\main\templates\schedule.html:77
 msgid ""
@@ -248,11 +282,15 @@ msgid ""
 "                            <h6>\"Navami Home/Yagna\"</h6>\n"
 "                            "
 msgstr ""
+"\n"
+"                            <h6>নবমী পূজা</h6>\n"
+"                            <h6>\"নবমী যজ্ঞ\"</h6>\n"
+"                            "
 
 #: .\main\templates\schedule.html:93 .\main\templates\videos.html:41
 #: .\main\templates\videos.html:77
 msgid "Maha Dashami"
-msgstr ""
+msgstr "মহাদশমী"
 
 #: .\main\templates\schedule.html:97
 msgid ""
@@ -262,101 +300,115 @@ msgid ""
 "h6>\n"
 "                            "
 msgstr ""
+"\n"
+"                            <h6>দশমী পূজা</h6>\n"
+"                            <h6>দশমী পূজার পরে বিসর্জন</h6>\n"
+"                            "
 
 #: .\main\templates\schedule.html:113
 msgid "Sorry!! (404)"
-msgstr ""
+msgstr "দুঃখিত !! (৪০৪)"
 
 #: .\main\templates\schedule.html:114
 msgid "Durga Puja"
-msgstr ""
+msgstr "দুর্গা পূজা"
 
 #: .\main\templates\schedule.html:114
 msgid "schedule for the year"
-msgstr ""
+msgstr "বছরের জন্য সময়সূচী"
 
 #: .\main\templates\schedule.html:114
 msgid "has not been released yet."
-msgstr ""
+msgstr "এর্ এখনও প্রকাশ করা হয়নি।"
 
 #: .\main\templates\schedule.html:115
 msgid "Please visit our home page"
-msgstr ""
+msgstr "আমাদের হোমপেজটি দেখুন"
 
 #: .\main\templates\videos.html:9 .\main\templates\videos.html:58
 msgid "Year"
-msgstr ""
+msgstr "বছর"
 
 #: .\main\templates\videos.html:17 .\main\templates\videos.html:65
 msgid "Maa Durga Homecoming"
-msgstr ""
+msgstr "মা দুর্গা স্বদেশ প্রত্যাবর্তন"
 
 #: .\main\templates\videos.html:25 .\main\templates\videos.html:69
 msgid "Maha Sapatami"
-msgstr ""
+msgstr "মহাসপ্তমী"
 
 #: .\main\templates\videos.html:57
 msgid "Days"
-msgstr ""
+msgstr "দিনগুলি"
 
 #: .\main\templates\videos.html:117
 msgid ""
 "Having problem in viewing this video in the browser? Then go ahead and watch "
 "directly in "
-msgstr ""
+msgstr "ভিদেও তা জদি দেখ্তে জদি অসুবেধে হযে তাহলে অপ্নি সরাসরি এইখানে গিযে দেখুন্ "
 
 #: .\main\templates\videos.html:117
 msgid "Facebook"
-msgstr ""
+msgstr "ফেসবুকে"
 
 #: .\main\templates\videos.html:117
 msgid "YouTube"
-msgstr ""
+msgstr "ইউটিউবে"
 
 #: .\main\templates\videos.html:117
 msgid "( Click Here and go watch directly in the "
-msgstr ""
+msgstr "( এখানে ক্লিক করুন এবং সরাসরি দেখুন"
 
 #: .\main\templates\videos.html:128
 msgid "The"
-msgstr ""
+msgstr " "
+
+#: .\main\templates\videos.html:128
+msgid "video"
+msgstr "ভিদেও"
+
+#: .\main\templates\videos.html:128
+#, fuzzy
+#| msgid "or"
+msgid "for"
+msgstr "তা হচ্ছে"
 
 #: .\main\templates\videos.html:128
 msgid "PUJA"
-msgstr ""
+msgstr "পুজার জন্নো"
 
 #: .\main\templates\videos.html:128
 msgid "MAHA"
-msgstr ""
+msgstr "মহা"
 
 #: .\main\templates\videos.html:129
 msgid "hasn't been"
-msgstr ""
+msgstr "এখনো"
 
 #: .\main\templates\videos.html:130
 msgid "uploaded"
-msgstr ""
+msgstr "অশেনি"
 
 #: .\main\templates\videos.html:130
 msgid "or"
-msgstr ""
+msgstr "বা"
 
 #: .\main\templates\videos.html:130
 msgid "gone live."
-msgstr ""
+msgstr "লাইভ অশেনি"
 
 #: .\main\templates\videos.html:131
 msgid "Why don't you check the "
-msgstr ""
+msgstr "আপনি চেক করবেন না কেন"
 
 #: .\main\templates\videos.html:131
 msgid "year's schedule"
-msgstr ""
+msgstr "বছরের সময়সূচী"
 
 #: .\main\templates\videos.html:131
 msgid "in the meantime"
-msgstr ""
+msgstr "এরই মধ্যে"
 
 #: .\main\templates\videos.html:133
 msgid "Check the schedule"
-msgstr ""
+msgstr "সময়সূচী তা দেখুন্"

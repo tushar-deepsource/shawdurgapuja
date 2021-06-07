@@ -61,14 +61,14 @@
 
                     {% if user.is_authenticated %}
                     <div class="nav-item dropdown">
-                        <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Admin</a>
+                        <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">{% trans 'Admin' %}</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}" target="_blank">{% trans 'Admin Panel' %}</a></li>
                             <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
                         </ul>
                     </div>
                     {% else %}
-                    <li><a class="text-primary" href='{% url "admin:login" %}' title="Admin Login" target="_blank">Admin Login</a></li>
+                    <li><a class="text-primary" href='{% url "admin:login" %}' title="Admin Login" target="_blank">{% trans 'Admin Login' %}</a></li>
                     {% endif %}
 
                     <li><a class="text-primary" href='{% url "ChangeLang" %}' title="{% trans 'Change Language' %}">{% ifequal LANGUAGE_CODE 'en' %}English{% else %}বাংলা ভাষা{% endifequal %}</a></li>

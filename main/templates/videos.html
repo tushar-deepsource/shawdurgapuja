@@ -125,7 +125,7 @@
         <div class="container">
             <div class="section-title" data-aos="fade-up">
                 <img style="margin-top: 110px;" src="{% static 'assets/img/default1.png' %}" alt="Durga Maa" class="img-fluid">
-                <h3 style="margin-top: 10px;">{% trans 'The' %} <strong style="color:rgb(253, 194, 0);">video</strong> for <strong style="color:rgb(253, 164, 0);">{% ifequal dayname 'SANDHI' %}{{dayname}} {% trans 'PUJA' %}{% else %}{% trans 'MAHA' %} {{dayname}}{% endifequal %}</strong>
+                <h3 style="margin-top: 10px;">{% trans 'The' %} <strong style="color:rgb(253, 194, 0);">{% trans 'video' %}</strong> {% trans 'for' %} <strong style="color:rgb(253, 164, 0);">{% ifequal dayname 'SANDHI' %}{{dayname}} {% trans 'PUJA' %}{% else %}{% trans 'MAHA' %} {{dayname}} {% trans 'PUJA' %}{% endifequal %}</strong>
                     <span>{% trans "hasn't been" %}</span>
                     <strong style="color:rgb(253, 194, 0);">{% trans 'uploaded' %}</strong> {% trans 'or' %} <strong style="color:rgb(253, 194, 0);">{% trans 'gone live.' %}</strong></h3>
                 <p style="color:rgb(253, 194, 0);">{% trans "Why don't you check the " %}<strong style="color:rgb(253, 164, 0);">{% timezone "Asia/Calcutta" %}{{yearpassed}}{% endtimezone %} {% trans "year's schedule" %}</strong> {% trans "in the meantime" %}</p>
