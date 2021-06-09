@@ -60,7 +60,7 @@ h6 {
 
 @media screen and (max-width: 768px) {
     [data-aos-delay] {
-        transition-delay: 0 !important;
+        transition-delay: 0s !important;
     }
 }
 
@@ -468,7 +468,7 @@ h6 {
 }
 
 #footer .footer-top p {
-    font-size: 15;
+    font-size: 15px;
     font-style: italic;
     margin: 30px 0 0 0;
     padding: 0;
@@ -501,7 +501,6 @@ h6 {
 /* Style tab links */
 
 .tablink {
-    background-color: white;
     color: white;
     border: none;
     outline: none;

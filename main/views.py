@@ -1,6 +1,4 @@
-import urllib.request
 import datetime
-
 import bangla
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -14,6 +12,30 @@ from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from .models import *
+
+def schedulepdf(request, year):
+    from django_xhtml2pdf.utils import generate_pdf
+
+    name1 = f'Durga Puja Schedule for {year}'
+    try: year,show=Year.objects.filter(year=year).get(), True
+    except Year.DoesNotExist: show = False
+    except: show=False
+
+    if show:
+        context = {
+            'year':year,
+            'show':show,
+            'title':name1,
+            'view':'schedule'
+        }
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="shedule.pdf"'
+        
+        result = generate_pdf('schedule.html', file_object=response, context=context)
+        
+        return result
+    else:
+        raise Http404('Nothing')
 
 
 @login_required
