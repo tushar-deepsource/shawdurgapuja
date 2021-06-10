@@ -1,11 +1,18 @@
 {% extends "layout.html" %}{% load static %}{% load i18n %}{% load tz %}{% get_current_language as LANGUAGE_CODE %} {% block body %}
-
+<script>
+    window.onload = function checker() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            var x = document.getElementById("printschedule");
+            x.style.display = "none";
+        }
+    }
+</script>
 <div class="container main-container" id="outer schedulepuja toPic">
 
     <center>
         {% if LANGUAGE_CODE == 'en' %}
         <a href="{% url 'schedule pdf' year_year %}" title="Download the PDF"><button type="button" class="btn btn-outline-primary">Download the PDF <i class='bx bxs-file-pdf'></i></button></a> {% endif %}
-        <a href="{% url 'schedule print' year_year %}" target="_blank" title="Print The schedule"><button type="button" class="btn btn-outline-dark">Print The schedule <i class='bx bxs-printer' ></i></button></a>
+        <a href="{% url 'schedule print' year_year %}" id="printschedule" target="_blank" title="Print The schedule"><button type="button" class="btn btn-outline-dark">Print The schedule <i class='bx bxs-printer' ></i></button></a>
     </center>
 
     <div class="row my-4 mx-4" id="tableinner">
