@@ -82,7 +82,7 @@
     </header>
     <!-- End Header -->
 
-    <main id="main" style="background-color: white; border-radius: 10px;">
+    <main class="mt-3" id="main" style="background-color: white; border-radius: 10px;">
         <!-- ==Flashed Message== -->
         {% if messages %} {% for message in messages %}
         <div class="alert  {% if message.tags %} alert-{{message.tags}} {% endif %} alert-dismissible fade show" role="alert">
@@ -94,6 +94,7 @@
 
         {% block body %} {% endblock %}
     </main>
+
     <!-- End #main -->
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
         new Crate({

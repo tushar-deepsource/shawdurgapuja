@@ -1,6 +1,7 @@
 @media (max-width: 992px) {
     #tableinner {
-        width: 700px;
+        width: 100%;
+        overflow-x: scroll;
     }
     #outer {
         overflow-x: scroll;

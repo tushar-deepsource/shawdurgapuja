@@ -132,8 +132,11 @@ USE_I18N = True
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media' 
 MEDIA_URL = '/media/'
+
+if os.path.isdir(MEDIA_ROOT): pass
+else: os.mkdir(MEDIA_ROOT)
 
 
 # # Deployment check

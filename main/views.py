@@ -125,7 +125,8 @@ def scheduleprint(request, year):
     
     params = {
         'year':year,
-        'view':'schedule'
+        'view':'schedule',
+        'title':f'Durga Puja Schedule for {year}',
     }
     
     return render(
@@ -146,11 +147,6 @@ def schedulepdf(request, year):
 
     current_site = get_current_site(request)
     domain = current_site.domain
-    params = {
-            'year':yearobj,
-            'view':'schedule',
-            'domain': 'http://'+domain
-        }
     
     pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
     with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
