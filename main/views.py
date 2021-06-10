@@ -12,6 +12,7 @@ from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
+import os, sys, subprocess, platform
 
 import pdfkit
 
@@ -148,7 +149,6 @@ def schedulepdf(request, year):
     current_site = get_current_site(request)
     domain = current_site.domain
     
-    import os, sys, subprocess, platform
 
     if platform.system() != "Windows":
         os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable) 
