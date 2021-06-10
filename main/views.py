@@ -91,16 +91,17 @@ def homeredirect(request):
 @require_GET
 def schedule(request,year):
     name1 = f'Durga Puja Schedule for {year}'
-    try: year,show=Year.objects.filter(year=year).get(), True
+    try: year_model,show=Year.objects.filter(year=year).get(), True
     except Year.DoesNotExist: show = False
     except: show=False
 
     if show:
         params = {
-            'year':year,
+            'year':year_model,
             'show':show,
             'title':name1,
-            'view':'schedule'
+            'view':'schedule',
+            'year_year': year
         }
     else:
         params = {
