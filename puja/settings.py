@@ -70,8 +70,7 @@ WSGI_APPLICATION = 'puja.wsgi.application'
 dotenv_file = BASE_DIR / ".env"
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
-
-    MEDIA_ROOT = BASE_DIR / 'media'
+    
     if not os.path.exists(BASE_DIR / 'media'): os.makedirs(BASE_DIR / 'media')
 
     PRODUCTION_SERVER = False
@@ -126,8 +125,6 @@ USE_L10N = True
 
 USE_I18N = True
 
-USE_THOUSAND_SEPARATOR = True
-
 
 
 # Static files (CSS, JavaScript, Images)
@@ -135,6 +132,7 @@ USE_THOUSAND_SEPARATOR = True
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 

@@ -10,32 +10,12 @@ from django.urls import reverse
 from django.utils import translation
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+
+import pdfkit
 
 from .models import *
-
-def schedulepdf(request, year):
-    from django_xhtml2pdf.utils import generate_pdf
-
-    name1 = f'Durga Puja Schedule for {year}'
-    try: year,show=Year.objects.filter(year=year).get(), True
-    except Year.DoesNotExist: show = False
-    except: show=False
-
-    if show:
-        context = {
-            'year':year,
-            'show':show,
-            'title':name1,
-            'view':'schedule'
-        }
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="shedule.pdf"'
-        
-        result = generate_pdf('schedule.html', file_object=response, context=context)
-        
-        return result
-    else:
-        raise Http404('Nothing')
 
 
 @login_required
@@ -57,8 +37,8 @@ def changelang(request):
 #Images Api, which generates the cards images
 @require_GET
 def getimages(request):
-    if os.path.isdir(os.path.join(settings.BASE_DIR, 'yearpic')): pass
-    else: os.mkdir(os.path.join(settings.BASE_DIR, 'yearpic'))
+    if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'yearpic')): pass
+    else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'yearpic'))
     
     text = request.GET['text']
     back = request.GET.get('back','#FFF00C')
@@ -135,6 +115,51 @@ def schedule(request,year):
         'schedule.html',
         params
     )
+
+@require_GET   
+def scheduleprint(request, year):
+    try: year=Year.objects.filter(year=year).get()
+    except Year.DoesNotExist:
+        raise Http404('Nothing in this year as of now')
+    
+    params = {
+        'year':year,
+        'view':'schedule'
+    }
+    
+    return render(
+        request,
+        'schedulepdf.html',
+        params
+    )
+ 
+ 
+@require_GET   
+def schedulepdf(request, year):
+    if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'pdf')): pass
+    else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'pdf'))
+    
+    try: yearobj=Year.objects.filter(year=year).get()
+    except Year.DoesNotExist:
+        raise Http404('Nothing in this year as of now')
+
+    current_site = get_current_site(request)
+    domain = current_site.domain
+    params = {
+            'year':yearobj,
+            'view':'schedule',
+            'domain': 'http://'+domain
+        }
+    
+    pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
+    with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
+        pdf_data = pdf_file.read()      
+    
+    os.remove(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
+    response = HttpResponse(pdf_data, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="schedule-{int(year)}.pdf"'
+    return response
+
 
 @require_GET
 def home(request):

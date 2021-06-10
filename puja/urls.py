@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'^logout/$', user_logout, name='signout'),
+    path('schedulepdf/<yyyy:year>/',schedulepdf,name="schedule pdf"),
     
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     
@@ -36,7 +37,8 @@ urlpatterns = i18n_patterns(
     path(_('videos/<yyyy:year>/<str:day>'),video,name="Videos"),
     path(_('aboutyear/<yyyy:year>'),about_year,name="About Year"),
     path(_('schedule/<yyyy:year>/'),schedule,name="schedule"),
-    path(_('schedulepdf/<yyyy:year>/'),schedulepdf,name="schedule pdf"),
+    path(_('scheduleprint/<yyyy:year>/'),scheduleprint,name="schedule print"),
+    
     path(_('redirect/'), redirect_view_puja,name="Redirect"),
     url(_(r'^getimages$'), getimages, name="GetImages"),
     path(_('changelang/'), changelang, name='ChangeLang'),

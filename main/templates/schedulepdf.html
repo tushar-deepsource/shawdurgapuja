@@ -1,0 +1,129 @@
+{% load static %}{% load i18n %}{% load tz %}
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{% blocktranslate %}Shaw Durga Puja Live | {{title}} | {{yearpassed}}{% endblocktranslate %}</title>
+    <meta name="author" content="ShawDurgaPujaLive">
+    <link href="{{domain}}{% static 'assets/img/default.png' %}" rel="icon">
+    <link href="{{domain}}{% static 'assets/img/default.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="{{domain}}{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{domain}}{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<script>
+    window.onload = function exampleFunction() {
+        window.print();
+    }
+</script>
+
+<div class="row my-4 mx-3 table-responsive" id="tableinner">
+    <link href="{{domain}}{% static 'css/schedule.css' %}" rel="stylesheet">
+
+    <table class="table table-hover table-striped ">
+        <tbody>
+            <!-- ==Shashti Puja== -->
+            <tr>
+                <th scope="row">{% timezone "Asia/Calcutta" %}{{year.shashti|date:"dS F Y, l"}}{% endtimezone %}</th>
+                <td><img src="{{domain}}{% static 'images/shashti.png' %}"></td>
+                <td>
+                    <h3 style="text-align: center;">{% trans 'Maha Shashti' %}</h3>
+                    <br/>
+                    <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.shashtit}} - {{year.shashtite}}{% endtimezone %}</h5>
+                    <div style="text-align: center;">
+                        {% blocktrans %}
+                        <h6>"Kalparambho"</h6>
+                        <h6>Durga Devi "BODHON" "Amantran" & "Adhibas"</h6>
+                        {% endblocktrans %}
+                    </div>
+                </td>
+            </tr>
+            <!-- ==Ends== -->
+
+            <!-- ==Saptami== -->
+            <tr>
+                <th scope="row">{% timezone "Asia/Calcutta" %}{{year.saptami|date:"dS F Y, l"}}{% endtimezone %}</th>
+                <td>&nbsp;&nbsp;&nbsp; <img src="{{domain}}{% static 'images/saptami.png' %}"></td>
+                <td>
+                    <h3 style="text-align: center;">{% trans 'Maha Saptami' %}</h3>
+                    <br/>
+                    <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.saptamit}} - {{year.saptamite}}{% endtimezone %}</h5>
+                    <div style="text-align: center;">
+                        {% blocktrans %}
+                        <h6>Bathing of "Kolabou"</h6>
+                        <h6>"Nabo Patrika" "Saptami Puja"</h6>
+                        {% endblocktrans %}
+                    </div>
+                </td>
+            </tr>
+            <!-- ==Ends== -->
+
+            <!-- ==Ashtami== -->
+            <tr>
+                <th scope="row">{% timezone "Asia/Calcutta" %}{{year.ashtami|date:"dS F Y, l"}}{% endtimezone %}</th>
+                <td>&nbsp;&nbsp;&nbsp; <img src="{{domain}}{% static 'images/ashtami.png' %}"></td>
+                <td>
+                    <h3 style="text-align: center;">{% trans 'Maha Ashtami' %}</h3>
+                    <br/>
+                    <h5 style="text-align: center;"><strong>{% trans 'Ashtami Puja' %}:</strong> &nbsp; {% timezone "Asia/Calcutta" %}{{year.ashtamit}} - {{year.ashtamite}}{% endtimezone %}</h5>
+                    <br/>
+                    <h5 style="text-align: center;"><strong>{% trans 'Sandhi Puja' %}:</strong> &nbsp; {% timezone "Asia/Calcutta" %}{{year.sandhit}} <b>to</b> {{year.sandhite}}{% endtimezone %} <strong>{% timezone "Asia/Calcutta" %}({{year.sandhi}}){% endtimezone %}</strong></h5>
+                    {% if year.mahabhog %}
+                    <div style="text-align: center;">
+                        <h6>{% trans 'Maha-Bhog Prasad for all starts at' %} {% timezone "Asia/Calcutta" %}{{year.mahabhogdttime}}{% endtimezone %} {% trans '@ our Home' %}</h6>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- ==Ends== -->
+
+            <!-- ==Navami== -->
+            <tr>
+                <th scope="row">{% timezone "Asia/Calcutta" %}{{year.navami|date:"dS F Y, l"}}{% endtimezone %}</th>
+                <td>&nbsp;&nbsp;&nbsp; <img src="{{domain}}{% static 'assets/img/default.png' %}" width="111px" height="111px"></td>
+                <td>
+                    <h3 style="text-align: center;">{% trans 'Maha Navami' %}</h3>
+                    <br/>
+                    <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.navamit}} - {{year.navamite}}{% endtimezone %}</h5>
+                    <div style="text-align: center;">
+                        {% blocktrans %}
+                        <h6>Navami Puja</h6>
+                        <h6>"Navami Home/Yagna"</h6>
+                        {% endblocktrans %}
+                    </div>
+                </td>
+            </tr>
+            <!-- ==Ends== -->
+
+
+            <!-- ==Dashami== -->
+            <tr>
+                <th scope="row">{% timezone "Asia/Calcutta" %}{{year.dashami|date:"dS F Y, l"}}{% endtimezone %}</th>
+                <td>&nbsp;&nbsp;&nbsp; <img src="{{domain}}{% static 'images/dashami.png' %}" width="111px" height="111px"></td>
+                <td>
+                    <h3 style="text-align: center;">{% trans 'Maha Dashami' %}</h3>
+                    <br/>
+                    <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.dashamit}} - {{year.dashamite}}{% endtimezone %}</h5>
+                    <div style="text-align: center;">
+                        {% blocktrans %}
+                        <h6>Dashami Puja</h6>
+                        <h6>Bisharjan Ritual after the Dashami Puja</h6>
+                        {% endblocktrans %}
+                    </div>
+                </td>
+            </tr>
+            <!-- ==Ends== -->
+
+        </tbody>
+    </table>
+</div>

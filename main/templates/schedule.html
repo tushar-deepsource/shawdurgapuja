@@ -1,11 +1,10 @@
 {% extends "layout.html" %}{% load static %}{% load i18n %}{% load tz %}{% block body %}
-
-<div class="container main-container" id="outer">
+<div class="container main-container" id="outer schedulepuja toPic">
     <div class="row my-4 mx-4" id="tableinner">
         {% if show %}
         <link href="{% static 'css/schedule.css' %}" rel="stylesheet">
 
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <tbody>
                 <!-- ==Shashti Puja== -->
                 <tr>
