@@ -148,13 +148,8 @@ def schedulepdf(request, year):
 
     current_site = get_current_site(request)
     domain = current_site.domain
-    
 
-    if platform.system() != "Windows":
-        os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable) 
-        WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], 
-                stdout=subprocess.PIPE).communicate()[0].strip()
-        pdfkit_config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+    pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
     
     pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
     with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
