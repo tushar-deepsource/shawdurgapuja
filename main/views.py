@@ -148,10 +148,12 @@ def schedulepdf(request, year):
 
     current_site = get_current_site(request)
     domain = current_site.domain
-
-    config = pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
     
-    pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), configuration=config) 
+    if sys.platform.startswith('win32'):
+        config = pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
+        pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), configuration=config)
+    else:
+        pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'))
     # pdf = pydf.generate_pdf(html='http://'+domain+reverse('schedule print',args=[year]))
     # with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "wb") as pdf_file:
     # #     pdf_file.write(pdf)
