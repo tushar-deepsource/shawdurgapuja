@@ -21,11 +21,13 @@
 
 </head>
 
+{% if one %}
 <script>
     window.onload = function printfnc() {
         window.print();
     }
 </script>
+{% endif %}
 
 <div class="row my-4 mx-3 table-responsive" id="tableinner">
     <link href="{{domain}}{% static 'css/schedule.css' %}" rel="stylesheet">

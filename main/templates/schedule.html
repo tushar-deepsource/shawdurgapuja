@@ -11,8 +11,7 @@
 <div class="container main-container">
 
     <center class="mt-3">
-        {% if LANGUAGE_CODE == 'en' %}
-        <a href="{% url 'schedule pdf' year_year %}" title="Download the PDF"><button type="button" class="btn btn-outline-primary">Download the PDF <i class='bx bxs-file-pdf'></i></button></a> {% endif %}
+        <a href="{% url 'schedule pdf' year_year %}" title="Download the Schedule" target="_blank"><button type="button" class="btn btn-outline-primary">Download the Schedule <i class='bx bx-download'></i></i></button></a>
         <a href="{% url 'schedule print' year_year %}" id="printschedule" target="_blank" title="Print The schedule"><button type="button" class="btn btn-outline-dark">Print The schedule <i class='bx bxs-printer' ></i></button></a>
     </center>
 

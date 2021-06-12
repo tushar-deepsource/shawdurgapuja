@@ -1,8 +1,13 @@
 import datetime
+import os
+import sys
+
 import bangla
+import requests
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
@@ -10,10 +15,6 @@ from django.urls import reverse
 from django.utils import translation
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
-from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
-import os, sys, subprocess, platform
-
 
 from .models import *
 
@@ -118,7 +119,7 @@ def schedule(request,year):
     )
 
 @require_GET   
-def scheduleprint(request, year):
+def scheduleprint(request, year, one: int = None):
     try: year=Year.objects.filter(year=year).get()
     except Year.DoesNotExist:
         raise Http404('Nothing in this year as of now')
@@ -127,6 +128,7 @@ def scheduleprint(request, year):
         'year':year,
         'view':'schedule',
         'title':f'Durga Puja Schedule for {year}',
+        'one': True if one != 1 else False
     }
     
     return render(
@@ -138,10 +140,6 @@ def scheduleprint(request, year):
  
 @require_GET   
 def schedulepdf(request, year):
-    import pdfkit
-    if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'pdf')): pass
-    else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'pdf'))
-    
     try: yearobj=Year.objects.filter(year=year).get()
     except Year.DoesNotExist:
         raise Http404('Nothing in this year as of now')
@@ -150,20 +148,35 @@ def schedulepdf(request, year):
     domain = current_site.domain
     
     if sys.platform.startswith('win32'):
+        if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'pdf')): pass
+        else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'pdf'))
+        import pdfkit
         config = pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
         pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), configuration=config)
+        
+        with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
+            data = pdf_file.read()
+        os.remove(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'))
+        filename=f'schedulepdf-{year}.pdf'
+        content_type='application/pdf'
+        
     else:
-        pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'))
-    # pdf = pydf.generate_pdf(html='http://'+domain+reverse('schedule print',args=[year]))
-    # with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "wb") as pdf_file:
-    # #     pdf_file.write(pdf)
+        if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'img')): pass
+        else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'img'))
+        img= requests.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}')
+        
+        with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"wb") as img_file:
+            img_file.write(img.content)
+        with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"rb") as img_file:
+            data = img_file.read()
+        os.remove(settings.MEDIA_ROOT / f'schedulepdf-{year}.png')
+        
+        filename=f'schedulepdf-{year}.png'
+        content_type='image/png'
     
-    with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
-        pdf_data = pdf_file.read()
-    
-    os.remove(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
-    response = HttpResponse(pdf_data, content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="schedule-{int(year)}.pdf"'
+    response = HttpResponse(data, content_type=content_type)
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+
     return response
 
 @require_GET
