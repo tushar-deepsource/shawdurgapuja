@@ -139,6 +139,8 @@ def scheduleprint(request, year):
  
 @require_GET   
 def schedulepdf(request, year):
+    import pydf
+
     if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'pdf')): pass
     else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'pdf'))
     
@@ -149,11 +151,15 @@ def schedulepdf(request, year):
     current_site = get_current_site(request)
     domain = current_site.domain
 
-    pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
+    # pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
     
-    pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
+    # pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
+    pdf = pydf.generate_pdf(html='http://'+domain+reverse('schedule print',args=[year]))
+    with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "wb") as pdf_file:
+        pdf_file.write(pdf)
+    
     with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
-        pdf_data = pdf_file.read()      
+        pdf_data = pdf_file.read(pdf)
     
     os.remove(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')) 
     response = HttpResponse(pdf_data, content_type='application/pdf')
