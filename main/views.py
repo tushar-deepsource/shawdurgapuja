@@ -160,7 +160,6 @@ def schedulepdf(request, year):
     response['Content-Disposition'] = f'attachment; filename="schedule-{int(year)}.pdf"'
     return response
 
-
 @require_GET
 def home(request):
     name1 = "Videos List"
