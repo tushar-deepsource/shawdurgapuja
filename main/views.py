@@ -14,7 +14,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 import os, sys, subprocess, platform
 
-import pdfkit
 
 from .models import *
 
