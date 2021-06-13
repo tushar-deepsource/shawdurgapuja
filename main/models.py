@@ -1,7 +1,9 @@
 import datetime
 import os
 
+import discord
 from colorfield.fields import ColorField
+from discord import RequestsWebhookAdapter, Webhook
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -16,6 +18,48 @@ def current_year():
 
 def max_value_current_year(value):
     return MaxValueValidator(current_year()+10)(value) 
+
+dict_webhook = {
+    'E': settings.HOMECOMING,
+    'DI': settings.HOMECOMING,
+    'T': settings.HOMECOMING,
+    'C': settings.HOMECOMING,
+    'P': settings.HOMECOMING,
+    'S': settings.SHASHTI,
+    'SA': settings.SAPTAMI,
+    'A': settings.ASHTAMI,
+    'SAN': settings.ASHTAMI,
+    'N': settings.NAVAMI,
+    'D': settings.DASHAMI,
+}
+
+dict_roles = {
+    'E': 841733595218968656,
+    'DI': 841733595218968656,
+    'T': 841733595218968656,
+    'C': 841733595218968656,
+    'P': 841733595218968656,
+    'S': 841733935846653952,
+    'SA': 841734758323978300,
+    'A': 841734847520833537,
+    'SAN': 841734847520833537,
+    'N': 841734917704253511,
+    'D': 841735052848529459,
+}
+
+dict_days = {
+    'E':'Ekum',
+    'DI':'Dvitia',
+    'T':'Tritiya',
+    'C':'Maha Chathurti',
+    'P':'Maha Panchami',
+    'S':'Maha Shashti',
+    'SA':'Maha Saptami',
+    'A':'Maha Ashtami',
+    'SAN':'Sandhi Puja',
+    'N':'Maha Navami',
+    'D':'Maha Dashami'
+}
 
 
 # Create your models here.
@@ -83,7 +127,7 @@ def get_default_year():
 def get_video_id(video_url):
     from urllib.parse import urlparse
     queryset = urlparse(video_url)
-    if 'https://www.youtube.com/watch?v=' in video_url:
+    if 'youtube.com/watch?v=' in video_url:
         return queryset.query[2:]
     else:
         return queryset.path[1:]
@@ -115,10 +159,12 @@ class Videos(models.Model):
         default='S'
     )
     
+    test = models.BooleanField(_('Test'), default=False, help_text=_('Check this only when you are testing the webhook'))
+    
     streamingplatform = models.CharField(_('Streaming Platform'),null=True, blank=True,choices=(('F','Facebook'),('Y','YouTube')),max_length=10,default="Y")
     streamingvideoheader = models.CharField(_('Live Streaming Video Header'),null=True,blank=True,max_length=600)
     
-    streamingvideolink = models.URLField(_('Live Video Link'), null=True, blank=True)
+    streamingvideolink = models.URLField(_('Live Video Link'))
     live = models.BooleanField(_('Live Video'), help_text=_('Check this only if the video is live'), default=True)
     videoid = models.CharField(_('Facebook/YouTube Video ID'),max_length=500, null=True, blank=True)
     usernamefb = models.CharField(_('Facebook User ID'),max_length=500, null=True, blank=True)
@@ -170,6 +216,29 @@ class Videos(models.Model):
         if self.live:
             Videos.objects.update(live=False)
             self.live = self.live
+        
+        if not Videos.objects.filter(id=self.id).exists():
+            print(dict_webhook[self.day])
+            webhook = Webhook.from_url(
+                dict_webhook[self.day] if not self.test else settings.TEST, 
+                adapter=RequestsWebhookAdapter()
+            )
+            embed = discord.Embed(
+                title = self.streamingvideoheader.capitalize() + ' <a:liveyellow:853661056592117792>',
+                description = f'<@&{dict_roles[self.day]}> a new puja video has gone live <a:liveyellow:853661056592117792>',
+            )
+            embed.set_thumbnail(url='https://i.imgur.com/YIaJ5mC.png')
+            embed.set_author(
+                name=dict_days[self.day],
+                icon_url='https://cdn.discordapp.com/avatars/853644680486191106/ee39d19c48c4ff53bb4d75e667ff2df3.png'
+            )
+            embed.add_field(
+                name='**See the video**', 
+                value=f'[Click Here](https://www.youtube.com/embed/{a.strip()})'
+            )
+            webhook.send(embed=embed)
+            webhook.send(f'https://youtube.com/watch?v={a.strip()}')
+            
 
         return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 

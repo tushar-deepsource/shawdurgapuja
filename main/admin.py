@@ -49,6 +49,7 @@ class VideosAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Year'),{'fields':('yearmodel',)}),
         (_('Day'),{'fields':('day',)}),
+        (_('Test'),{'fields':('test',)}),
         (_('Streaming Video Data'),{'fields':('streamingvideoheader','streamingplatform','streamingvideodescription')}),
         (_('Streaming Video Links Data'),{'fields':('streamingvideolink','live',)+readonly_fields})
     )

@@ -163,7 +163,7 @@ def schedulepdf(request, year):
     else:
         if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'img')): pass
         else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'img'))
-        img= requests.get(f'https://image.thum.io/get/width/1920/crop/675/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}')
+        img= requests.get(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}')
         
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"wb") as img_file:
             img_file.write(img.content)
@@ -184,7 +184,7 @@ def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
     videos = Videos.objects.distinct('yearmodel')
-    videoslive = Videos.objects.values('yearmodel','live').filter(live=True)
+    videoslive = Videos.objects.values('yearmodel','live').filter(live=True, test=False)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(year,6)
@@ -230,7 +230,7 @@ def video(request,year,day):
     else: raise Http404("The day you requested in not available")
     
     if day == 'MAA': 
-        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P']).all()
+        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P'], test=False).all()
         try: day = videos[0].day
         except IndexError: return redirect(reverse('Videos',args=[int(year),'S']))
         if day == 'E': dayname = "Ekami"
@@ -238,10 +238,10 @@ def video(request,year,day):
         elif day == 'T': dayname = "Tritiya"
         elif day == 'C': dayname = "Chathurti"
         elif day == 'P': dayname = "Panchami"
-    else: videos = Videos.objects.filter(yearmodel=yearid, day=day).all()
+    else: videos = Videos.objects.filter(yearmodel=yearid, day=day, test=False).all()
     show = False if videos.count() <= 0 else True
 
-    livevideo = Videos.objects.filter(yearmodel=yearid, live=True).values('day','live').exists()
+    livevideo = Videos.objects.filter(yearmodel=yearid, live=True, test=False).values('day','live').exists()
     if not livevideo: livevideo = Videos.objects.none()
     
     maahome = Year.objects.filter(year=int(year)).values('maacomevid').get()['maacomevid']
@@ -284,7 +284,7 @@ def about_year(request, year):
 
 def redirect_view_puja(request):
     #Year
-    x = datetime.now()
+    x = datetime.datetime.now()
     year = x.strftime("%Y")
     try: 
         yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
@@ -294,11 +294,11 @@ def redirect_view_puja(request):
 
     #Day requiring
     try: 
-        videodict = Videos.objects.filter(yearmodel=yearid,live=True).values('day').get()
+        videodict = Videos.objects.filter(yearmodel=yearid,live=True, test=False).values('day').get()
     except: 
         videodict={'day':'None'}
         try:
-            videodict = Videos.objects.filter(yearmodel=yearid).values('day').latest('yearmodel','day')
+            videodict = Videos.objects.filter(yearmodel=yearid, test=False).values('day').latest('yearmodel','day')
         except: 
             return redirect(reverse('Home'))
 

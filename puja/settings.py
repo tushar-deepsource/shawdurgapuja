@@ -160,3 +160,11 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+HOMECOMING = os.environ.get('HOMECOMING')
+SHASHTI = os.environ.get('SHASHTI')
+SAPTAMI = os.environ.get('SAPTAMI')
+ASHTAMI = os.environ.get('ASHTAMI')
+NAVAMI = os.environ.get('NAVAMI')
+DASHAMI = os.environ.get('DASHAMI')
+TEST = os.environ.get('TEST')
