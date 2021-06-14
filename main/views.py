@@ -183,7 +183,7 @@ def schedulepdf(request, year):
 def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
-    videos = Videos.objects.distinct('yearmodel')
+    videos = Videos.objects.filter(test=False).distinct('yearmodel')
     videoslive = Videos.objects.values('yearmodel','live').filter(live=True, test=False)
 
     page = request.GET.get('page', 1)
@@ -304,6 +304,17 @@ def redirect_view_puja(request):
 
     #redirecting the user to the correct page
     return redirect(reverse('Videos',args=[int(year),videodict['day']])+'#live')
+
+
+def qrcode(request, logo=2):
+    from .qrcode_gen import QrGen
+    current_site = get_current_site(request)
+    domain = current_site.domain
+    return HttpResponse(
+        QrGen(
+            'https://'+domain+reverse('Redirect'),True if logo==1 else False).gen_qr_code(), 
+            content_type="image/jpeg",
+        )
 
 
 

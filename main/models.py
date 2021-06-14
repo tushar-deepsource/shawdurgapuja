@@ -12,6 +12,7 @@ from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from discord_custom import message_me
+from django.urls import reverse
 
 
 def current_year():
@@ -237,6 +238,10 @@ class Videos(models.Model):
                 f'||<@&{dict_roles[self.day]}>||',
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
+            message_me(
+                f'https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
+                dict_channel_id[self.day] if not self.test else 853650950429736971
+            )
             
             webhook = Webhook.from_url(
                 dict_webhook[self.day] if not self.test else settings.TEST, 
@@ -255,6 +260,10 @@ class Videos(models.Model):
             embed.add_field(
                 name='**See the video**', 
                 value=f'[Click Here](https://www.youtube.com/embed/{a.strip()})'
+            )
+            embed.add_field(
+                name='**See the video in the site**', 
+                value=f'[Click Here](https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
             )
             webhook.send(embed=embed)
             webhook.send(f'https://youtube.com/watch?v={a.strip()}')
