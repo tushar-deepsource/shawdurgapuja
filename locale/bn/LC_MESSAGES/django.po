@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-07 14:41+0530\n"
+"POT-Creation-Date: 2021-06-14 14:06+0530\n"
 "PO-Revision-Date: 2021-05-07 14:24+0530\n"
 "Last-Translator: Dhruva Shaw  <dhruvashaw@gmail.com>\n"
 "Language-Team: Shaw Durga Puja <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 "                    "
 
 #: .\main\templates\404.html:13 .\main\templates\500.html:13
-#: .\main\templates\schedule.html:117
+#: .\main\templates\schedule.html:130
 msgid "GoTo HomePage"
 msgstr "হোমপেজ"
 
@@ -88,8 +88,9 @@ msgstr "সপ্তমী"
 msgid "Ashtami"
 msgstr "অষ্টমী"
 
-#: .\main\templates\about_year.html:18 .\main\templates\schedule.html:57
-#: .\main\templates\videos.html:33 .\main\templates\videos.html:73
+#: .\main\templates\about_year.html:18 .\main\templates\schedule.html:70
+#: .\main\templates\schedulepdf.html:82 .\main\templates\videos.html:33
+#: .\main\templates\videos.html:73
 msgid "Sandhi Puja"
 msgstr "সন্ধি পূজা"
 
@@ -125,7 +126,7 @@ msgstr "প্রস্থান"
 msgid "Home"
 msgstr "হোমপেজ"
 
-#: .\main\templates\layout.html:9
+#: .\main\templates\layout.html:9 .\main\templates\schedulepdf.html:7
 #, python-format
 msgid "Shaw Durga Puja Live | %(title)s | %(yearpassed)s"
 msgstr "সাও দুর্গা পূজা লাইভ | %(title)s | %(yearpassed)s"
@@ -181,15 +182,15 @@ msgstr "ভাষা পরিবর্তন করুন"
 msgid "%(message)s"
 msgstr "%(message)s"
 
-#: .\main\templates\layout.html:117
+#: .\main\templates\layout.html:118
 msgid "Shaw Durga Puja"
 msgstr "সাও দুর্গা পূজা"
 
-#: .\main\templates\layout.html:119
+#: .\main\templates\layout.html:120
 msgid "Made with"
 msgstr "সাইট বানিয়েছে"
 
-#: .\main\templates\layout.html:119
+#: .\main\templates\layout.html:120
 msgid "on"
 msgstr "দিয়ে"
 
@@ -218,12 +219,12 @@ msgstr "দেখা শুরু করুন্"
 msgid "Coming Soon"
 msgstr "শীঘ্রই আসছে"
 
-#: .\main\templates\schedule.html:15 .\main\templates\videos.html:21
-#: .\main\templates\videos.html:67
+#: .\main\templates\schedule.html:28 .\main\templates\schedulepdf.html:42
+#: .\main\templates\videos.html:21 .\main\templates\videos.html:67
 msgid "Maha Shashti"
 msgstr "মহাষষ্ঠী"
 
-#: .\main\templates\schedule.html:19
+#: .\main\templates\schedule.html:32
 msgid ""
 "\n"
 "                            <h6>\"Kalparambho\"</h6>\n"
@@ -232,16 +233,16 @@ msgid ""
 "                            "
 msgstr ""
 "\n"
-"                            <h6>\"কলপরম্ভো\"</h6>\n"
-"                            <h6>দুর্গা দেবী \"বোধন\" \"আমান্ত্রান্\" & \"আধিবাস্"
-"\"</h6>\n"
+"                            <h6>\"কলাপরম্ভো\"</h6>\n"
+"                            <h6>দুর্গা দেবী \"বোধন\" \"আমন্ত্রান্\" & \"আধিবাস\"</"
+"h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:34
+#: .\main\templates\schedule.html:47 .\main\templates\schedulepdf.html:60
 msgid "Maha Saptami"
 msgstr "মহাসপ্তমী"
 
-#: .\main\templates\schedule.html:38
+#: .\main\templates\schedule.html:51
 msgid ""
 "\n"
 "                            <h6>Bathing of \"Kolabou\"</h6>\n"
@@ -250,32 +251,32 @@ msgid ""
 msgstr ""
 "\n"
 "                            <h6>\"কলাবৌ \" স্নান্</h6>\n"
-"                            <h6>\"ণাব পত্রিকা\" \"সপ্তমী পূজা\"</h6>\n"
+"                            <h6>\"ণব পত্রিকা\" \"সপ্তমী পূজা\"</h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:53 .\main\templates\videos.html:29
-#: .\main\templates\videos.html:71
+#: .\main\templates\schedule.html:66 .\main\templates\schedulepdf.html:78
+#: .\main\templates\videos.html:29 .\main\templates\videos.html:71
 msgid "Maha Ashtami"
 msgstr "মহাঅষ্টমী"
 
-#: .\main\templates\schedule.html:55
+#: .\main\templates\schedule.html:68 .\main\templates\schedulepdf.html:80
 msgid "Ashtami Puja"
 msgstr "অষ্টমী পূজা"
 
-#: .\main\templates\schedule.html:60
+#: .\main\templates\schedule.html:73 .\main\templates\schedulepdf.html:85
 msgid "Maha-Bhog Prasad for all starts at"
 msgstr "সবার জন্য মহা-ভোগ প্রসাদ"
 
-#: .\main\templates\schedule.html:60
+#: .\main\templates\schedule.html:73 .\main\templates\schedulepdf.html:85
 msgid "@ our Home"
 msgstr "অমাদের বারি থেকে শুরু হবে"
 
-#: .\main\templates\schedule.html:73 .\main\templates\videos.html:37
-#: .\main\templates\videos.html:75
+#: .\main\templates\schedule.html:86 .\main\templates\schedulepdf.html:97
+#: .\main\templates\videos.html:37 .\main\templates\videos.html:75
 msgid "Maha Navami"
 msgstr "মহানবমী"
 
-#: .\main\templates\schedule.html:77
+#: .\main\templates\schedule.html:90
 msgid ""
 "\n"
 "                            <h6>Navami Puja</h6>\n"
@@ -287,12 +288,12 @@ msgstr ""
 "                            <h6>\"নবমী যজ্ঞ\"</h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:93 .\main\templates\videos.html:41
-#: .\main\templates\videos.html:77
+#: .\main\templates\schedule.html:106 .\main\templates\schedulepdf.html:116
+#: .\main\templates\videos.html:41 .\main\templates\videos.html:77
 msgid "Maha Dashami"
 msgstr "মহাদশমী"
 
-#: .\main\templates\schedule.html:97
+#: .\main\templates\schedule.html:110
 msgid ""
 "\n"
 "                            <h6>Dashami Puja</h6>\n"
@@ -305,25 +306,101 @@ msgstr ""
 "                            <h6>দশমী পূজার পরে বিসর্জন</h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:113
+#: .\main\templates\schedule.html:126
 msgid "Sorry!! (404)"
 msgstr "দুঃখিত !! (৪০৪)"
 
-#: .\main\templates\schedule.html:114
+#: .\main\templates\schedule.html:127
 msgid "Durga Puja"
 msgstr "দুর্গা পূজা"
 
-#: .\main\templates\schedule.html:114
+#: .\main\templates\schedule.html:127
 msgid "schedule for the year"
 msgstr "বছরের জন্য সময়সূচী"
 
-#: .\main\templates\schedule.html:114
+#: .\main\templates\schedule.html:127
 msgid "has not been released yet."
 msgstr "এর্ এখনও প্রকাশ করা হয়নি।"
 
-#: .\main\templates\schedule.html:115
+#: .\main\templates\schedule.html:128
 msgid "Please visit our home page"
 msgstr "আমাদের হোমপেজটি দেখুন"
+
+#: .\main\templates\schedulepdf.html:46
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                            <h6>\"Kalparambho\"</h6>\n"
+#| "                            <h6>Durga Devi \"BODHON\" \"Amantran\" & "
+#| "\"Adhibas\"</h6>\n"
+#| "                            "
+msgid ""
+"\n"
+"                        <h6>\"Kalparambho\"</h6>\n"
+"                        <h6>Durga Devi \"BODHON\" \"Amantran\" & \"Adhibas"
+"\"</h6>\n"
+"                        "
+msgstr ""
+"\n"
+"                            <h6>\"কলাপরম্ভো\"</h6>\n"
+"                            <h6>দুর্গা দেবী \"বোধন\" \"আমন্ত্রান্\" & \"আধিবাস\"</"
+"h6>\n"
+"                            "
+
+#: .\main\templates\schedulepdf.html:64
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                            <h6>Bathing of \"Kolabou\"</h6>\n"
+#| "                            <h6>\"Nabo Patrika\" \"Saptami Puja\"</h6>\n"
+#| "                            "
+msgid ""
+"\n"
+"                        <h6>Bathing of \"Kolabou\"</h6>\n"
+"                        <h6>\"Nabo Patrika\" \"Saptami Puja\"</h6>\n"
+"                        "
+msgstr ""
+"\n"
+"                            <h6>\"কলাবৌ \" স্নান্</h6>\n"
+"                            <h6>\"ণব পত্রিকা\" \"সপ্তমী পূজা\"</h6>\n"
+"                            "
+
+#: .\main\templates\schedulepdf.html:101
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                            <h6>Navami Puja</h6>\n"
+#| "                            <h6>\"Navami Home/Yagna\"</h6>\n"
+#| "                            "
+msgid ""
+"\n"
+"                        <h6>Navami Puja</h6>\n"
+"                        <h6>\"Navami Home/Yagna\"</h6>\n"
+"                        "
+msgstr ""
+"\n"
+"                            <h6>নবমী পূজা</h6>\n"
+"                            <h6>\"নবমী যজ্ঞ\"</h6>\n"
+"                            "
+
+#: .\main\templates\schedulepdf.html:120
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                            <h6>Dashami Puja</h6>\n"
+#| "                            <h6>Bisharjan Ritual after the Dashami Puja</"
+#| "h6>\n"
+#| "                            "
+msgid ""
+"\n"
+"                        <h6>Dashami Puja</h6>\n"
+"                        <h6>Bisharjan Ritual after the Dashami Puja</h6>\n"
+"                        "
+msgstr ""
+"\n"
+"                            <h6>দশমী পূজা</h6>\n"
+"                            <h6>দশমী পূজার পরে বিসর্জন</h6>\n"
+"                            "
 
 #: .\main\templates\videos.html:9 .\main\templates\videos.html:58
 msgid "Year"
