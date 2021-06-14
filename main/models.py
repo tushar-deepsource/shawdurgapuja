@@ -11,6 +11,7 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
+from discord_custom import message_me
 
 
 def current_year():
@@ -59,6 +60,20 @@ dict_days = {
     'SAN':'Sandhi Puja',
     'N':'Maha Navami',
     'D':'Maha Dashami'
+}
+
+dict_channel_id = {
+    'E': 850639938172616744,
+    'DI': 850639938172616744,
+    'T': 850639938172616744,
+    'C': 850639938172616744,
+    'P': 850639938172616744,
+    'S': 850639981851705345,
+    'SA': 850640076546899968,
+    'A': 850640102434144267,
+    'SAN': 850640102434144267,
+    'N': 850640122592100352,
+    'D': 850640146168676363,    
 }
 
 
@@ -218,7 +233,11 @@ class Videos(models.Model):
             self.live = self.live
         
         if not Videos.objects.filter(id=self.id).exists():
-            print(dict_webhook[self.day])
+            message_me(
+                f'||<@&{dict_roles[self.day]}>||',
+                dict_channel_id[self.day] if not self.test else 853650950429736971
+            )
+            
             webhook = Webhook.from_url(
                 dict_webhook[self.day] if not self.test else settings.TEST, 
                 adapter=RequestsWebhookAdapter()
@@ -226,6 +245,7 @@ class Videos(models.Model):
             embed = discord.Embed(
                 title = self.streamingvideoheader.capitalize() + ' <a:liveyellow:853661056592117792>',
                 description = f'<@&{dict_roles[self.day]}> a new puja video has gone live <a:liveyellow:853661056592117792>',
+                color=discord.Color.random()
             )
             embed.set_thumbnail(url='https://i.imgur.com/YIaJ5mC.png')
             embed.set_author(
@@ -238,7 +258,6 @@ class Videos(models.Model):
             )
             webhook.send(embed=embed)
             webhook.send(f'https://youtube.com/watch?v={a.strip()}')
-            
 
         return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
