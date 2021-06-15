@@ -1,15 +1,14 @@
-{% extends "layout.html" %}{% load static %}{% load i18n %}{% block body %}
+{% extends "layout.html" %}{% load static %}{% load i18n %} {% block description %}Error 500{% endblock description %} {% block descriptiontwitter %}Error 500{% endblock descriptiontwitter %} {% block body %}
 <div class="container main-container" id="outer">
     <div class="row my-4 mx-4">
         <div class="container-fluid main-container">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
-                {% blocktrans %}
+                    {% blocktrans %}
                     <u><h2 style="color:rgb(253, 194, 0);">Ohh noo sorry!! (500)</h2></u>
                     <h4>There was some <strong style="color:rgb(253, 194, 0);">problem at</strong> backend in the server</h4>
                     <p style="color:rgb(253, 194, 0);">Why don't you visit the home page in meantime while the error gets resolved!</p>
-                    <br/>
-                    {% endblocktrans %}
+                    <br/> {% endblocktrans %}
                     <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">{% trans 'GoTo HomePage' %}</button></a>
                 </div>
             </div>

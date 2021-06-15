@@ -7,19 +7,20 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>{% blocktranslate %}Shaw Durga Puja Live | {{title}} | {{yearpassed}}{% endblocktranslate %}</title>
-    <meta name="author" content="ShawDurgaPujaLive">
+    <meta name="author" content="{% trans 'Shaw Durga Puja Live' %}">
     <meta name="robots" content="NOINDEX, NOFOLLOW">
     <meta name="robots" content="NO INDEX, NO FOLLOW">
     <meta name="robots" content="NO-INDEX, NO-FOLLOW">
 
     <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
     <meta property="og:type" content="Website">
-    <meta property="og:description" content="{% block description %}{% endblock description %}{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta property="og:description" content="{% block description %}{% endblock description %}. {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
     <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}">
 
     <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
-    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %}{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %}. {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
     <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta name="twitter:card" content="{% blocktranslate %}This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
 
