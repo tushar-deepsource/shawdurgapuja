@@ -123,12 +123,13 @@ def schedule(request,year):
 
 @require_GET   
 def scheduleprint(request, year, one: int = None):
-    try: year=Year.objects.filter(year=year).get()
+    try: year_model=Year.objects.filter(year=year).get()
     except Year.DoesNotExist:
         raise Http404('Nothing in this year as of now')
     
     params = {
-        'year':year,
+        'year':year_model,
+        'yearpassed':year,
         'view':'schedule',
         'title':f'Durga Puja Schedule for {year}',
         'one': True if one != 1 else False,

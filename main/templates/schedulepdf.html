@@ -1,13 +1,50 @@
-{% load static %}{% load i18n %}{% load tz %}
+{% load static %}{% load i18n %}{% load tz %}{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>{% blocktranslate %}Shaw Durga Puja Live | {{title}} | {{yearpassed}}{% endblocktranslate %}</title>
-    <meta name="author" content="ShawDurgaPujaLive">
+    <meta name="author" content="Shaw Durga Puja Live">
     <link href="{{domain}}{% static 'assets/img/default.png' %}" rel="icon">
     <link href="{{domain}}{% static 'assets/img/default.png' %}" rel="apple-touch-icon">
+
+    <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
+    <meta property="og:type" content="Website">
+    <meta property="og:description" content="{% blocktranslate %}Print {{yearpassed}} puja schedule. ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% url 'schedule print' yearpassed %}"> {% if LANGUAGE_CODE == 'en' %}
+    <meta property="og:locale" content="en_us" />
+    <meta property="og:locale" content="en" /> {% else %}
+    <meta property="og:locale" content="bn_IN" />
+    <meta property="og:locale" content="bn" /> {% endif %}
+
+    <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
+    <meta name="twitter:description" content="{% blocktranslate %}Print {{yearpassed}} puja schedule. ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta name="twitter:card" content="{% blocktranslate %}This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+
+    <meta property="og:site_name" content="{% trans 'Shaw Durga Puja' %} | {{title}}">
+    <meta name="twitter:image:alt" content="{% trans 'Durga Maa Photo' %}">
+    <meta property="og:image:alt" content="{% trans 'Durga Maa Photo' %}">
+
+    <meta itemprop="name" content="{% trans 'Shaw Durga Puja' %}">
+    <meta itemprop="description" content="{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta name="author" content="HATSUNE MIKU#0001">
+    <meta name="copyright" content="Dhruva Shaw">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="{% trans 'Shaw Durga Puja' %}">
+
+    <meta name="distribution" content="global">
+    <meta name="revisit-after" content="1 day">
+    <meta name="theme-color" content="#e8ff3b">
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -18,6 +55,11 @@
 
     <!-- Template Main CSS File -->
     <link href="{{domain}}{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% url 'schedule print' yearpassed %}" hreflang="x-default">
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% url 'schedule print' yearpassed %}" hreflang="en-us">
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% url 'schedule print' yearpassed %}" hreflang="en">
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/bn/scheduleprint/{{yearpassed}}/" hreflang="bn">
 
 </head>
 
@@ -129,3 +171,5 @@
         </tbody>
     </table>
 </div>
+
+</html>

@@ -83,7 +83,7 @@ if os.path.isfile(dotenv_file):
 else:
     import ast
     PRODUCTION_SERVER = True
-    DEBUG = ast.literal_eval(os.environ['DEBUG'].strip('\n'))
+    DEBUG = ast.literal_eval(os.environ['DEBUG'].strip('\n').capitalize())
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

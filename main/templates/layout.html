@@ -14,13 +14,18 @@
 
     <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
     <meta property="og:type" content="Website">
-    <meta property="og:description" content="{% block description %}{% endblock description %}. {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta property="og:description" content="{% block description %}{% endblock description %} {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
     <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
-    <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}">
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}"> {% if LANGUAGE_CODE == 'en' %}
+    <meta property="og:locale" content="en_us" />
+    <meta property="og:locale" content="en" /> {% else %}
+    <meta property="og:locale" content="bn_IN" />
+    <meta property="og:locale" content="bn" /> {% endif %}
 
     <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
-    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %}. {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %} {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
     <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta name="twitter:card" content="{% blocktranslate %}This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
 
@@ -55,6 +60,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/en/" hreflang="x-default">
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/en/" hreflang="en-us">
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/en/" hreflang="en">
+    <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/bn/" hreflang="bn">
 
     <!-- Template Main CSS File -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
