@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}">
 
     <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
-    <meta name="twitter:description" content="{% block description %}{% endblock description %}{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %}{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
     <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta name="twitter:card" content="{% block description %}{% endblock description %}{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
 
