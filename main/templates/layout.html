@@ -13,8 +13,9 @@
     <meta name="robots" content="NO-INDEX, NO-FOLLOW">
 
     <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
+    <meta property="og:type" content="Website">
     <meta property="og:description" content="{% block description %}{% endblock description %}{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}">
 
     <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
