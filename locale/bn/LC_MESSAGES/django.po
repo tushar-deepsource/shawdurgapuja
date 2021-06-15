@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-15 17:28+0530\n"
+"POT-Creation-Date: 2021-06-15 18:07+0530\n"
 "PO-Revision-Date: 2021-05-07 14:24+0530\n"
 "Last-Translator: Dhruva Shaw  <dhruvashaw@gmail.com>\n"
 "Language-Team: Shaw Durga Puja <LL@li.org>\n"
@@ -159,7 +159,7 @@ msgstr "সাও দুর্গা পূজা"
 
 #: .\main\templates\layout.html:15 .\main\templates\layout.html:27
 #: .\main\templates\layout.html:32 .\main\templates\layout.html:36
-#: .\main\templates\layout.html:43 .\main\templates\layout.html:156
+#: .\main\templates\layout.html:43 .\main\templates\layout.html:164
 #: .\main\templates\schedulepdf.html:14 .\main\templates\schedulepdf.html:26
 #: .\main\templates\schedulepdf.html:31 .\main\templates\schedulepdf.html:35
 #: .\main\templates\schedulepdf.html:42
@@ -173,8 +173,8 @@ msgid ""
 "ShawDurgaPuja is website to live telecast the Durga Puja of our home. This "
 "our %(current_year_puja|ordinal)s year"
 msgstr ""
-"আমাদের বাড়ির দুর্গা পূজা লাইভ করার জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে |"
-"এটি আমাদের দুর্গা পুজোর %(current_year_puja|ordinal)s বছর"
+"আমাদের বাড়ির দুর্গা পূজা লাইভ করার জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে |এটি আমাদের "
+"দুর্গা পুজোর %(current_year_puja|ordinal)s বছর"
 
 #: .\main\templates\layout.html:30 .\main\templates\schedulepdf.html:29
 #, python-format
@@ -182,7 +182,8 @@ msgid "This our %(current_year_puja|ordinal)s year"
 msgstr "এটি আমাদের দুর্গা পুজোর %(current_year_puja|ordinal)s বছর"
 
 #: .\main\templates\layout.html:33 .\main\templates\layout.html:34
-#: .\main\templates\schedulepdf.html:32 .\main\templates\schedulepdf.html:33
+#: .\main\templates\layout.html:103 .\main\templates\schedulepdf.html:32
+#: .\main\templates\schedulepdf.html:33
 #, fuzzy
 #| msgid "Maa Durga Photo"
 msgid "Durga Maa Photo"
@@ -197,53 +198,65 @@ msgstr " %(yearpassed)s বছরের পূজা সম্পর্কে �
 msgid "About the current year puja"
 msgstr "চলতি বছরের পূজা সম্পর্কে"
 
+#: .\main\templates\layout.html:95
+msgid "QR Code"
+msgstr "কিউআর কোড"
+
+#: .\main\templates\layout.html:97
+msgid "With Logo"
+msgstr "লোগো সহ"
+
 #: .\main\templates\layout.html:98
+msgid "Without Logo"
+msgstr "লোগো ছাড়া"
+
+#: .\main\templates\layout.html:106
 #, python-format
 msgid "View the current %(yearpassed)s schedule"
 msgstr "বর্তমান %(yearpassed)s সময়সূচী দেখুন"
 
-#: .\main\templates\layout.html:98
+#: .\main\templates\layout.html:106
 msgid "See current year schedule"
 msgstr "বর্তমান বছরের সময়সূচী দেখুন"
 
-#: .\main\templates\layout.html:102
+#: .\main\templates\layout.html:110
 #, fuzzy
 #| msgid "Admin Panel"
 msgid "Admin"
 msgstr "অ্যাডমিন"
 
-#: .\main\templates\layout.html:104
+#: .\main\templates\layout.html:112
 msgid "Visit the Admin Panel"
 msgstr "অ্যাডমিন প্যানেলটি দেখুন"
 
-#: .\main\templates\layout.html:104
+#: .\main\templates\layout.html:112
 msgid "Admin Panel"
 msgstr "অ্যাডমিন প্যানেলটি দেখুন"
 
-#: .\main\templates\layout.html:105
+#: .\main\templates\layout.html:113
 msgid "LOGOUT"
 msgstr "প্রস্থান"
 
-#: .\main\templates\layout.html:109
+#: .\main\templates\layout.html:117
 #, fuzzy
 #| msgid "Admin Panel"
 msgid "Admin Login"
 msgstr "অ্যাডমিন লগইন"
 
-#: .\main\templates\layout.html:112
+#: .\main\templates\layout.html:120
 msgid "Change Language"
 msgstr "ভাষা পরিবর্তন করুন"
 
-#: .\main\templates\layout.html:127
+#: .\main\templates\layout.html:135
 #, python-format
 msgid "%(message)s"
 msgstr "%(message)s"
 
-#: .\main\templates\layout.html:158
+#: .\main\templates\layout.html:166
 msgid "Made with"
 msgstr "সাইট বানিয়েছে"
 
-#: .\main\templates\layout.html:158
+#: .\main\templates\layout.html:166
 msgid "on"
 msgstr "দিয়ে"
 

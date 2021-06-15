@@ -91,8 +91,16 @@
                     <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">{% trans 'Home' %}</a></li>
                     <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=2000 %}" onclick="replacehrefwithdate(this);" title="{% blocktrans %}About the {{yearpassed}} year puja{% endblocktrans %}">{% trans 'About the current year puja' %}</a></li>
 
+                    <div class="nav-item dropdown">
+                        <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">{% trans 'QR Code' %}</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href='{% url "QrcodeGen" %}' title="{% trans 'With Logo' %}" target="_blank">{% trans 'With Logo' %} <i class='bx bxs-download bx-tada' ></i></a></li>
+                            <li><a href="{% url 'QrcodeGenLogo' 1 %}" title="{% trans 'Without Logo' %}" target="_blank">{% trans 'Without Logo' %} <i class='bx bxs-download bx-tada' ></i></a></li>
+                        </ul>
+                    </div>
+
                     <li class="nav-logo">
-                        <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="" class="img-fluid"></a>
+                        <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="{% trans 'Durga Maa Photo' %}" style="width:100%"></a>
                     </li>
 
                     <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=2000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
@@ -102,7 +110,7 @@
                         <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">{% trans 'Admin' %}</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a href='{% url "admin:index" %}' title="{% trans 'Visit the Admin Panel' %}" target="_blank">{% trans 'Admin Panel' %}</a></li>
-                            <li><a href="{% url 'signout' %}" style='color:#e70808' title="Logout">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
+                            <li><a href="{% url 'signout' %}" style='color:#e70808' title="{% trans 'LOGOUT' %}">{% trans 'LOGOUT' %} <i class='bx bx-log-out bx-flip-horizontal bx-tada' style='color:#e70808' ></i></a></li>
                         </ul>
                     </div>
                     {% else %}
@@ -137,7 +145,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
         new Crate({
             server: '836841841114480651',
-            channel: '842021199390834728',
+            channel: '836962068019413012',
             location: ['bottom', 'left'],
             notificationsL: true,
             indicator: true,
