@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'django.contrib.sitemaps',
+    'django.contrib.humanize',
     
     'django_admin_listfilter_dropdown',
     'colorfield',
@@ -40,7 +41,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'main.get_username.RequestMiddleware',
+    'main.request_get_processor.RequestMiddleware',
 ]
 
 ROOT_URLCONF = 'puja.urls'

@@ -4,6 +4,7 @@ import sys
 
 import bangla
 import requests
+from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -102,14 +103,16 @@ def schedule(request,year):
             'show':show,
             'title':name1,
             'view':'schedule',
-            'year_year': year
+            'year_year': year,
+            'current_year_puja':durgapujayear()
         }
     else:
         params = {
             'show':show,
             'title':name1,
             'view':'schedule',
-            'yearpass': year
+            'yearpass': year,
+            'current_year_puja':durgapujayear()
         }
     
     return render(
@@ -128,7 +131,8 @@ def scheduleprint(request, year, one: int = None):
         'year':year,
         'view':'schedule',
         'title':f'Durga Puja Schedule for {year}',
-        'one': True if one != 1 else False
+        'one': True if one != 1 else False,
+        'current_year_puja':durgapujayear()
     }
     
     return render(
@@ -203,7 +207,8 @@ def home(request):
             'videos':videos, 
             'title':name1,
             'view': 'Home',
-            'videoslive':videoslive
+            'videoslive':videoslive,
+            'current_year_puja':durgapujayear()
         }
     ) 
 
@@ -258,7 +263,8 @@ def video(request,year,day):
             'livevideo':livevideo,
             'show': show,
             'maahome':maahome,
-            'day':day
+            'day':day,
+            'current_year_puja':durgapujayear()
         }
     )
 
@@ -278,6 +284,7 @@ def about_year(request, year):
             'year': yearid ,
             'view': 'about',
             'img_dir': list(map(addimg,img_dir)),
+            'current_year_puja':durgapujayear()
         }
     )
 
@@ -326,7 +333,8 @@ def handler404(request, *args, **argv):
         '404.html', 
         {
             'title':'404 Ohh Snap!!! Sorry!',
-            'yearpassed': x.strftime("%Y")
+            'yearpassed': x.strftime("%Y"),
+            'current_year_puja':durgapujayear()
         }
     )
 
@@ -341,3 +349,6 @@ def handler500(request, *args, **argv):
             'yearpassed': x.strftime("%Y")
         }
     )
+
+
+durgapujayear = lambda: relativedelta(datetime.datetime.now(), datetime.datetime(2001,1, 1)).years

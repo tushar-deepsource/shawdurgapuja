@@ -13,6 +13,8 @@ from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from discord_custom import message_me
 from django.urls import reverse
+from .request_get_processor import get_request
+from django.contrib.sites.shortcuts import get_current_site
 
 
 def current_year():
@@ -198,8 +200,11 @@ class Videos(models.Model):
 
     def facebook_posts(self):
         '''This is method to generate the facebook video in an iframe'''
-        url = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
-        return mark_safe(f'<iframe src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
+        if self.usernamefb and self.videoid:
+            url = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
+            return mark_safe(f'<iframe src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
+        else:
+            return mark_safe('<h4>No FB Video for now</h4>')
     
     
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -239,7 +244,7 @@ class Videos(models.Model):
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
             message_me(
-                f'https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
+                f'https://{get_current_site(get_request()).domain}/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
             
