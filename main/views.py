@@ -93,7 +93,7 @@ def homeredirect(request):
 @require_GET
 def schedule(request,year):
     name1 = f'Durga Puja Schedule for {year}'
-    try: year_model,show=Year.objects.filter(year=year).get(), True
+    try: year_model,show=Year.objects.filter(year=int(year)).get(), True
     except Year.DoesNotExist: show = False
     except: show=False
 
@@ -104,7 +104,8 @@ def schedule(request,year):
             'title':name1,
             'view':'schedule',
             'year_year': year,
-            'current_year_puja':durgapujayear()
+            'yearpassed':year,
+            'current_year_puja':int(durgapujayear())
         }
     else:
         params = {
@@ -112,7 +113,8 @@ def schedule(request,year):
             'title':name1,
             'view':'schedule',
             'yearpass': year,
-            'current_year_puja':durgapujayear()
+            'yearpassed':year,
+            'current_year_puja':int(durgapujayear())
         }
     
     return render(
@@ -334,7 +336,7 @@ def handler404(request, *args, **argv):
         '404.html', 
         {
             'title':'404 Ohh Snap!!! Sorry!',
-            'yearpassed': x.strftime("%Y"),
+            'yearpassed': int(x.strftime("%Y")),
             'current_year_puja':durgapujayear()
         }
     )
@@ -347,7 +349,7 @@ def handler500(request, *args, **argv):
         '500.html', 
         {
             'title':'500 Ohh Snap!!! Sorry!',
-            'yearpassed': x.strftime("%Y")
+            'yearpassed': int(x.strftime("%Y"))
         }
     )
 

@@ -254,7 +254,7 @@ class Videos(models.Model):
             )
             embed = discord.Embed(
                 title = self.streamingvideoheader.capitalize() + ' <a:liveyellow:853661056592117792>',
-                description = f'<@&{dict_roles[self.day]}> a new puja video has gone live <a:liveyellow:853661056592117792>',
+                description = f'<@&{dict_roles[self.day]}> a **new puja video** for the **year {self.yearmodel.year}** *has gone live* <a:liveyellow:853661056592117792>',
                 color=discord.Color.random()
             )
             embed.set_thumbnail(url='https://i.imgur.com/YIaJ5mC.png')

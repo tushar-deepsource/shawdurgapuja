@@ -87,9 +87,29 @@ class VideosAdmin(admin.ModelAdmin):
             updated,
         ) % updated, messages.SUCCESS)
     make_videos_offline.short_description = "Make the selected videos go offline"
+    
+    #maketest
+    def maketest(self, request, queryset):
+        updated = queryset.update(test=True)
+        self.message_user(request, ngettext(
+            '%d video was succesfully made as a test video',
+            '%d videos were succesfully made as a test videos',
+            updated,
+        ) % updated, messages.SUCCESS)
+    maketest.short_description = "Make the selected videos as a test video(s)"
+    
+    #removefromtest
+    def removefromtest(self, request, queryset):
+        updated = queryset.update(test=False)
+        self.message_user(request, ngettext(
+            '%d video was succesfully removed from test video',
+            '%d videos were succesfully removed from test videos',
+            updated,
+        ) % updated, messages.SUCCESS)
+    removefromtest.short_description = "Make the selected videos remove from test video(s)"
 
     #Registering the custom actions
-    actions = [make_videos_live, make_videos_offline]
+    actions = [make_videos_live, make_videos_offline, maketest, removefromtest]
 
 
 

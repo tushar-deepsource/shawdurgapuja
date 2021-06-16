@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
     <meta property="og:type" content="Website">
-    <meta property="og:description" content="{% block description %}{% endblock description %} {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta property="og:description" content="{% block description %}{% endblock description %} {% trans 'Shaw Durga Puja is website to live telecast the Durga Puja of our home. This our' %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
     <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta property="og:image:type" content="image/png" />
@@ -25,16 +25,16 @@
     <meta property="og:locale" content="bn" /> {% endif %}
 
     <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
-    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %} {% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %} {% trans 'Shaw Durga Puja is website to live telecast the Durga Puja of our home. This our' %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
     <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
-    <meta name="twitter:card" content="{% blocktranslate %}This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta name="twitter:card" content="{% blocktranslate %}This our{% endblocktranslate %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
 
     <meta property="og:site_name" content="{% trans 'Shaw Durga Puja' %} | {{title}}">
     <meta name="twitter:image:alt" content="{% trans 'Durga Maa Photo' %}">
     <meta property="og:image:alt" content="{% trans 'Durga Maa Photo' %}">
 
     <meta itemprop="name" content="{% trans 'Shaw Durga Puja' %}">
-    <meta itemprop="description" content="{% blocktranslate %}ShawDurgaPuja is website to live telecast the Durga Puja of our home. This our {{ current_year_puja|ordinal }} year{% endblocktranslate %}">
+    <meta itemprop="description" content="{% trans 'Shaw Durga Puja is website to live telecast the Durga Puja of our home. This our' %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
     <meta itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
     <meta name="author" content="HATSUNE MIKU#0001">
     <meta name="copyright" content="Dhruva Shaw">
@@ -90,14 +90,6 @@
                 <ul class="nav-inner">
                     <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">{% trans 'Home' %}</a></li>
                     <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=2000 %}" onclick="replacehrefwithdate(this);" title="{% blocktrans %}About the {{yearpassed}} year puja{% endblocktrans %}">{% trans 'About the current year puja' %}</a></li>
-
-                    <div class="nav-item dropdown">
-                        <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">{% trans 'QR Code' %}</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a href='{% url "QrcodeGen" %}' title="{% trans 'With Logo' %}" target="_blank">{% trans 'With Logo' %} <i class='bx bxs-download bx-tada' ></i></a></li>
-                            <li><a href="{% url 'QrcodeGenLogo' 1 %}" title="{% trans 'Without Logo' %}" target="_blank">{% trans 'Without Logo' %} <i class='bx bxs-download bx-tada' ></i></a></li>
-                        </ul>
-                    </div>
 
                     <li class="nav-logo">
                         <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="{% trans 'Durga Maa Photo' %}" style="width:100%"></a>
@@ -166,6 +158,7 @@
                         <h5> {% trans 'Made with' %} <i class='bx bxs-heart'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" target="_blank"><i class='bx bxl-github'></i></a> +
                             <a href="https://discord.gg/kSarfqb9hk" target="_blank"><i class='bx bxl-discord'></i></a>
                         </h5>
+                        <h2><a href="{% url 'QrcodeGen' %}" target="_blank"><i class="icofont-qr-code"></i></a></h2>
                     </div>
                 </div>
 
@@ -175,7 +168,7 @@
     </footer>
     <!-- End Footer -->
 
-    <a href="#header" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <a href='{% url "QrcodeGen" %}' title="{% trans 'With Logo' %}" href="#header" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
