@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-16 12:56+0530\n"
+"POT-Creation-Date: 2021-06-16 16:06+0530\n"
 "PO-Revision-Date: 2021-05-07 14:24+0530\n"
 "Last-Translator: Dhruva Shaw  <dhruvashaw@gmail.com>\n"
 "Language-Team: Shaw Durga Puja <LL@li.org>\n"
@@ -179,14 +179,14 @@ msgid "Shaw Durga Puja"
 msgstr "সাও দুর্গা পূজা"
 
 #: .\main\templates\layout.html:17 .\main\templates\layout.html:28
-#: .\main\templates\layout.html:37 .\main\templates\schedulepdf.html:36
+#: .\main\templates\layout.html:37
 #, fuzzy
 #| msgid ""
 #| "ShawDurgaPuja is website to live telecast the Durga Puja of our home. "
 #| "This our %(current_year_puja|ordinal)s year"
 msgid ""
 "Shaw Durga Puja is website to live telecast the Durga Puja of our home. This "
-"our"
+"is our"
 msgstr ""
 "আমাদের বাড়ির দুর্গা পূজা লাইভ করার জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে |এটি আমাদের "
 "দুর্গা পুজোর"
@@ -200,8 +200,8 @@ msgstr ""
 msgid "year"
 msgstr "বছর"
 
-#: .\main\templates\layout.html:30 .\main\templates\schedulepdf.html:29
-msgid "This our"
+#: .\main\templates\layout.html:30
+msgid "This is our"
 msgstr ""
 
 #: .\main\templates\layout.html:33 .\main\templates\layout.html:34
@@ -412,6 +412,22 @@ msgstr "আমাদের হোমপেজটি দেখুন"
 msgid ""
 "Print %(yearpassed)s puja schedule. ShawDurgaPuja is website to live "
 "telecast the Durga Puja of our home. This our"
+msgstr ""
+"আমাদের বাড়ির দুর্গা পূজা লাইভ করার জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে |এটি আমাদের "
+"দুর্গা পুজোর"
+
+#: .\main\templates\schedulepdf.html:29
+msgid "This our"
+msgstr ""
+
+#: .\main\templates\schedulepdf.html:36
+#, fuzzy
+#| msgid ""
+#| "ShawDurgaPuja is website to live telecast the Durga Puja of our home. "
+#| "This our %(current_year_puja|ordinal)s year"
+msgid ""
+"Shaw Durga Puja is website to live telecast the Durga Puja of our home. This "
+"our"
 msgstr ""
 "আমাদের বাড়ির দুর্গা পূজা লাইভ করার জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে |এটি আমাদের "
 "দুর্গা পুজোর"
