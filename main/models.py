@@ -79,13 +79,12 @@ dict_channel_id = {
     'D': 850640146168676363,    
 }
 
-
 # Create your models here.
 class Year(models.Model):
     '''
     Model to store the Year of Durga Puja live links and its correspondence 
     '''
-    year = models.IntegerField(_('Year'),unique=True, null=True,blank=True, default=now,validators=[MinValueValidator(2003), max_value_current_year])
+    year = models.IntegerField(_('Year'),unique=True,validators=[MinValueValidator(2003), max_value_current_year])
     
     colourback = ColorField(_('colourback'),default='rgb(73, 109, 137)')
     colourtext = ColorField(_('colourtext'),default='#FFF00C')
@@ -203,8 +202,10 @@ class Videos(models.Model):
         if self.usernamefb and self.videoid:
             url = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
             return mark_safe(f'<iframe src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
+        elif self.embeedlink and self.streamingplatform == 'Y':
+            return mark_safe(f'<iframe src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
         else:
-            return mark_safe('<h4>No FB Video for now</h4>')
+            return mark_safe('<h4>No FB/ Youtube Video for now</h4>')
     
     
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -244,7 +245,7 @@ class Videos(models.Model):
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
             message_me(
-                f'https://{get_current_site(get_request()).domain}/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
+                f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
             
@@ -264,11 +265,11 @@ class Videos(models.Model):
             )
             embed.add_field(
                 name='**See the video**', 
-                value=f'[Click Here](https://www.youtube.com/embed/{a.strip()})'
+                value=f'[Click Here](https://youtube.com/watch?v={a.strip()})'
             )
             embed.add_field(
                 name='**See the video in the site**', 
-                value=f'[Click Here](https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
+                value=f'[Click Here](https://shawdurgapuja.herokuapp.com{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
             )
             webhook.send(embed=embed)
             webhook.send(f'https://youtube.com/watch?v={a.strip()}')
