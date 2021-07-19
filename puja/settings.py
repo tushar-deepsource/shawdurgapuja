@@ -188,7 +188,6 @@ DASHAMI = os.environ.get('DASHAMI')
 TEST = os.environ.get('TEST')
 TOKEN = os.environ.get('TOKEN')
 
-COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
