@@ -1,4 +1,4 @@
-{% extends "layout.html" %}{% load static %}}{% load i18n %}{% block body %}
+{% extends "layout.html" %}{% load compress %}{% load static %}}{% load i18n %}{% block body %} {% compress css %}
 <style>
     .topright {
         position: absolute;
@@ -14,6 +14,7 @@
         font-size: 18px;
     }
 </style>
+{% endcompress %}
 <div class="container-fluid main-container mt-3">
     <div class="row my-2 mx-2 text-center mt-3 d-flex justify-content-center">
         {% for year in yearmodel|slice:":3" %}

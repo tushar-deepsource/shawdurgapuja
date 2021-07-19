@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     
     'django_admin_listfilter_dropdown',
     'colorfield',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -33,6 +34,8 @@ MIDDLEWARE = [
     
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -138,6 +141,11 @@ USE_I18N = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
 
 MEDIA_ROOT = BASE_DIR / 'media' 
 MEDIA_URL = '/media/'
@@ -179,3 +187,17 @@ NAVAMI = os.environ.get('NAVAMI')
 DASHAMI = os.environ.get('DASHAMI')
 TEST = os.environ.get('TEST')
 TOKEN = os.environ.get('TOKEN')
+
+COMPRESS_ENABLED = True
+COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_FILTERS = {
+    'css':[
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.rCSSMinFilter',
+    ],
+    'js':[
+        'compressor.filters.jsmin.JSMinFilter',
+    ]
+}
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = False

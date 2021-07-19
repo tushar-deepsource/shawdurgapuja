@@ -1,5 +1,5 @@
-{% extends "layout.html" %}{% load static %}{% load i18n %}{% load tz %} {% block description %}View the schedule for {{yearpassed}} year Durga Puja.{% endblock description %} {% block descriptiontwitter %}View the schedule for {{yearpassed}} year Durga
-Puja. {% endblock descriptiontwitter %} {% get_current_language as LANGUAGE_CODE %} {% block body %}
+{% extends "layout.html" %}{% load compress %}{% load static %}{% load i18n %}{% load tz %} {% block description %}View the schedule for {{yearpassed}} year Durga Puja.{% endblock description %} {% block descriptiontwitter %}View the schedule for {{yearpassed}}
+year Durga Puja. {% endblock descriptiontwitter %} {% get_current_language as LANGUAGE_CODE %} {% block body %} {% compress js %}
 <script>
     window.onload = function checker() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -8,6 +8,7 @@ Puja. {% endblock descriptiontwitter %} {% get_current_language as LANGUAGE_CODE
         }
     }
 </script>
+{% endcompress %}
 
 <div class="container main-container">
 

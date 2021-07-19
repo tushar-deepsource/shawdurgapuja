@@ -1,4 +1,4 @@
-{% load static %}{% load humanize %}{% load i18n %}{% get_current_language as LANGUAGE_CODE %}
+{% load static %}{% load compress %}{% load humanize %}{% load i18n %}{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,13 +49,11 @@
     <!-- Favicons -->
     <link href="{% static 'assets/img/default.png' %}" rel="icon">
     <link href="{% static 'assets/img/default.png' %}" rel="apple-touch-icon">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.8.6/venobox.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
@@ -66,15 +64,20 @@
     <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/en/" hreflang="en">
     <link rel="alternate" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/bn/" hreflang="bn">
 
-    <!-- Template Main CSS File -->
+    <!--Css file from static-->
+    {% compress css %}
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet"> {% endcompress %}
+
 
 </head>
+{% compress css %}
 <style>
     a {
         cursor: pointer;
     }
 </style>
+{% endcompress %}
 
 <body style="background-color: #e6e6e6;">
     <!-- ======= Header ======= -->
@@ -181,8 +184,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    {% compress js %}
     <!-- Template Main JS File -->
     <script src="{% static 'assets/js/main.js' %}"></script>
+    {% endcompress %}
+
 
 </body>
 

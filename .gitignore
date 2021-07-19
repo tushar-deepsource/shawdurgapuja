@@ -1,9 +1,9 @@
 *.env
 *.pyc
-/staticfiles/*
-/.vscode
-media/
-backups/
+staticfiles
+.vscode
+media
+backups
 filer
 bng.txt
 __pycache__
