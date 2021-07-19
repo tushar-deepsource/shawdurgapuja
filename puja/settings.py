@@ -4,6 +4,7 @@ from pathlib import Path
 import dj_database_url
 import dotenv
 from django.utils.translation import ugettext_lazy as _
+import ast
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,20 +86,20 @@ if os.path.isfile(dotenv_file):
 
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['*']
-    DEBUG = True
     SECRET_KEY = '0ssv!ort)z+7ueg4b0*@qpxb-1a#eme!xu=e6-n%g(t++&0heo'
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
 else:
-    import ast
     PRODUCTION_SERVER = True
-    DEBUG = ast.literal_eval(os.environ['DEBUG'].strip('\n').capitalize())
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = os.environ['SECRET_KEY']
+
+DEBUG = ast.literal_eval(os.environ.get('DEBUG', 'False').strip('\n').capitalize())
+if not DEBUG:
     MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
     INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
 
@@ -189,6 +190,12 @@ TEST = os.environ.get('TEST')
 TOKEN = os.environ.get('TOKEN')
 
 COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'django_libsass.SassCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
     'css':[
