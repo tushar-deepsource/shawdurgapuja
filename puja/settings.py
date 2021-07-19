@@ -188,6 +188,16 @@ DASHAMI = os.environ.get('DASHAMI')
 TEST = os.environ.get('TEST')
 TOKEN = os.environ.get('TOKEN')
 
+COMPRESS_ENABLED = True
 COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_FILTERS = {
+    'css':[
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.rCSSMinFilter',
+    ],
+    'js':[
+        'compressor.filters.jsmin.JSMinFilter',
+    ]
+}
 HTML_MINIFY = True
 KEEP_COMMENTS_ON_MINIFYING = False
