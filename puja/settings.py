@@ -30,18 +30,24 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.contrib.admindocs.middleware.XViewMiddleware' ,
     'django.middleware.common.CommonMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.admindocs.middleware.XViewMiddleware' ,
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'main.request_get_processor.RequestMiddleware',
+    
+    'django.middleware.cache.FetchFromCacheMiddleware'
 ]
 
 ROOT_URLCONF = 'puja.urls'
@@ -135,6 +141,9 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = BASE_DIR / 'media' 
 MEDIA_URL = '/media/'
+
+WHITENOISE_MAX_AGE = 9000
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 
 if os.path.isdir(MEDIA_ROOT): pass
 else: os.mkdir(MEDIA_ROOT)
