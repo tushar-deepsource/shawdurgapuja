@@ -16,6 +16,7 @@ from django.urls import reverse
 from django.utils import translation
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from django.utils.functional import keep_lazy
 
 from .models import *
 
@@ -105,7 +106,7 @@ def schedule(request,year):
             'view':'schedule',
             'year_year': year,
             'yearpassed':year,
-            'current_year_puja':int(durgapujayear())
+            'current_year_puja':keep_lazy(int(durgapujayear()), int)
         }
     else:
         params = {
@@ -114,7 +115,7 @@ def schedule(request,year):
             'view':'schedule',
             'yearpass': year,
             'yearpassed':year,
-            'current_year_puja':int(durgapujayear())
+            'current_year_puja':keep_lazy(int(durgapujayear()), int)
         }
     
     return render(
@@ -135,7 +136,7 @@ def scheduleprint(request, year, one: int = None):
         'view':'schedule',
         'title':f'Durga Puja Schedule for {year}',
         'one': True if one != 1 else False,
-        'current_year_puja':durgapujayear()
+        'current_year_puja':keep_lazy(durgapujayear())
     }
     
     return render(
@@ -191,7 +192,7 @@ def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
     videos = Videos.objects.filter(test=False).select_related('yearmodel').distinct('yearmodel')
-    videoslive = Videos.objects.values('yearmodel','live').filter(live=True, test=False).select_related('yearmodel')
+    videoslive = Videos.objects.select_related('yearmodel').values('yearmodel','live').filter(live=True, test=False)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(year,6)
@@ -211,7 +212,7 @@ def home(request):
             'title':name1,
             'view': 'Home',
             'videoslive':videoslive,
-            'current_year_puja':durgapujayear()
+            'current_year_puja':keep_lazy(durgapujayear())
         }
     ) 
 
@@ -267,7 +268,7 @@ def video(request,year,day):
             'show': show,
             'maahome':maahome,
             'day':day,
-            'current_year_puja':durgapujayear()
+            'current_year_puja':keep_lazy(durgapujayear())
         }
     )
 
@@ -287,7 +288,7 @@ def about_year(request, year):
             'year': yearid ,
             'view': 'about',
             'img_dir': list(map(addimg,img_dir)),
-            'current_year_puja':durgapujayear()
+            'current_year_puja':keep_lazy(durgapujayear())
         }
     )
 
@@ -337,7 +338,7 @@ def handler404(request, *args, **argv):
         {
             'title':'404 Ohh Snap!!! Sorry!',
             'yearpassed': int(x.strftime("%Y")),
-            'current_year_puja':durgapujayear()
+            'current_year_puja':keep_lazy(durgapujayear())
         }
     )
 

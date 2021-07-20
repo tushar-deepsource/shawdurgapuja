@@ -167,6 +167,17 @@ if PRODUCTION_SERVER:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
+    
+    CACHES = {
+    'default': {
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+        'OPTIONS': {
+                    'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+                    'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+            }
+    }
+}
 
 if os.getenv('DATABASE_URL')[0] == 'm':
     DATABASES['default']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB',}
