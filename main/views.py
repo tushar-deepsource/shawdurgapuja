@@ -190,8 +190,8 @@ def schedulepdf(request, year):
 def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
-    videos = Videos.objects.filter(test=False).distinct('yearmodel')
-    videoslive = Videos.objects.values('yearmodel','live').filter(live=True, test=False)
+    videos = Videos.objects.filter(test=False).select_related('yearmodel').distinct('yearmodel')
+    videoslive = Videos.objects.values('yearmodel','live').filter(live=True, test=False).select_related('yearmodel')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(year,6)
@@ -238,7 +238,7 @@ def video(request,year,day):
     else: raise Http404("The day you requested in not available")
     
     if day == 'MAA': 
-        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P'], test=False).all()
+        videos = Videos.objects.filter(yearmodel=yearid, day__in=['E','DI','T','C','P'], test=False).select_related('yearmodel')
         try: day = videos[0].day
         except IndexError: return redirect(reverse('Videos',args=[int(year),'S']))
         if day == 'E': dayname = "Ekami"
@@ -304,11 +304,11 @@ def redirect_view_puja(request):
 
     #Day requiring
     try: 
-        videodict = Videos.objects.filter(yearmodel=yearid,live=True, test=False).values('day').get()
+        videodict = Videos.objects.filter(yearmodel=yearid,live=True, test=False).values('day').select_related('yearmodel').get()
     except: 
         videodict={'day':'None'}
         try:
-            videodict = Videos.objects.filter(yearmodel=yearid, test=False).values('day').latest('yearmodel','day')
+            videodict = Videos.objects.filter(yearmodel=yearid, test=False).values('day').select_related('yearmodel').latest('yearmodel','day')
         except: 
             return redirect(reverse('Home'))
 
