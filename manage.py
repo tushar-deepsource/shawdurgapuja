@@ -17,6 +17,7 @@ def main():
         ) from exc
     if not os.path.isdir(os.path.join(Path(__file__).resolve().parent)):
         os.mkdir(os.path.join(Path(__file__).resolve().parent))
+    execute_from_command_line(['manage.py', 'compress', '--force'])
     execute_from_command_line(sys.argv)
 
 
