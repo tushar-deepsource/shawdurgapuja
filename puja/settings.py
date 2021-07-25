@@ -201,7 +201,7 @@ TEST = os.environ.get('TEST')
 TOKEN = os.environ.get('TOKEN')
 
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = False
+COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (
     ('text/x-sass', 'django_libsass.SassCompiler'),
     ('text/x-scss', 'django_libsass.SassCompiler'), 
