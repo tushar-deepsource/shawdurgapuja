@@ -204,7 +204,7 @@ COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
 COMPRESS_PRECOMPILERS = (
     ('text/x-sass', 'django_libsass.SassCompiler'),
-    ('text/x-scss', 'django_libsass.SassCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'), 
 )
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
