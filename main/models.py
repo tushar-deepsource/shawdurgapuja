@@ -196,6 +196,9 @@ class Videos(models.Model):
         except: aname = "Deleted Year" + " " + self.streamingvideoheader + " " + f'({self.day})'
         return aname
     
+    def get_absolute_url(self):
+        return reverse('Videos', args=[self.yearmodel.year, self.day])
+    
 
     def facebook_posts(self):
         '''This is method to generate the facebook video in an iframe'''
