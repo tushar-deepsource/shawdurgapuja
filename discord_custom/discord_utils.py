@@ -1,10 +1,12 @@
 from .request_discord import *
+from celery import shared_task
 
-def message_me(message: str, channel_id: int,  embed: bool = None):
+@shared_task
+async def message_me(message: str, channel_id: int,  embed: bool = None):
     '''Send message to required channel for the ping'''
     try:
         if not embed:
-            discord_api_req(
+            await discord_api_req(
                 f'/channels/{channel_id}/messages',
                 'post',
                 data={
@@ -12,7 +14,7 @@ def message_me(message: str, channel_id: int,  embed: bool = None):
                 }
             )
         else:
-            discord_api_req(
+            await discord_api_req(
                 f'/channels/{channel_id}/messages',
                 'post',
                 data={

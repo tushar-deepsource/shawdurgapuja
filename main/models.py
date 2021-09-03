@@ -1,9 +1,9 @@
 import datetime
 import os
 
-import discord
+# import discord
 from colorfield.fields import ColorField
-from discord import RequestsWebhookAdapter, Webhook
+# from discord import RequestsWebhookAdapter, Webhook
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -211,7 +211,7 @@ class Videos(models.Model):
             return mark_safe('<h4>No FB/ Youtube Video for now</h4>')
     
     
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    async def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if self.streamingplatform == 'F':
             if 'youtube.com'  in self.streamingvideolink or 'youtube' in self.streamingvideolink:
                 raise ValidationError(
@@ -243,11 +243,11 @@ class Videos(models.Model):
             self.live = self.live
         
         if not Videos.objects.filter(id=self.id).exists():
-            message_me(
+            await message_me(
                 f'||<@&{dict_roles[self.day]}>||',
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
-            message_me(
+            await message_me(
                 f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
                 dict_channel_id[self.day] if not self.test else 853650950429736971
             )
@@ -278,7 +278,6 @@ class Videos(models.Model):
             webhook.send(f'https://youtube.com/watch?v={a.strip()}')
 
         return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
-
     
     class Meta:
         verbose_name_plural = "Videos"

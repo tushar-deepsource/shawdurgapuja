@@ -3,7 +3,6 @@ import os
 import sys
 
 import bangla
-import requests
 from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -17,6 +16,7 @@ from django.utils import translation
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from django.utils.functional import keep_lazy
+from celery import shared_task
 
 from .models import *
 
@@ -39,51 +39,8 @@ def changelang(request):
 
 #Images Api, which generates the cards images
 @require_GET
-def getimages(request):
-    if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'yearpic')): pass
-    else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'yearpic'))
-    
-    text = request.GET['text']
-    back = request.GET.get('back','#FFF00C')
-    textc = request.GET.get('textc','#496d89')
-    
-    img = Image.new('RGBA', (100, 30),color = str(back))
-    d = ImageDraw.Draw(img)
-    w, h = d.textsize(str(text))
-    
-    if request.LANGUAGE_CODE == 'bn' and text.replace('/','').isdigit():
-        font = os.path.join(settings.BASE_DIR,'main','static','fonts','Baloo_Da-Regular.ttf')
-        text = bangla.convert_english_digit_to_bangla_digit(str(text))
-        d.text(((100-w)/2,(25-h)/2), str(text), fill=str(textc),font=ImageFont.truetype(font,11,layout_engine=ImageFont.LAYOUT_RAQM))
-    else:
-        d.text(((100-w)/2,(30-h)/2), str(text), fill=str(textc))
-    
-    output_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(text) + 'output' +'.png')
-    main_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(text) + '.png')
-    
-    #Try Except Block
-    output_image1 = output_image
-    try: img.save(output_image1)
-    except:
-        os.mkdir(os.path.join(settings.MEDIA_ROOT, "yearpic"))
-        img.save(output_image1)
-
-    #Making the image circular
-    mask = Image.open(os.path.join(settings.BASE_DIR,'main','imagesreq','mask.png')).convert('L')
-    im = Image.open(output_image)
-
-    output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
-    output.putalpha(mask)
-
-    #Saving the cropped Image
-    main_image1 = main_image
-    output.save(main_image1)
-    with open(main_image1, "rb") as image_file:
-        image_data = image_file.read()
-    #Deleting the first image made
-    os.remove(output_image1)
-    os.remove(main_image1)
-    return HttpResponse(image_data, content_type="image/jpeg")
+async def getimages(request):
+    return HttpResponse(await generate_thumbnail(request), content_type="image/jpeg")
         
 
 
@@ -92,7 +49,7 @@ def homeredirect(request):
     return redirect(reverse('Home'))
     
 @require_GET
-def schedule(request,year):
+async def schedule(request,year):
     name1 = f'Durga Puja Schedule for {year}'
     try: year_model,show=Year.objects.filter(year=int(year)).get(), True
     except Year.DoesNotExist: show = False
@@ -125,7 +82,7 @@ def schedule(request,year):
     )
 
 @require_GET   
-def scheduleprint(request, year, one: int = None):
+async def scheduleprint(request, year, one: int = None):
     try: year_model=Year.objects.filter(year=year).get()
     except Year.DoesNotExist:
         raise Http404('Nothing in this year as of now')
@@ -147,7 +104,7 @@ def scheduleprint(request, year, one: int = None):
  
  
 @require_GET   
-def schedulepdf(request, year):
+async def schedulepdf(request, year):
     try: yearobj=Year.objects.filter(year=year).get()
     except Year.DoesNotExist:
         raise Http404('Nothing in this year as of now')
@@ -171,10 +128,11 @@ def schedulepdf(request, year):
     else:
         if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'img')): pass
         else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'img'))
-        img= requests.get(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}')
+        with aiohttp.ClientSession() as requests:
+            img= await requests.get(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}')
         
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"wb") as img_file:
-            img_file.write(img.content)
+            img_file.write(await img.read())
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"rb") as img_file:
             data = img_file.read()
         os.remove(settings.MEDIA_ROOT / f'schedulepdf-{year}.png')
@@ -188,7 +146,7 @@ def schedulepdf(request, year):
     return response
 
 @require_GET
-def home(request):
+async def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
     videos = Videos.objects.filter(test=False).select_related('yearmodel').distinct('yearmodel')
@@ -217,7 +175,7 @@ def home(request):
     ) 
 
 @require_GET
-def video(request,year,day):
+async def video(request,year,day):
     try:
         yearid = Year.objects.values('id').filter(year=int(year)).get()['id']
     except:
@@ -273,7 +231,7 @@ def video(request,year,day):
     )
 
 @require_GET
-def about_year(request, year): 
+async def about_year(request, year): 
     try:
         yearid = Year.objects.filter(year=int(year)).get()
     except:
@@ -293,7 +251,7 @@ def about_year(request, year):
     )
 
 
-def redirect_view_puja(request):
+async def redirect_view_puja(request):
     #Year
     x = datetime.datetime.now()
     year = x.strftime("%Y")
@@ -317,12 +275,12 @@ def redirect_view_puja(request):
     return redirect(reverse('Videos',args=[int(year),videodict['day']])+'#live')
 
 
-def qrcode(request, logo=2):
+async def qrcode(request, logo=2):
     from .qrcode_gen import QrGen
     current_site = get_current_site(request)
     domain = current_site.domain
     return HttpResponse(
-        QrGen(
+        await QrGen(
             'https://'+domain+reverse('Redirect'),True if logo==1 else False).gen_qr_code(), 
             content_type="image/jpeg",
         )
@@ -330,7 +288,7 @@ def qrcode(request, logo=2):
 
 
 ##Error 404
-def handler404(request, *args, **argv):
+async def handler404(request, *args, **argv):
     x = datetime.datetime.now()
     return render(
         None,
@@ -343,7 +301,7 @@ def handler404(request, *args, **argv):
     )
 
 #Error 500
-def handler500(request, *args, **argv):
+async def handler500(request, *args, **argv):
     x = datetime.datetime.now()
     return  render(
         None,
@@ -356,3 +314,53 @@ def handler500(request, *args, **argv):
 
 
 durgapujayear = lambda: relativedelta(datetime.datetime.now(), datetime.datetime(2001,1, 1)).years
+durgapujayear = shared_task(durgapujayear)
+
+@shared_task
+async def generate_thumbnail(request_obj):
+    request=request_obj
+    if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'yearpic')): pass
+    else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'yearpic'))
+    
+    text = request.GET['text']
+    back = request.GET.get('back','#FFF00C')
+    textc = request.GET.get('textc','#496d89')
+    
+    img = Image.new('RGBA', (100, 30),color = str(back))
+    d = ImageDraw.Draw(img)
+    w, h = d.textsize(str(text))
+    
+    if request.LANGUAGE_CODE == 'bn' and text.replace('/','').isdigit():
+        font = os.path.join(settings.BASE_DIR,'main','static','fonts','Baloo_Da-Regular.ttf')
+        text = bangla.convert_english_digit_to_bangla_digit(str(text))
+        d.text(((100-w)/2,(25-h)/2), str(text), fill=str(textc),font=ImageFont.truetype(font,11,layout_engine=ImageFont.LAYOUT_RAQM))
+    else:
+        d.text(((100-w)/2,(30-h)/2), str(text), fill=str(textc))
+    
+    output_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(text) + 'output' +'.png')
+    main_image = os.path.join(settings.MEDIA_ROOT, "yearpic", str(text) + '.png')
+    
+    #Try Except Block
+    output_image1 = output_image
+    try: img.save(output_image1)
+    except:
+        os.mkdir(os.path.join(settings.MEDIA_ROOT, "yearpic"))
+        img.save(output_image1)
+
+    #Making the image circular
+    mask = Image.open(os.path.join(settings.BASE_DIR,'main','imagesreq','mask.png')).convert('L')
+    im = Image.open(output_image)
+
+    output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
+    output.putalpha(mask)
+
+    #Saving the cropped Image
+    main_image1 = main_image
+    output.save(main_image1)
+    with open(main_image1, "rb") as image_file:
+        image_data = image_file.read()
+    #Deleting the first image made
+    os.remove(output_image1)
+    os.remove(main_image1)
+    return image_data
+

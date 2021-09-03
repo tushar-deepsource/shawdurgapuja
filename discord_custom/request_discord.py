@@ -1,8 +1,8 @@
-import requests
 from django.conf import settings
+from celery import shared_task
 
-
-def discord_api_req(
+@shared_task
+async def discord_api_req(
     path: str,
     method: str = 'post' or 'get',
     data: dict=None, 
@@ -15,6 +15,8 @@ def discord_api_req(
         'Authorization': f'Bot {settings.TOKEN}',
         'Content-Type': content_type
     }
+    requests = aiohttp.ClientSession()
+    request_made = await session.post(url, headers=headers, json=data or json)
     if method == 'post':
         request = requests.post(
             base_api+path,
@@ -33,4 +35,5 @@ def discord_api_req(
                 headers=headers,
                 params=data
             )
-    return request
+    await session.close()
+    return await request
