@@ -1,1 +1,1 @@
-web: gunicorn puja.wsgi
+web: uvicorn puja.asgi:application
