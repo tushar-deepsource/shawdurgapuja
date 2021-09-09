@@ -1,20 +1,20 @@
 import datetime
 import os
 
-# import discord
 from colorfield.fields import ColorField
-# from discord import RequestsWebhookAdapter, Webhook
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from asgiref.sync import async_to_sync
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from discord_custom import message_me
+from discord_custom import *
 from django.urls import reverse
 from .request_get_processor import get_request
 from django.contrib.sites.shortcuts import get_current_site
+import asyncio
 
 
 def current_year():
@@ -35,6 +35,20 @@ dict_webhook = {
     'SAN': settings.ASHTAMI,
     'N': settings.NAVAMI,
     'D': settings.DASHAMI,
+}
+
+dict_colors = {
+    'E': Color.blurple(),
+    'DI': Color.blurple(),
+    'T': Color.blurple(),
+    'C': Color.blurple(),
+    'P': Color.orange(),
+    'S': Color.yellow(),
+    'SA': Color.default(),
+    'A': Color.red(),
+    'SAN': Color.dark_theme(),
+    'N': Color.dark_blue(),
+    'D': Color.gold(),
 }
 
 dict_roles = {
@@ -130,11 +144,10 @@ class Year(models.Model):
         '''A button to view the pdf puja schedule file'''
         return mark_safe(f'<a href="pdf/{self.pujadatetime.url}" onclick="return showAddAnotherPopup(this)" class="submit-row">Click Here</a>')
 
-
-    def delete(self, using=None, keep_parents=False):
+    def delete(self, *args, **kwargs):
         if os.path.exists(os.path.join(settings.MEDIA_ROOT,str(self.yearpic.url))):
             os.remove(os.path.join(settings.MEDIA_ROOT,str(self.yearpic.url)))
-        return super().delete(using=using, keep_parents=keep_parents)
+        return super().delete(*args, **kwargs)
 
 
 def get_default_year():
@@ -199,7 +212,6 @@ class Videos(models.Model):
     def get_absolute_url(self):
         return reverse('Videos', args=[self.yearmodel.year, self.day])
     
-
     def facebook_posts(self):
         '''This is method to generate the facebook video in an iframe'''
         if self.usernamefb and self.videoid:
@@ -210,8 +222,7 @@ class Videos(models.Model):
         else:
             return mark_safe('<h4>No FB/ Youtube Video for now</h4>')
     
-    
-    async def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    def save(self, *args, **kwargs):
         if self.streamingplatform == 'F':
             if 'youtube.com'  in self.streamingvideolink or 'youtube' in self.streamingvideolink:
                 raise ValidationError(
@@ -243,41 +254,25 @@ class Videos(models.Model):
             self.live = self.live
         
         if not Videos.objects.filter(id=self.id).exists():
-            await message_me(
-                f'||<@&{dict_roles[self.day]}>||',
-                dict_channel_id[self.day] if not self.test else 853650950429736971
+            webhook = dict_webhook[self.day] if not self.test else settings.TEST
+            if webhook.lower().startswith('https://discord.com/api'):
+                webhook = webhook[len('https://discord.com/api'): ]
+            embed = Embed(
+                title = self.streamingvideoheader.capitalize(),
+                color = dict_colors[self.day] if not self.test else Color.default(),
+                url=f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live'
             )
-            await message_me(
-                f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
-                dict_channel_id[self.day] if not self.test else 853650950429736971
-            )
-            
-            webhook = Webhook.from_url(
-                dict_webhook[self.day] if not self.test else settings.TEST, 
-                adapter=RequestsWebhookAdapter()
-            )
-            embed = discord.Embed(
-                title = self.streamingvideoheader.capitalize() + ' <a:liveyellow:853661056592117792>',
-                description = f'<@&{dict_roles[self.day]}> a **new puja video** for the **year {self.yearmodel.year}** *has gone live* <a:liveyellow:853661056592117792>',
-                color=discord.Color.random()
-            )
-            embed.set_thumbnail(url='https://i.imgur.com/YIaJ5mC.png')
+            description = f'```A new puja video for the year {self.yearmodel.year} has gone live```'
+            description1 = f'> ``See the video`` : [Click Here](https://youtube.com/watch?v={a.strip()}) <a:liveyellow:853661056592117792>'
+            description2 = f'> ``See the video in the site`` : [Click Here](https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
             embed.set_author(
                 name=dict_days[self.day],
                 icon_url='https://cdn.discordapp.com/avatars/853644680486191106/ee39d19c48c4ff53bb4d75e667ff2df3.png'
             )
-            embed.add_field(
-                name='**See the video**', 
-                value=f'[Click Here](https://youtube.com/watch?v={a.strip()})'
-            )
-            embed.add_field(
-                name='**See the video in the site**', 
-                value=f'[Click Here](https://shawdurgapuja.herokuapp.com{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
-            )
-            webhook.send(embed=embed)
-            webhook.send(f'https://youtube.com/watch?v={a.strip()}')
-
-        return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+            embed.description = f'{description}\n\n{description1}\n{description2}'
+            a=discord_api_req(path=webhook,method='post',data={'content': f'<@&{dict_roles[self.day]}>', 'embeds': [embed.to_dict()], 'allowed_mentions': AllowedMentions(everyone=True, roles=True, users = True).to_dict()})
+            print(a)
+        return super().save(*args, **kwargs)
     
     class Meta:
         verbose_name_plural = "Videos"
