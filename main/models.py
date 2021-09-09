@@ -4,7 +4,6 @@ import os
 from colorfield.fields import ColorField
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from asgiref.sync import async_to_sync
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import mark_safe
