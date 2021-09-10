@@ -364,12 +364,11 @@ def generate_thumbnail(request_obj):
     output.putalpha(mask)
 
     #Saving the cropped Image
-    main_image1 = main_image
-    output.save(main_image1)
-    with open(main_image1, "rb") as image_file:
+    output.save(main_image)
+    with open(main_image, "rb") as image_file:
         image_data = image_file.read()
     #Deleting the first image made
     os.remove(output_image1)
-    os.remove(main_image1)
+    os.remove(main_image)
     return image_data
 
