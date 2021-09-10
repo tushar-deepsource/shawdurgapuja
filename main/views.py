@@ -1,12 +1,11 @@
 import datetime
 import os
 import sys
-import asyncio
 from io import StringIO
 import urllib
 
 import bangla
-from asgiref.sync import async_to_sync, sync_to_async
+from asgiref.sync import sync_to_async
 from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -20,7 +19,6 @@ from django.utils import translation
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from django.utils.functional import keep_lazy
-from celery import shared_task
 
 from .models import *
 
@@ -272,12 +270,12 @@ def redirect_view_puja(request):
 
     #Day requiring
     try: 
-        videodict = Videos.objects.filter(yearmodel=yearid,live=True, test=False).values('day').select_related('yearmodel').get()
+        videodict = Videos.objects.filter(yearmodel=yearid,live=True, test=False).select_related('yearmodel').values('day').get()
     except: 
         videodict={'day':'None'}
         try:
-            videodict = Videos.objects.filter(yearmodel=yearid, test=False).values('day').select_related('yearmodel').latest('yearmodel','day')
-        except: 
+            videodict = Videos.objects.filter(yearmodel=yearid, test=False).select_related('yearmodel').values('day').latest('yearmodel','day')
+        except Exception as e: 
             return redirect(reverse('Home'))
 
     #redirecting the user to the correct page
@@ -289,10 +287,9 @@ def qrcode(request, logo=2):
     current_site = get_current_site(request)
     domain = current_site.domain
     return HttpResponse(
-        asyncio.run(QrGen(
-            'https://'+domain+reverse('Redirect'),True if logo==1 else False).gen_qr_code(), 
-            content_type="image/jpeg",
-        ))
+            QrGen('https://'+domain+reverse('Redirect'),True if logo==1 else False).gen_qr_code(),
+            content_type="image/jpeg"
+        )
 
 
 
@@ -368,7 +365,7 @@ def generate_thumbnail(request_obj):
     with open(main_image, "rb") as image_file:
         image_data = image_file.read()
     #Deleting the first image made
-    os.remove(output_image1)
-    os.remove(main_image)
+    sync_to_async(os.remove(output_image1))
+    sync_to_async(os.remove(main_image))
     return image_data
 

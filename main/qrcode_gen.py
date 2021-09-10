@@ -2,7 +2,7 @@ import os
 import pyqrcode
 from PIL import Image
 from django.conf import settings
-from celery import shared_task
+from asgiref.sync import sync_to_async
 import png
 
 class QrGen:
@@ -11,7 +11,6 @@ class QrGen:
         self.logo = logo
         self.files_logo = os.path.join(settings.BASE_DIR, 'main','static','assets','img','default_qrcode.png')
     
-    @shared_task
     def gen_qr_code(self):
         filename = 'with_logo.png' if self.files_logo else 'withoutout_logo.png'
         
@@ -41,5 +40,5 @@ class QrGen:
             
         with open(os.path.join(settings.BASE_DIR, 'main', filename),'rb') as f:
             data = f.read()
-        os.remove(os.path.join(settings.BASE_DIR, 'main', filename))
+        sync_to_async(os.remove(os.path.join(settings.BASE_DIR, 'main', filename)))
         return data

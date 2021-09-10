@@ -29,6 +29,7 @@ urlpatterns = [
     
     path('qrcode/',qrcode, name='QrcodeGen'),
     path('qrcode/<int:logo>/',qrcode, name='QrcodeGenLogo'),
+    path('redirect/', redirect_view_puja,name="Redirect"),
     path('', homeredirect,name="HomeRedirect"),
     
 

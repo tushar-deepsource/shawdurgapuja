@@ -55,8 +55,8 @@
                     <div class="nav-item dropdown">
                         <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">{% trans 'QR Code' %}</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href='{% url "QrcodeGen" %}' title="{% trans 'With Logo' %}" target="_blank">{% trans 'With Logo' %}</a>
-                            <a class="dropdown-item" href="{% url 'QrcodeGenLogo' 1 %}" title="{% trans 'Without Logo' %}" target="_blank">{% trans 'Without Logo' %}</a>
+                            <a class="dropdown-item" href='{% url "QrcodeGen" %}' title="{% trans 'Without Logo' %}" target="_blank">{% trans 'Without Logo' %}</a>
+                            <a class="dropdown-item" href="{% url 'QrcodeGenLogo' 1 %}" title="{% trans 'With Logo' %}" target="_blank">{% trans 'With Logo' %}</a>
                         </ul>
                     </div>
                     {% if user.is_authenticated %}
