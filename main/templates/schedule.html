@@ -1,3 +1,4 @@
+  
 {% extends "layout.html" %}{% load compress %}{% load static %}{% load i18n %}{% load tz %} {% block description %}View the schedule for {{yearpassed}} year Durga Puja.{% endblock description %} {% block descriptiontwitter %}View the schedule for {{yearpassed}}
 year Durga Puja. {% endblock descriptiontwitter %} {% get_current_language as LANGUAGE_CODE %} {% block body %} {% compress js %}
 <script>
@@ -103,13 +104,12 @@ year Durga Puja. {% endblock descriptiontwitter %} {% get_current_language as LA
                 <!-- ==Dashami== -->
                 <tr>
                     <th scope="row">{% timezone "Asia/Calcutta" %}{{year.dashami|date:"dS F Y, l"}}{% endtimezone %}</th>
-                    <td>&nbsp;&nbsp;&nbsp;
-                        <img loading="lazy" src=" {% static 'images/dashami.webp' %} " width="111px " height="111px "></td>
+                    <td>&nbsp;&nbsp;&nbsp; <img loading="lazy" src="{% static 'images/dashami.webp' %}" width="111px" height="111px"></td>
                     <td>
-                        <h3 style="text-align: center; ">{% trans 'Maha Dashami' %}</h3>
+                        <h3 style="text-align: center;">{% trans 'Maha Dashami' %}</h3>
                         <br/>
-                        <h5 style="text-align: center; ">{% timezone "Asia/Calcutta " %}{{year.dashamit}} - {{year.dashamite}}{% endtimezone %}</h5>
-                        <div style="text-align: center; ">
+                        <h5 style="text-align: center;">{% timezone "Asia/Calcutta" %}{{year.dashamit}} - {{year.dashamite}}{% endtimezone %}</h5>
+                        <div style="text-align: center;">
                             {% blocktrans %}
                             <h6>Dashami Puja</h6>
                             <h6>Bisharjan Ritual after the Dashami Puja</h6>
@@ -123,14 +123,14 @@ year Durga Puja. {% endblock descriptiontwitter %} {% get_current_language as LA
             </tbody>
         </table>
         {% else %}
-        <div class="container-fluid main-container ">
-            <div class="container ">
-                <div class="section-title " data-aos="fade-up ">
-                    <h2 style="color:rgb(253, 194, 0); ">{% trans 'Sorry!! (404)' %}</h2>
-                    <h4>The <strong style="color:rgb(253, 194, 0); ">{% trans 'Durga Puja' %}</strong> {% trans 'schedule for the year' %} {% timezone "Asia/Calcutta " %}{{year}}{% endtimezone %} {% trans 'has not been released yet.' %}</h4>
-                    <p style="color:rgb(253, 194, 0); ">{% trans 'Please visit our home page' %}</p>
+        <div class="container-fluid main-container">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2 style="color:rgb(253, 194, 0);">{% trans 'Sorry!! (404)' %}</h2>
+                    <h4>The <strong style="color:rgb(253, 194, 0);">{% trans 'Durga Puja' %}</strong> {% trans 'schedule for the year' %} {% timezone "Asia/Calcutta" %}{{year}}{% endtimezone %} {% trans 'has not been released yet.' %}</h4>
+                    <p style="color:rgb(253, 194, 0);">{% trans 'Please visit our home page' %}</p>
                     <br/>
-                    <a href="{% url 'Home' %} " title="HomePage "><button type="button " class="btn btn-outline-info ">{% trans 'GoTo HomePage' %}</button></a>
+                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">{% trans 'GoTo HomePage' %}</button></a>
                 </div>
             </div>
         </div>
