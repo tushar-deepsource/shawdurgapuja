@@ -1,1 +1,1 @@
-web: uvicorn puja.asgi:application --host=0.0.0.0 --port=${PORT:-5000} --lifespan off
+web: gunicorn -k uvicorn.workers.UvicornWorker
