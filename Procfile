@@ -1,1 +1,1 @@
-web: gunicorn  puja.asgi:application -k uvicorn.workers.UvicornWorker --lifespan off
+web: gunicorn  puja.asgi:application -k puja.workers.DynamicUvicornWorker
