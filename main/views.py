@@ -2,7 +2,8 @@ import datetime
 import os
 import sys
 import asyncio
-import aiohttp
+from io import StringIO
+import urllib
 
 import bangla
 from asgiref.sync import async_to_sync, sync_to_async
@@ -135,11 +136,10 @@ def schedulepdf(request, year):
     else:
         if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'img')): pass
         else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'img'))
-        with aiohttp.ClientSession() as requests:
-            img= asyncio.run(requests.get(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}'))
+        img = StringIO(urllib.request.urlopen(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}').read())
         
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"wb") as img_file:
-            img_file.write(asyncio.run(img.read()))
+            img_file.write(img)
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"rb") as img_file:
             data = img_file.read()
         os.remove(settings.MEDIA_ROOT / f'schedulepdf-{year}.png')
