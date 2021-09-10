@@ -8,7 +8,7 @@
 
             <div class="owl-carousel portfolio-details-carousel">
                 {% for i in img_dir %}
-                <img src="{% static i %}" alt="{% trans 'Maa Durga Photo' %}"> {% endfor %}
+                <img loading="lazy" src="{% static i %}" alt="{% trans 'Maa Durga Photo' %}"> {% endfor %}
             </div>
             <div class="portfolio-info">
                 <h3 style="background: rgba(255, 230, 0, 0.61); padding:10px 10px "><strong>{% blocktrans %}Durga Puja {{yearpassed}}{% endblocktrans %}</strong></h3>

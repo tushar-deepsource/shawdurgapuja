@@ -117,7 +117,7 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
         <span style="margin-top:20px; text-align:center;" {% if videos.live %}id="live" {% endif %}>
             <h3><u>{{videos.streamingvideoheader}}</u> {% if videos.live %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</h3>
         </span>
-        <iframe class="iframe" width="95%" height="100%" src="{{videos.embeedlink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" class="iframe" width="95%" height="100%" src="{{videos.embeedlink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <span style="margin-top:0px;">
             <h6>{{videos.streamingvideodescription}}</h6>
             <h6><strong>{% trans 'Having problem in viewing this video in the browser? Then go ahead and watch directly in ' %}{% if videos.streamingplatform == 'F' %}{% trans 'Facebook' %}{% else %}{% trans 'YouTube' %}{% endif %}<br/><a href="{{videos.streamingvideolink}}" target="_blank">{% trans '( Click Here and go watch directly in the ' %}{% if videos.streamingplatform == 'F' %}{% trans 'Facebook' %}{% else %}{% trans 'YouTube' %}{% endif %} )</a></strong></h6>         
@@ -130,7 +130,7 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
     <div class="col-lg container-fluid main-container overflow-auto" style="overflow-x: hidden !important; margin-left: 20px;">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <img style="margin-top: 110px;" src="{% static 'assets/img/default1.png' %}" alt="Durga Maa" class="img-fluid">
+                <img loading="lazy" style="margin-top: 110px;" src="{% static 'assets/img/default1.png' %}" alt="Durga Maa" class="img-fluid">
                 <h3 style="margin-top: 10px;">{% trans 'The' %} <strong style="color:rgb(253, 194, 0);">{% trans 'video' %}</strong> {% trans 'for' %} <strong style="color:rgb(253, 164, 0);">{% ifequal dayname 'SANDHI' %}{{dayname}} {% trans 'PUJA' %}{% else %}{% trans 'MAHA' %} {{dayname}} {% trans 'PUJA' %}{% endifequal %}</strong>
                     <span>{% trans "hasn't been" %}</span>
                     <strong style="color:rgb(253, 194, 0);">{% trans 'uploaded' %}</strong> {% trans 'or' %} <strong style="color:rgb(253, 194, 0);">{% trans 'gone live.' %}</strong></h3>

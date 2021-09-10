@@ -21,7 +21,7 @@
         <div class="col-md-6 col-lg-2 text-center aos-init mt-3">
             <div class='card' style="border-style: hidden">
                 <div class="card-img-top">
-                    <img class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" />
+                    <img loading="lazy" class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" />
                 </div>
                 <div class="card-body">
                     <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %} {% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}
@@ -51,7 +51,7 @@
         <div class="col-md-6 col-lg-2 text-center aos-init mx-3">
             <div class='card' style="border-style: hidden;">
                 <div class="card-img-top">
-                    <img class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" alt="Year {{year}}" />
+                    <img loading="lazy" class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" alt="Year {{year}}" />
                 </div>
                 <div class="card-body">
                     <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %}{% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}

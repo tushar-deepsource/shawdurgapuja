@@ -86,7 +86,7 @@
 
             <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
             <div class="logo d-block d-lg-none">
-                <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="Durga Maa" class="img-fluid"></a>
+                <a href="{% url 'Home' %}" title="HomePage"><img loading="lazy" src="{% static 'assets/img/default1.png' %}" alt="Durga Maa" class="img-fluid"></a>
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
@@ -95,7 +95,7 @@
                     <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=2000 %}" onclick="replacehrefwithdate(this);" title="{% blocktrans %}About the {{yearpassed}} year puja{% endblocktrans %}">{% trans 'About the current year puja' %}</a></li>
 
                     <li class="nav-logo">
-                        <a href="{% url 'Home' %}" title="HomePage"><img src="{% static 'assets/img/default1.png' %}" alt="{% trans 'Durga Maa Photo' %}" style="width:100%"></a>
+                        <a href="{% url 'Home' %}" title="HomePage"><img loading="lazy" src="{% static 'assets/img/default1.png' %}" alt="{% trans 'Durga Maa Photo' %}" style="width:100%"></a>
                     </li>
 
                     <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=2000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
@@ -147,7 +147,7 @@
         })
     </script>
     <!-- ======= Footer ======= -->
-    <footer id="footer">
+    <footer id="footer" loading="lazy">
 
         <div class="footer-top">
 
@@ -155,7 +155,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <a href="#header" class="scrollto footer-logo"><img src="{% static 'assets/img/default.png' %}" alt=""></a>
+                        <a href="#header" class="scrollto footer-logo"><img loading="lazy" src="{% static 'assets/img/default.png' %}" alt=""></a>
                         <h3>{% trans 'Shaw Durga Puja' %}</h3>
                         <hr/>
                         <h5> {% trans 'Made with' %} <i class='bx bxs-heart'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" target="_blank"><i class='bx bxl-github'></i></a> +
