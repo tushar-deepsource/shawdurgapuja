@@ -148,7 +148,7 @@ function changegetyear(element) {
     var d = new Date();
     var datenow = d.getFullYear();
     element.href = element.href.replace(2000, datenow.toString());
-    var windowname = 'Schedule of year';
+    var windowname = 'Schedule of Durga Puja';
     window.open(element.href, windowname.replace('year', datenow.toString()), 'resizable=yes,status=yes,location=no,toolbar=no,menubar=no,fullscreen=yes,scrollbars=yes,dependent=no,width=580,height=600');
     return false;
 }
