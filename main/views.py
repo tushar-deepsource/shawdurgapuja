@@ -294,11 +294,10 @@ def qrcode(request, logo=2):
 
 
 ##Error 404
-@sync_to_async
 def handler404(request, *args, **argv):
     x = datetime.datetime.now()
     return render(
-        None,
+        request,
         '404.html', 
         {
             'title':'404 Ohh Snap!!! Sorry!',
@@ -308,11 +307,10 @@ def handler404(request, *args, **argv):
     )
 
 #Error 500
-@sync_to_async
 def handler500(request, *args, **argv):
     x = datetime.datetime.now()
     return  render(
-        None,
+        request,
         '500.html', 
         {
             'title':'500 Ohh Snap!!! Sorry!',
