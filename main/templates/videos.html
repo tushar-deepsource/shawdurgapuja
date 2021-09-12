@@ -1,11 +1,6 @@
 {% extends "layout.html" %}{% load compress %}{% load static %}{% load i18n %}{% load tz %} {% block description %}View puja videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock description %} {% block descriptiontwitter %}View puja
 videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descriptiontwitter %} {% block body %} {% compress css %}
-<link href="{% static 'css/videos.css' %}" rel="stylesheet"> {% endcompress %} {% compress js %}
-<script src="{% static 'assets/js/gplus-youtubeembed.js' %}"></script>
-<script type="text/javascript">
-    optimizeYouTubeEmbeds()
-</script>
-{% endcompress %}
+<link href="{% static 'css/videos.css' %}" rel="stylesheet"> {% endcompress %} {% compress js %} {% endcompress %}
 
 <div class="row aos-init " style="margin-bottom: 20px;margin-top: 20px;">
     <div class="col-sm-3">
