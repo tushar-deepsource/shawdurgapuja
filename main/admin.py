@@ -44,7 +44,7 @@ class VideosAdmin(admin.ModelAdmin):
         'test'
     )
     search_fields = list_display + list_filter + ('streamingvideolink',)
-    readonly_fields = ('videoid','usernamefb','facebook_posts')
+    readonly_fields = ('videoid','usernamefb','video_posts')
     list_per_page = 100
 
     fieldsets = (

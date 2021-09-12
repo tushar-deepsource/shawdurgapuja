@@ -6,8 +6,40 @@ import dotenv
 from django.utils.translation import ugettext_lazy as _
 import ast
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+dotenv_file = BASE_DIR / ".env"
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+    
+    if not os.path.exists(BASE_DIR / 'media'): os.makedirs(BASE_DIR / 'media')
+
+    PRODUCTION_SERVER = False
+    ALLOWED_HOSTS = ['*']
+    SECRET_KEY = '0ssv!ort)z+7ueg4b0*@qpxb-1a#eme!xu=e6-n%g(t++&0heo'
+    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+
+else:
+    PRODUCTION_SERVER = True
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+    ALLOWED_HOSTS = ['*']
+    SECRET_KEY = os.environ['SECRET_KEY']
+
+sentry_sdk.init(
+    dsn=os.environ['SENTRY_DSN'],
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 
 # Application definition
@@ -77,26 +109,6 @@ WSGI_APPLICATION = 'puja.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-dotenv_file = BASE_DIR / ".env"
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
-    
-    if not os.path.exists(BASE_DIR / 'media'): os.makedirs(BASE_DIR / 'media')
-
-    PRODUCTION_SERVER = False
-    ALLOWED_HOSTS = ['*']
-    SECRET_KEY = '0ssv!ort)z+7ueg4b0*@qpxb-1a#eme!xu=e6-n%g(t++&0heo'
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
-
-else:
-    PRODUCTION_SERVER = True
-
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
-    ALLOWED_HOSTS = ['*']
-    SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = ast.literal_eval(os.environ.get('DEBUG', 'False').strip('\n').capitalize())
 if not DEBUG:

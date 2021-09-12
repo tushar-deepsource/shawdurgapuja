@@ -211,13 +211,13 @@ class Videos(models.Model):
     def get_absolute_url(self):
         return reverse('Videos', args=[self.yearmodel.year, self.day])
     
-    def facebook_posts(self):
+    def video_posts(self):
         '''This is method to generate the facebook video in an iframe'''
         if self.usernamefb and self.videoid:
             url = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
-            return mark_safe(f'<iframe src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
+            return mark_safe(f'<iframe loading="lazy" src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
         elif self.embeedlink and self.streamingplatform == 'Y':
-            return mark_safe(f'<iframe src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
+            return mark_safe(f'<iframe loading="lazy" src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
         else:
             return mark_safe('<h4>No FB/ Youtube Video for now</h4>')
     
@@ -243,8 +243,8 @@ class Videos(models.Model):
                 _('Please put YouTube Url !'),
             )
             if self.videoid == None or self.videoid == "" or self.videoid == " ":
-                self.videoid = Videos.objects.count()
-
+                self.videoid = get_video_id(self.streamingvideolink)
+            self.videoid = get_video_id(self.streamingvideolink)
             a = get_video_id(self.streamingvideolink)
             self.embeedlink = 'https://www.youtube.com/embed/' + a.strip()
 
