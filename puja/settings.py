@@ -8,6 +8,7 @@ import ast
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +38,7 @@ else:
 
 sentry_sdk.init(
     dsn=os.environ['SENTRY_DSN'],
-    integrations=[DjangoIntegration()],
+    integrations=[DjangoIntegration(), RedisIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True,
     debug=True
