@@ -17,6 +17,7 @@ def main():
         ) from exc
     if not os.path.isdir(os.path.join(Path(__file__).resolve().parent)):
         os.mkdir(os.path.join(Path(__file__).resolve().parent))
+    os.environ['ASYNC_RUN'] = 'False'
     execute_from_command_line(sys.argv) 
  
 

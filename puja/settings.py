@@ -15,7 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 dotenv_file = BASE_DIR / ".env"
-if os.path.isfile(dotenv_file):
+ENV_EXISTS = os.path.isfile(dotenv_file)
+if ENV_EXISTS:
     dotenv.load_dotenv(dotenv_file)
     
     if not os.path.exists(BASE_DIR / 'media'): os.makedirs(BASE_DIR / 'media')
@@ -38,7 +39,8 @@ sentry_sdk.init(
     dsn=os.environ['SENTRY_DSN'],
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
-    send_default_pii=True
+    send_default_pii=True,
+    debug=True
 )
 
 

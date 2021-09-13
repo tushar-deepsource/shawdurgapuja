@@ -5,7 +5,7 @@ from io import StringIO
 import urllib
 
 import bangla
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -14,6 +14,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
+import pdfkit
+
 from django.urls import reverse
 from django.utils import translation
 from django.views.decorators.http import require_GET
@@ -109,7 +111,6 @@ def scheduleprint(request, year, one: int = None):
         params
     )
  
-@sync_to_async
 def schedulepdf(request, year):
     try: yearobj=Year.objects.filter(year=year).get()
     except Year.DoesNotExist:
@@ -119,28 +120,29 @@ def schedulepdf(request, year):
     domain = current_site.domain
     
     if sys.platform.startswith('win32'):
+        if os.environ.get('ASYNC_RUN'):
+            return HttpResponse('This can run only in sync only mode! :)', status=503)
         if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'pdf')): pass
         else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'pdf'))
-        import pdfkit
         config = pdfkit.configuration(wkhtmltopdf=settings.BASE_DIR / os.path.join('wkhtmltopdf','bin','wkhtmltopdf.exe'))
-        pdfkit.from_url('http://'+domain+reverse('schedule print',args=[year]), os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), configuration=config)
+        pdfkit.from_url(f"http://{domain}{reverse('schedule print',args=[year])}", False,configuration=config)
         
         with open(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'), "rb") as pdf_file:
             data = pdf_file.read()
-        os.remove(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf'))
+        sync_to_async(os.remove(os.path.join(settings.MEDIA_ROOT, 'pdf',f'schedulepdf-{year}.pdf')))
         filename=f'schedulepdf-{year}.pdf'
         content_type='application/pdf'
         
     else:
         if os.path.isdir(os.path.join(settings.MEDIA_ROOT, 'img')): pass
         else: os.mkdir(os.path.join(settings.MEDIA_ROOT, 'img'))
-        img = StringIO(urllib.request.urlopen(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}').read())
+        img = urllib.request.urlopen(f'https://image.thum.io/get/width/1920/crop/900/maxAge/1/noanimate/http://{domain+reverse("schedule img",args=[year, 1])}').read()
         
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"wb") as img_file:
             img_file.write(img)
         with open(settings.MEDIA_ROOT / f'schedulepdf-{year}.png',"rb") as img_file:
             data = img_file.read()
-        os.remove(settings.MEDIA_ROOT / f'schedulepdf-{year}.png')
+        sync_to_async(os.remove(settings.MEDIA_ROOT / f'schedulepdf-{year}.png'))
         
         filename=f'schedulepdf-{year}.png'
         content_type='image/png'
