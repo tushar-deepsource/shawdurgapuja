@@ -158,11 +158,12 @@
                         <a href="#header" class="scrollto footer-logo"><img loading="lazy" src="{% static 'assets/img/default.png' %}" alt=""></a>
                         <h3>{% trans 'Shaw Durga Puja' %}</h3>
                         <hr/>
-                        <h5> {% trans 'Made with' %} <i class='bx bxs-heart'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" target="_blank"><i class='bx bxl-github'></i></a> +
-                            <a href="https://discord.gg/kSarfqb9hk" target="_blank"><i class='bx bxl-discord'></i></a> &nbsp;
+                        <h5> {% trans 'Made with' %} <i class='bx bxs-heart'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" title="Github Repository" target="_blank"><i class='bx bxl-github'></i></a> +
+                            <a href="https://discord.gg/kSarfqb9hk" title="Discord Community" target="_blank"><i class='bx bxl-discord'></i></a> &nbsp;
                         </h5>
                         <h2>
-                            <a href="{% url 'QrcodeGen' %}" target="_blank"><i class='bx bx-qr-scan'></i></a> <a href="{% url 'RSS' %}" target="_blank"><i class='bx bx-rss'></i></a> <a href="{% url 'Sitemap' %}" target="_blank"><i class='bx bx-sitemap'></i></a>
+                            <a href="{% url 'QrcodeGen' %}" title="Qrcode to the live puja" target="_blank"><i class='bx bx-qr-scan'></i></a> <a href="{% url 'RSS' %}" title="RSS Feed" target="_blank"><i class='bx bx-rss'></i></a>
+                            <a href="{% url 'Sitemap' %}" title="Sitemap" target="_blank"><i class='bx bx-sitemap'></i></a>
                         </h2>
                     </div>
                 </div>
