@@ -25,7 +25,7 @@ urlpatterns = [
 
     url(r'^logout/$', user_logout, name='signout'),
     
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name="Sitemap"),
     
     path('qrcode/',qrcode, name='QrcodeGen'),
     path('qrcode/<int:logo>/',qrcode, name='QrcodeGenLogo'),
@@ -45,7 +45,7 @@ urlpatterns = i18n_patterns(
     path(_('scheduleimg/<yyyy:year>/<int:one>'),scheduleprint,name="schedule img"),
     path(_('schedulepdf/<yyyy:year>/'),schedulepdf,name="schedule pdf"),
     
-    url(_(r'^rss/latest$'), YearFeed()),
+    url(_(r'^rss/latest$'), YearFeed(), name="RSS"),
     
     path(_('redirect/'), redirect_view_puja,name="Redirect"),
     url(_(r'^getimages$'), getimages, name="GetImages"),

@@ -41,7 +41,6 @@ sentry_sdk.init(
     integrations=[DjangoIntegration(), RedisIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True,
-    debug=True
 )
 
 
@@ -156,8 +155,8 @@ USE_I18N = True
 
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
