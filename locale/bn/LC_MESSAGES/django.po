@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 20:27+0530\n"
+"POT-Creation-Date: 2021-09-16 16:49+0530\n"
 "PO-Revision-Date: 2021-05-07 14:24+0530\n"
 "Last-Translator: Dhruva Shaw  <dhruvashaw@gmail.com>\n"
 "Language-Team: Shaw Durga Puja <LL@li.org>\n"
@@ -70,75 +70,6 @@ msgstr ""
 msgid " By %(filter_title)s "
 msgstr ""
 
-#: .\main\templates\404.html:7
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                    <u><h2 style=\"color:rgb(253, 194, 0);\">Sorry!! "
-#| "(404)</h2></u>\n"
-#| "                    <h4>The <strong style=\"color:rgb(253, 194, 0);"
-#| "\">resource</strong> you requested is not available on this server!</h4>\n"
-#| "                    <p style=\"color:rgb(253, 194, 0);\">Why don't you "
-#| "visit the home page in meantime</p>\n"
-#| "                    <br/>\n"
-#| "                    "
-msgid ""
-"\n"
-"                    <u><h2 style=\"color:rgb(253, 194, 0);\">Sorry!! (404)</"
-"h2></u>\n"
-"                    <h4>The <strong style=\"color:rgb(253, 194, 0);"
-"\">resource</strong> you requested is not available on this server!</h4>\n"
-"                    <p style=\"color:rgb(253, 194, 0);\">Why don't you visit "
-"the home page in meantime</p>\n"
-"                    <br/> "
-msgstr ""
-"\n"
-"                    <u><h2 style=\"color:rgb(253, 194, 0);\">দুঃখিত !! (৪০৪)</"
-"h2></u>\n"
-"                    <h4>আপনার <strong style=\"color:rgb(253, 194, 0);"
-"\">অনুরোধ করা সংস্থানটি</strong> উপলভ্য নয় !</h4>\n"
-"                    <p style=\"color:rgb(253, 194, 0);\">আপনি কেন যান না এরই "
-"মধ্যে হোম পেজে</p>\n"
-"                    <br/>\n"
-"                    "
-
-#: .\main\templates\404.html:12 .\main\templates\500.html:12
-#: .\main\templates\schedule.html:131
-msgid "GoTo HomePage"
-msgstr "হোমপেজ"
-
-#: .\main\templates\500.html:7
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                    <u><h2 style=\"color:rgb(253, 194, 0);\">Ohh noo "
-#| "sorry!! (500)</h2></u>\n"
-#| "                    <h4>There was some <strong style=\"color:rgb(253, "
-#| "194, 0);\">problem at</strong> backend in the server</h4>\n"
-#| "                    <p style=\"color:rgb(253, 194, 0);\">Why don't you "
-#| "visit the home page in meantime while the error gets resolved!</p>\n"
-#| "                    <br/>\n"
-#| "                    "
-msgid ""
-"\n"
-"                    <u><h2 style=\"color:rgb(253, 194, 0);\">Ohh noo sorry!! "
-"(500)</h2></u>\n"
-"                    <h4>There was some <strong style=\"color:rgb(253, 194, "
-"0);\">problem at</strong> backend in the server</h4>\n"
-"                    <p style=\"color:rgb(253, 194, 0);\">Why don't you visit "
-"the home page in meantime while the error gets resolved!</p>\n"
-"                    <br/> "
-msgstr ""
-"\n"
-"                    <u><h2 style=\"color:rgb(253, 194, 0);\">দুঃখিত !! (৫০০)</"
-"h2></u>\n"
-"                    <h4>সার্ভারে ব্যাকএন্ডে<strong style=\"color:rgb(253, 194, "
-"0);\">কিছু সমস্যা </strong>ছিল</h4>\n"
-"                    <p style=\"color:rgb(253, 194, 0);\">আপনি কেন যান না এরই "
-"মধ্যে হোম পেজে</p>\n"
-"                    <br/>\n"
-"                    "
-
 #: .\main\templates\about_year.html:11
 msgid "Maa Durga Photo"
 msgstr "মা দুর্গার ছবি"
@@ -160,8 +91,8 @@ msgstr "সপ্তমী"
 msgid "Ashtami"
 msgstr "অষ্টমী"
 
-#: .\main\templates\about_year.html:19 .\main\templates\schedule.html:71
-#: .\main\templates\schedulepdf.html:124 .\main\templates\videos.html:34
+#: .\main\templates\about_year.html:19 .\main\templates\schedule.html:73
+#: .\main\templates\schedulepdf.html:125 .\main\templates\videos.html:34
 #: .\main\templates\videos.html:74
 msgid "Sandhi Puja"
 msgstr "সন্ধি পূজা"
@@ -174,27 +105,27 @@ msgstr "নবমী"
 msgid "Dashami"
 msgstr "দশমী"
 
-#: .\main\templates\admin\base.html:34
+#: .\main\templates\admin\base.html:35
 msgid "Welcome,"
 msgstr "স্বাগত,"
 
-#: .\main\templates\admin\base.html:36
+#: .\main\templates\admin\base.html:37
 msgid "View site"
 msgstr "সাইট দেখুন"
 
-#: .\main\templates\admin\base.html:37
+#: .\main\templates\admin\base.html:38
 msgid "Documentation"
 msgstr "ডকুমেন্টেশন"
 
-#: .\main\templates\admin\base.html:38
+#: .\main\templates\admin\base.html:39
 msgid "Change password"
 msgstr "পাসওয়ার্ড পরিবর্তন করুন"
 
-#: .\main\templates\admin\base.html:39
+#: .\main\templates\admin\base.html:40
 msgid "Log out"
 msgstr "প্রস্থান"
 
-#: .\main\templates\admin\base.html:46 .\main\templates\layout.html:91
+#: .\main\templates\admin\base.html:47 .\main\templates\layout.html:94
 msgid "Home"
 msgstr "হোমপেজ"
 
@@ -202,13 +133,57 @@ msgstr "হোমপেজ"
 msgid "QR Code"
 msgstr "কিউআর কোড"
 
-#: .\main\templates\admin\base_site.html:58 .\main\templates\layout.html:171
+#: .\main\templates\admin\base_site.html:58
+msgid "Without Logo"
+msgstr "লোগো ছাড়া"
+
+#: .\main\templates\admin\base_site.html:59
 msgid "With Logo"
 msgstr "লোগো সহ"
 
-#: .\main\templates\admin\base_site.html:59
-msgid "Without Logo"
-msgstr "লোগো ছাড়া"
+#: .\main\templates\exception_status.html:7 .\main\templates\schedule.html:129
+msgid "Sorry!! (404)"
+msgstr "দুঃখিত !! (৪০৪)"
+
+#: .\main\templates\exception_status.html:7
+msgid "Ohh noo sorry!! (500)"
+msgstr "ওহ, দু sorryখিত !! (৫০০)"
+
+#: .\main\templates\exception_status.html:7
+msgid ""
+"\n"
+"                    <h4>The <strong style=\"color:rgb(253, 194, 0);"
+"\">resource</strong> you requested is not available on this server!"
+msgstr ""
+"\n"
+"                    <h4>আপনার <strong style=\"color:rgb(253, 194, 0);"
+"\">অনুরোধ</strong> করা সম্পদ এই সার্ভারে উপলব্ধ নয়!"
+
+#: .\main\templates\exception_status.html:9
+msgid ""
+"\n"
+"                    <h4>There was some <strong style=\"color:rgb(253, 194, "
+"0);\">problem at</strong> backend in the server</h4>\n"
+"                    "
+msgstr ""
+"\n"
+"                    <h4>সার্ভারে ব্যাকএন্ডে কিছু<strong style=\"color:rgb(253, 194, "
+"0);\">সমস্যা </strong>ছিল</h4>\n"
+"            "
+
+#: .\main\templates\exception_status.html:12
+msgid ""
+"\n"
+"                    <p style=\"color:rgb(253, 194, 0);\">Why don't you visit "
+"the home page in meantime</p>"
+msgstr ""
+"\n"
+"                    <p style=\"color:rgb(253, 194, 0);\">কেন আপনি ইতিমধ্যে "
+"হোম পেজে যান না?</p>"
+
+#: .\main\templates\exception_status.html:14 .\main\templates\schedule.html:133
+msgid "GoTo HomePage"
+msgstr "হোমপেজ"
 
 #: .\main\templates\layout.html:9 .\main\templates\schedulepdf.html:9
 #, python-format
@@ -223,7 +198,7 @@ msgstr "সাও দুর্গা পূজা"
 
 #: .\main\templates\layout.html:15 .\main\templates\layout.html:27
 #: .\main\templates\layout.html:32 .\main\templates\layout.html:36
-#: .\main\templates\layout.html:43 .\main\templates\layout.html:156
+#: .\main\templates\layout.html:43 .\main\templates\layout.html:159
 #: .\main\templates\schedulepdf.html:14 .\main\templates\schedulepdf.html:26
 #: .\main\templates\schedulepdf.html:31 .\main\templates\schedulepdf.html:35
 #: .\main\templates\schedulepdf.html:42
@@ -254,81 +229,81 @@ msgstr "বছর"
 
 #: .\main\templates\layout.html:30
 msgid "This is our"
-msgstr ""
+msgstr "এটা আমাদের"
 
 #: .\main\templates\layout.html:33 .\main\templates\layout.html:34
-#: .\main\templates\layout.html:95 .\main\templates\schedulepdf.html:32
+#: .\main\templates\layout.html:98 .\main\templates\schedulepdf.html:32
 #: .\main\templates\schedulepdf.html:33
 #, fuzzy
 #| msgid "Maa Durga Photo"
 msgid "Durga Maa Photo"
 msgstr "মা দুর্গার ছবি"
 
-#: .\main\templates\layout.html:92
+#: .\main\templates\layout.html:95
 #, python-format
 msgid "About the %(yearpassed)s year puja"
 msgstr " %(yearpassed)s বছরের পূজা সম্পর্কে জানুন"
 
-#: .\main\templates\layout.html:92
+#: .\main\templates\layout.html:95
 msgid "About the current year puja"
 msgstr "চলতি বছরের পূজা সম্পর্কে"
 
-#: .\main\templates\layout.html:98
+#: .\main\templates\layout.html:101
 #, python-format
 msgid "View the current %(yearpassed)s schedule"
 msgstr "বর্তমান %(yearpassed)s সময়সূচী দেখুন"
 
-#: .\main\templates\layout.html:98
+#: .\main\templates\layout.html:101
 msgid "See current year schedule"
 msgstr "বর্তমান বছরের সময়সূচী দেখুন"
 
-#: .\main\templates\layout.html:102
+#: .\main\templates\layout.html:105
 #, fuzzy
 #| msgid "Admin Panel"
 msgid "Admin"
 msgstr "অ্যাডমিন"
 
-#: .\main\templates\layout.html:104
+#: .\main\templates\layout.html:107
 msgid "Visit the Admin Panel"
 msgstr "অ্যাডমিন প্যানেলটি দেখুন"
 
-#: .\main\templates\layout.html:104
+#: .\main\templates\layout.html:107
 msgid "Admin Panel"
 msgstr "অ্যাডমিন প্যানেলটি দেখুন"
 
-#: .\main\templates\layout.html:105
+#: .\main\templates\layout.html:108
 msgid "LOGOUT"
 msgstr "প্রস্থান"
 
-#: .\main\templates\layout.html:109
+#: .\main\templates\layout.html:112
 #, fuzzy
 #| msgid "Admin Panel"
 msgid "Admin Login"
 msgstr "অ্যাডমিন লগইন"
 
-#: .\main\templates\layout.html:112
+#: .\main\templates\layout.html:115
 msgid "Change Language"
 msgstr "ভাষা পরিবর্তন করুন"
 
-#: .\main\templates\layout.html:127
+#: .\main\templates\layout.html:130
 #, python-format
 msgid "%(message)s"
 msgstr "%(message)s"
 
-#: .\main\templates\layout.html:158
+#: .\main\templates\layout.html:161
 msgid "Made with"
 msgstr "সাইট বানিয়েছে"
 
-#: .\main\templates\layout.html:158
+#: .\main\templates\layout.html:161
 msgid "on"
 msgstr "দিয়ে"
 
-#: .\main\templates\playlist.html:26 .\main\templates\playlist.html:56
+#: .\main\templates\playlist.html:27 .\main\templates\playlist.html:57
 #, python-format
 msgid "%(year)s"
 msgstr "%(year)s"
 
-#: .\main\templates\playlist.html:27 .\main\templates\playlist.html:57
+#: .\main\templates\playlist.html:28 .\main\templates\playlist.html:58
 #: .\main\templates\videos.html:18 .\main\templates\videos.html:22
 #: .\main\templates\videos.html:26 .\main\templates\videos.html:30
 #: .\main\templates\videos.html:34 .\main\templates\videos.html:38
@@ -340,21 +315,21 @@ msgstr "%(year)s"
 msgid "LIVE"
 msgstr "লাইভ"
 
-#: .\main\templates\playlist.html:30 .\main\templates\playlist.html:60
+#: .\main\templates\playlist.html:31 .\main\templates\playlist.html:61
 msgid "Start Watching"
 msgstr "দেখা শুরু করুন্"
 
-#: .\main\templates\playlist.html:34 .\main\templates\playlist.html:38
-#: .\main\templates\playlist.html:64 .\main\templates\playlist.html:68
+#: .\main\templates\playlist.html:35 .\main\templates\playlist.html:39
+#: .\main\templates\playlist.html:65 .\main\templates\playlist.html:69
 msgid "Coming Soon"
 msgstr "শীঘ্রই আসছে"
 
-#: .\main\templates\schedule.html:29 .\main\templates\schedulepdf.html:84
+#: .\main\templates\schedule.html:31 .\main\templates\schedulepdf.html:85
 #: .\main\templates\videos.html:22 .\main\templates\videos.html:68
 msgid "Maha Shashti"
 msgstr "মহাষষ্ঠী"
 
-#: .\main\templates\schedule.html:33
+#: .\main\templates\schedule.html:35
 msgid ""
 "\n"
 "                            <h6>\"Kalparambho\"</h6>\n"
@@ -368,11 +343,11 @@ msgstr ""
 "h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:48 .\main\templates\schedulepdf.html:102
+#: .\main\templates\schedule.html:50 .\main\templates\schedulepdf.html:103
 msgid "Maha Saptami"
 msgstr "মহাসপ্তমী"
 
-#: .\main\templates\schedule.html:52
+#: .\main\templates\schedule.html:54
 msgid ""
 "\n"
 "                            <h6>Bathing of \"Kolabou\"</h6>\n"
@@ -384,29 +359,29 @@ msgstr ""
 "                            <h6>\"ণব পত্রিকা\" \"সপ্তমী পূজা\"</h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:67 .\main\templates\schedulepdf.html:120
+#: .\main\templates\schedule.html:69 .\main\templates\schedulepdf.html:121
 #: .\main\templates\videos.html:30 .\main\templates\videos.html:72
 msgid "Maha Ashtami"
 msgstr "মহাঅষ্টমী"
 
-#: .\main\templates\schedule.html:69 .\main\templates\schedulepdf.html:122
+#: .\main\templates\schedule.html:71 .\main\templates\schedulepdf.html:123
 msgid "Ashtami Puja"
 msgstr "অষ্টমী পূজা"
 
-#: .\main\templates\schedule.html:74 .\main\templates\schedulepdf.html:127
+#: .\main\templates\schedule.html:76 .\main\templates\schedulepdf.html:128
 msgid "Maha-Bhog Prasad for all starts at"
 msgstr "সবার জন্য মহা-ভোগ প্রসাদ"
 
-#: .\main\templates\schedule.html:74 .\main\templates\schedulepdf.html:127
+#: .\main\templates\schedule.html:76 .\main\templates\schedulepdf.html:128
 msgid "@ our Home"
 msgstr "অমাদের বারি থেকে শুরু হবে"
 
-#: .\main\templates\schedule.html:87 .\main\templates\schedulepdf.html:139
+#: .\main\templates\schedule.html:89 .\main\templates\schedulepdf.html:140
 #: .\main\templates\videos.html:38 .\main\templates\videos.html:76
 msgid "Maha Navami"
 msgstr "মহানবমী"
 
-#: .\main\templates\schedule.html:91
+#: .\main\templates\schedule.html:93
 msgid ""
 "\n"
 "                            <h6>Navami Puja</h6>\n"
@@ -418,12 +393,12 @@ msgstr ""
 "                            <h6>\"নবমী যজ্ঞ\"</h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:107 .\main\templates\schedulepdf.html:158
+#: .\main\templates\schedule.html:109 .\main\templates\schedulepdf.html:159
 #: .\main\templates\videos.html:42 .\main\templates\videos.html:78
 msgid "Maha Dashami"
 msgstr "মহাদশমী"
 
-#: .\main\templates\schedule.html:111
+#: .\main\templates\schedule.html:113
 msgid ""
 "\n"
 "                            <h6>Dashami Puja</h6>\n"
@@ -436,23 +411,19 @@ msgstr ""
 "                            <h6>দশমী পূজার পরে বিসর্জন</h6>\n"
 "                            "
 
-#: .\main\templates\schedule.html:127
-msgid "Sorry!! (404)"
-msgstr "দুঃখিত !! (৪০৪)"
-
-#: .\main\templates\schedule.html:128
+#: .\main\templates\schedule.html:130
 msgid "Durga Puja"
 msgstr "দুর্গা পূজা"
 
-#: .\main\templates\schedule.html:128
+#: .\main\templates\schedule.html:130
 msgid "schedule for the year"
 msgstr "বছরের জন্য সময়সূচী"
 
-#: .\main\templates\schedule.html:128
+#: .\main\templates\schedule.html:130
 msgid "has not been released yet."
 msgstr "এর্ এখনও প্রকাশ করা হয়নি।"
 
-#: .\main\templates\schedule.html:129
+#: .\main\templates\schedule.html:131
 msgid "Please visit our home page"
 msgstr "আমাদের হোমপেজটি দেখুন"
 
@@ -484,7 +455,7 @@ msgstr ""
 "আমাদের বাড়ির দুর্গা পূজা লাইভ করার জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে |এটি আমাদের "
 "দুর্গা পুজোর"
 
-#: .\main\templates\schedulepdf.html:88
+#: .\main\templates\schedulepdf.html:89
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -505,7 +476,7 @@ msgstr ""
 "h6>\n"
 "                            "
 
-#: .\main\templates\schedulepdf.html:106
+#: .\main\templates\schedulepdf.html:107
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -523,7 +494,7 @@ msgstr ""
 "                            <h6>\"ণব পত্রিকা\" \"সপ্তমী পূজা\"</h6>\n"
 "                            "
 
-#: .\main\templates\schedulepdf.html:143
+#: .\main\templates\schedulepdf.html:144
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -541,7 +512,7 @@ msgstr ""
 "                            <h6>\"নবমী যজ্ঞ\"</h6>\n"
 "                            "
 
-#: .\main\templates\schedulepdf.html:162
+#: .\main\templates\schedulepdf.html:163
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -647,6 +618,69 @@ msgstr "এরই মধ্যে"
 #: .\main\templates\videos.html:134
 msgid "Check the schedule"
 msgstr "সময়সূচী তা দেখুন্"
+
+#, fuzzy
+#~| msgid ""
+#~| "\n"
+#~| "                    <u><h2 style=\"color:rgb(253, 194, 0);\">Sorry!! "
+#~| "(404)</h2></u>\n"
+#~| "                    <h4>The <strong style=\"color:rgb(253, 194, 0);"
+#~| "\">resource</strong> you requested is not available on this server!</"
+#~| "h4>\n"
+#~| "                    <p style=\"color:rgb(253, 194, 0);\">Why don't you "
+#~| "visit the home page in meantime</p>\n"
+#~| "                    <br/>\n"
+#~| "                    "
+#~ msgid ""
+#~ "\n"
+#~ "                    <u><h2 style=\"color:rgb(253, 194, 0);\">Sorry!! "
+#~ "(404)</h2></u>\n"
+#~ "                    <h4>The <strong style=\"color:rgb(253, 194, 0);"
+#~ "\">resource</strong> you requested is not available on this server!</h4>\n"
+#~ "                    <p style=\"color:rgb(253, 194, 0);\">Why don't you "
+#~ "visit the home page in meantime</p>\n"
+#~ "                    <br/> "
+#~ msgstr ""
+#~ "\n"
+#~ "                    <u><h2 style=\"color:rgb(253, 194, 0);\">দুঃখিত !! "
+#~ "(৪০৪)</h2></u>\n"
+#~ "                    <h4>আপনার <strong style=\"color:rgb(253, 194, 0);"
+#~ "\">অনুরোধ করা সংস্থানটি</strong> উপলভ্য নয় !</h4>\n"
+#~ "                    <p style=\"color:rgb(253, 194, 0);\">আপনি কেন যান না "
+#~ "এরই মধ্যে হোম পেজে</p>\n"
+#~ "                    <br/>\n"
+#~ "                    "
+
+#, fuzzy
+#~| msgid ""
+#~| "\n"
+#~| "                    <u><h2 style=\"color:rgb(253, 194, 0);\">Ohh noo "
+#~| "sorry!! (500)</h2></u>\n"
+#~| "                    <h4>There was some <strong style=\"color:rgb(253, "
+#~| "194, 0);\">problem at</strong> backend in the server</h4>\n"
+#~| "                    <p style=\"color:rgb(253, 194, 0);\">Why don't you "
+#~| "visit the home page in meantime while the error gets resolved!</p>\n"
+#~| "                    <br/>\n"
+#~| "                    "
+#~ msgid ""
+#~ "\n"
+#~ "                    <u><h2 style=\"color:rgb(253, 194, 0);\">Ohh noo "
+#~ "sorry!! (500)</h2></u>\n"
+#~ "                    <h4>There was some <strong style=\"color:rgb(253, "
+#~ "194, 0);\">problem at</strong> backend in the server</h4>\n"
+#~ "                    <p style=\"color:rgb(253, 194, 0);\">Why don't you "
+#~ "visit the home page in meantime while the error gets resolved!</p>\n"
+#~ "                    <br/> "
+#~ msgstr ""
+#~ "\n"
+#~ "                    <u><h2 style=\"color:rgb(253, 194, 0);\">দুঃখিত !! "
+#~ "(৫০০)</h2></u>\n"
+#~ "                    <h4>সার্ভারে ব্যাকএন্ডে<strong style=\"color:rgb(253, "
+#~ "194, 0);\">কিছু সমস্যা </strong>ছিল</h4>\n"
+#~ "                    <p style=\"color:rgb(253, 194, 0);\">আপনি কেন যান না "
+#~ "এরই মধ্যে হোম পেজে</p>\n"
+#~ "                    <br/>\n"
+#~ "                    "
 
 #, python-format
 #~ msgid "This our %(current_year_puja|ordinal)s year"
