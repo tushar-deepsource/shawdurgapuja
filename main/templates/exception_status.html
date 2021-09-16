@@ -1,0 +1,20 @@
+{% extends "layout.html" %}{% load static %}{% load i18n %}{% block description %}Error 404.{% endblock description %} {% block descriptiontwitter %}Error 404.{% endblock descriptiontwitter %}{% block body %}
+<div class="container main-container" id="outer">
+    <div class="row my-4 mx-4">
+        <div class="container-fluid main-container">
+            <div class="container">
+                <div class="section-title my-4" data-aos="fade-up">
+                    <u><h2 style="color:rgb(253, 194, 0);">{% if exception_status == 400 %}{% blocktrans %}Sorry!! (404){% endblocktrans %}{% endif %}{% if exception_status == 500 %}{% blocktrans %}Ohh noo sorry!! (500){% endblocktrans %}{% endif %}</h2></u>                    {% if exception_status == 400 %} {% blocktrans %}
+                    <h4>The <strong style="color:rgb(253, 194, 0);">resource</strong> you requested is not available on this server!{% endblocktrans %}</h4>
+                    {% endif %} {% if exception_status == 500 %} {% blocktrans %}
+                    <h4>There was some <strong style="color:rgb(253, 194, 0);">problem at</strong> backend in the server</h4>
+                    {% endblocktrans %} {% endif %} {% if system_message and request.user.is_superuser %}
+                    <u><strong>System Message :</strong> {{system_message|capfirst}}</u><br/><br/> {% endif %} {% blocktrans %}
+                    <p style="color:rgb(253, 194, 0);">Why don't you visit the home page in meantime</p>{% endblocktrans %}
+                    <a href="{% url 'Home' %}" title="HomePage"><button type="button" class="btn btn-outline-info">{% trans 'GoTo HomePage' %}</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

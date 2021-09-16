@@ -60,25 +60,15 @@ def homeredirect(request):
 def schedule(request,year):
     name1 = f'Durga Puja Schedule for {year}'
     try: year_model,show=Year.objects.filter(year=int(year)).get(), True
-    except Year.DoesNotExist: show = False
-    except: show=False
+    except Year.DoesNotExist:
+        raise Http404('Nothing in this year as of now')
 
-    if show:
-        params = {
+    params = {
             'year':year_model,
             'show':show,
             'title':name1,
             'view':'schedule',
             'year_year': year,
-            'yearpassed':year,
-            'current_year_puja':keep_lazy(int(durgapujayear()), int)
-        }
-    else:
-        params = {
-            'show':show,
-            'title':name1,
-            'view':'schedule',
-            'yearpass': year,
             'yearpassed':year,
             'current_year_puja':keep_lazy(int(durgapujayear()), int)
         }
@@ -300,11 +290,13 @@ def handler404(request, *args, **argv):
     x = datetime.datetime.now()
     return render(
         request,
-        '404.html', 
+        'exception_status.html', 
         {
             'title':'404 Ohh Snap!!! Sorry!',
+            'exception_status': 400,
             'yearpassed': int(x.strftime("%Y")),
-            'current_year_puja':keep_lazy(durgapujayear())
+            'current_year_puja':keep_lazy(durgapujayear()),
+            'system_message': argv.get('exception'),
         }
     )
 
@@ -313,10 +305,12 @@ def handler500(request, *args, **argv):
     x = datetime.datetime.now()
     return  render(
         request,
-        '500.html', 
+        'exception_status.html', 
         {
             'title':'500 Ohh Snap!!! Sorry!',
-            'yearpassed': int(x.strftime("%Y"))
+            'exception_status': 500,
+            'yearpassed': int(x.strftime("%Y")),
+            'system_message': argv.get('exception'),
         }
     )
 

@@ -18,7 +18,7 @@ sitemaps = {
 
 register_converter(converters.FourDigitYearConverter, 'yyyy')
 
-urlpatterns = [
+urlpatterns1 = [
 
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
@@ -33,7 +33,7 @@ urlpatterns = [
     path('', homeredirect,name="HomeRedirect"),
     
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 
 urlpatterns = i18n_patterns(
@@ -50,7 +50,7 @@ urlpatterns = i18n_patterns(
     path(_('redirect/'), redirect_view_puja,name="Redirect"),
     url(_(r'^getimages$'), getimages, name="GetImages"),
     path(_('changelang/'), changelang, name='ChangeLang'),
-) + urlpatterns
+) + urlpatterns1 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'main.views.handler404'
 handler500 = 'main.views.handler500'
