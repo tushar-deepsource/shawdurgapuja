@@ -1,9 +1,11 @@
 from __future__ import annotations
-from typing import Type, TypeVar, Union, List, TYPE_CHECKING, Any, Union
+
+from typing import TYPE_CHECKING, Any, List, Type, TypeVar, Union
 
 __all__ = (
     'AllowedMentions',
 )
+
 
 class _FakeBool:
     def __repr__(self):

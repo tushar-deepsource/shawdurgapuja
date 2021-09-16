@@ -1,6 +1,7 @@
 from django.contrib.syndication.views import Feed
-from .models import *
 from django.urls import reverse_lazy
+
+from .models import *
 
 
 class YearFeed(Feed):
@@ -10,7 +11,6 @@ class YearFeed(Feed):
 
     def get_object(self, request, *args, **kwargs):
         return Year.objects.all()
-    
 
     def title(self, obj):
         return f'YEAR - {obj[0].year}'
@@ -23,6 +23,6 @@ class YearFeed(Feed):
 
     def items(self, obj):
         return Videos.objects.filter(yearmodel=obj[0].id, test=False).order_by('-yearmodel')
-    
+
     def item_copyright(self):
         return 'Copyright (c) 2019, Shaw Durga Puja'

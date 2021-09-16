@@ -18,39 +18,40 @@ sitemaps = {
 
 register_converter(converters.FourDigitYearConverter, 'yyyy')
 
-urlpatterns1 = [
+urlpatterns = [
 
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
 
     url(r'^logout/$', user_logout, name='signout'),
-    
+
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name="Sitemap"),
-    
-    path('qrcode/',qrcode, name='QrcodeGen'),
-    path('qrcode/<int:logo>/',qrcode, name='QrcodeGenLogo'),
-    path('redirect/', redirect_view_puja,name="Redirect"),
-    path('', homeredirect,name="HomeRedirect"),
-    
+
+    path('qrcode/', qrcode, name='QrcodeGen'),
+    path('qrcode/<int:logo>/', qrcode, name='QrcodeGenLogo'),
+    path('redirect/', redirect_view_puja, name="Redirect"),
+    path('', homeredirect, name="HomeRedirect"),
+
 
 ]
 
 
 urlpatterns = i18n_patterns(
-    path(_(''), home,name="Home"),
-    path(_('videos/<yyyy:year>/<str:day>'),video,name="Videos"),
-    path(_('aboutyear/<yyyy:year>'),about_year,name="About Year"),
-    path(_('schedule/<yyyy:year>/'),schedule,name="schedule"),
-    path(_('scheduleprint/<yyyy:year>/'),scheduleprint,name="schedule print"),
-    path(_('scheduleimg/<yyyy:year>/<int:one>'),scheduleprint,name="schedule img"),
-    path(_('schedulepdf/<yyyy:year>/'),schedulepdf,name="schedule pdf"),
-    
+    path(_(''), home, name="Home"),
+    path(_('videos/<yyyy:year>/<str:day>'), video, name="Videos"),
+    path(_('aboutyear/<yyyy:year>'), about_year, name="About Year"),
+    path(_('schedule/<yyyy:year>/'), schedule, name="schedule"),
+    path(_('scheduleprint/<yyyy:year>/'), scheduleprint, name="schedule print"),
+    path(_('scheduleimg/<yyyy:year>/<int:one>'),
+         scheduleprint, name="schedule img"),
+    path(_('schedulepdf/<yyyy:year>/'), schedulepdf, name="schedule pdf"),
+
     url(_(r'^rss/latest$'), YearFeed(), name="RSS"),
-    
-    path(_('redirect/'), redirect_view_puja,name="Redirect"),
+
+    path(_('redirect/'), redirect_view_puja, name="Redirect"),
     url(_(r'^getimages$'), getimages, name="GetImages"),
     path(_('changelang/'), changelang, name='ChangeLang'),
-) + urlpatterns1 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'main.views.handler404'
 handler500 = 'main.views.handler500'

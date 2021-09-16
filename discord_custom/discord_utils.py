@@ -1,8 +1,9 @@
 from __future__ import absolute_import
 
-from .request_discord import *
 from celery import shared_task
 from celery.decorators import task
+
+from .request_discord import *
 
 
 @task('message_me')

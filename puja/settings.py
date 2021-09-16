@@ -1,15 +1,13 @@
+import ast
 import os
 from pathlib import Path
 
 import dj_database_url
 import dotenv
-from django.utils.translation import ugettext_lazy as _
-import ast
-
 import sentry_sdk
+from django.utils.translation import ugettext_lazy as _
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,20 +17,23 @@ dotenv_file = BASE_DIR / ".env"
 ENV_EXISTS = os.path.isfile(dotenv_file)
 if ENV_EXISTS:
     dotenv.load_dotenv(dotenv_file)
-    
-    if not os.path.exists(BASE_DIR / 'media'): os.makedirs(BASE_DIR / 'media')
+
+    if not os.path.exists(BASE_DIR / 'media'):
+        os.makedirs(BASE_DIR / 'media')
 
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = '0ssv!ort)z+7ueg4b0*@qpxb-1a#eme!xu=e6-n%g(t++&0heo'
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+    DATABASES = {'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'))}
 
 else:
     PRODUCTION_SERVER = True
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+    DATABASES = {'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'))}
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = os.environ['SECRET_KEY']
 
@@ -58,7 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.admindocs',
     'django.contrib.sitemaps',
     'django.contrib.humanize',
-    
+
     'django_admin_listfilter_dropdown',
     'colorfield',
     'compressor',
@@ -66,7 +67,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
+
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
@@ -78,12 +79,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.admindocs.middleware.XViewMiddleware' ,
+    'django.contrib.admindocs.middleware.XViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'main.request_get_processor.RequestMiddleware',
-    
+
     'django.middleware.cache.FetchFromCacheMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
 ]
@@ -112,13 +113,18 @@ WSGI_APPLICATION = 'puja.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DEBUG = ast.literal_eval(os.environ.get('DEBUG', 'False').strip('\n').capitalize())
+DEBUG = ast.literal_eval(os.environ.get(
+    'DEBUG', 'False').strip('\n').capitalize())
 if not DEBUG:
-    MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
-    INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
-elif ast.literal_eval(os.environ.get('WHITENOISE','True').strip('\n').capitalize()):
-    MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
-    INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
+    MIDDLEWARE = [MIDDLEWARE[0]] + \
+        ['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
+    INSTALLED_APPS = INSTALLED_APPS[0:-1] + \
+        ['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
+elif ast.literal_eval(os.environ.get('WHITENOISE', 'True').strip('\n').capitalize()):
+    MIDDLEWARE = [MIDDLEWARE[0]] + \
+        ['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
+    INSTALLED_APPS = INSTALLED_APPS[0:-1] + \
+        ['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
 
 
 # Password validation
@@ -162,8 +168,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -174,14 +178,16 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
-MEDIA_ROOT = BASE_DIR / 'media' 
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 WHITENOISE_MAX_AGE = 9000
 WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 
-if os.path.isdir(MEDIA_ROOT): pass
-else: os.mkdir(MEDIA_ROOT)
+if os.path.isdir(MEDIA_ROOT):
+    pass
+else:
+    os.mkdir(MEDIA_ROOT)
 
 
 # # Deployment check
@@ -193,20 +199,21 @@ if PRODUCTION_SERVER:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
-    
+
     CACHES = {
-    'default': {
-        'BACKEND': 'django_bmemcached.memcached.BMemcached',
-        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-        'OPTIONS': {
-                    'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-                    'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+        'default': {
+            'BACKEND': 'django_bmemcached.memcached.BMemcached',
+            'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+            'OPTIONS': {
+                'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+                'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
             }
+        }
     }
-}
 
 if os.getenv('DATABASE_URL')[0] == 'm':
-    DATABASES['default']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB',}
+    DATABASES['default']['OPTIONS'] = {
+        'init_command': 'SET default_storage_engine=InnoDB', }
 
 LANGUAGES = (
     ('bn', _('Bengali')),
@@ -230,15 +237,15 @@ COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 COMPRESS_PRECOMPILERS = (
     ('text/x-sass', 'django_libsass.SassCompiler'),
-    ('text/x-scss', 'django_libsass.SassCompiler'), 
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
-    'css':[
+    'css': [
         'compressor.filters.css_default.CssAbsoluteFilter',
         'compressor.filters.cssmin.rCSSMinFilter',
     ],
-    'js':[
+    'js': [
         'compressor.filters.jsmin.JSMinFilter',
     ]
 }

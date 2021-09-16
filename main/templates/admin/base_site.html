@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <div class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'schedule' year=3031 %}" onclick="changegetyear(this); return false;">Current Year Schedule</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'schedule' year=2000 %}" onclick="changegetyear(this); return false;">Current Year Schedule</a>
                     </div>
                     <div class="nav-item dropdown">
                         <a aria-expanded="false" id="navbarDropdown" aria-haspopup="true" class="font-weight-bold nav-link text-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">{% trans 'QR Code' %}</a>
@@ -75,5 +75,11 @@
         </div>
     </nav>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 {% endblock %}

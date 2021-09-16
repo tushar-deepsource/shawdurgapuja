@@ -1,26 +1,29 @@
+import asyncio
 import datetime
 import os
 
 from colorfield.fields import ColorField
+from discord_custom import *
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.urls import reverse
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
-from discord_custom import *
-from django.urls import reverse
+
 from .request_get_processor import get_request
-from django.contrib.sites.shortcuts import get_current_site
-import asyncio
 
 
 def current_year():
     return datetime.date.today().year
 
+
 def max_value_current_year(value):
-    return MaxValueValidator(current_year()+10)(value) 
+    return MaxValueValidator(current_year()+10)(value)
+
 
 dict_webhook = {
     'E': settings.HOMECOMING,
@@ -65,17 +68,17 @@ dict_roles = {
 }
 
 dict_days = {
-    'E':'Ekum',
-    'DI':'Dvitia',
-    'T':'Tritiya',
-    'C':'Maha Chathurti',
-    'P':'Maha Panchami',
-    'S':'Maha Shashti',
-    'SA':'Maha Saptami',
-    'A':'Maha Ashtami',
-    'SAN':'Sandhi Puja',
-    'N':'Maha Navami',
-    'D':'Maha Dashami'
+    'E': 'Ekum',
+    'DI': 'Dvitia',
+    'T': 'Tritiya',
+    'C': 'Maha Chathurti',
+    'P': 'Maha Panchami',
+    'S': 'Maha Shashti',
+    'SA': 'Maha Saptami',
+    'A': 'Maha Ashtami',
+    'SAN': 'Sandhi Puja',
+    'N': 'Maha Navami',
+    'D': 'Maha Dashami'
 }
 
 dict_channel_id = {
@@ -89,53 +92,75 @@ dict_channel_id = {
     'A': 850640102434144267,
     'SAN': 850640102434144267,
     'N': 850640122592100352,
-    'D': 850640146168676363,    
+    'D': 850640146168676363,
 }
 
 # Create your models here.
+
+
 class Year(models.Model):
     '''
     Model to store the Year of Durga Puja live links and its correspondence 
     '''
-    year = models.IntegerField(_('Year'),unique=True,validators=[MinValueValidator(2003), max_value_current_year])
-    
-    colourback = ColorField(_('colourback'),default='rgb(73, 109, 137)')
-    colourtext = ColorField(_('colourtext'),default='#FFF00C')
-    yeardesc = models.TextField(_('About the year'),blank=True, null=True)
+    year = models.IntegerField(_('Year'), unique=True, validators=[
+                               MinValueValidator(2003), max_value_current_year])
 
-    maacomevid = models.BooleanField(_('Will there be any video for the Maa Durga coming to home'),default=True,help_text='Check this checkbox if there will be any video of the Maa coming to home')
+    colourback = ColorField(_('colourback'), default='rgb(73, 109, 137)')
+    colourtext = ColorField(_('colourtext'), default='#FFF00C')
+    yeardesc = models.TextField(_('About the year'), blank=True, null=True)
 
-    shashti = models.DateField(_('Date of Shashti Puja'), blank=True, null=True)
-    saptami = models.DateField(_('Date of Saptami Puja'), blank=True, null=True)
-    ashtami = models.DateField(_('Date of Ashtami Puja'), blank=True, null=True)
+    maacomevid = models.BooleanField(_('Will there be any video for the Maa Durga coming to home'),
+                                     default=True, help_text='Check this checkbox if there will be any video of the Maa coming to home')
+
+    shashti = models.DateField(
+        _('Date of Shashti Puja'), blank=True, null=True)
+    saptami = models.DateField(
+        _('Date of Saptami Puja'), blank=True, null=True)
+    ashtami = models.DateField(
+        _('Date of Ashtami Puja'), blank=True, null=True)
     sandhi = models.DateField(_('Date of Sandhi Puja'), blank=True, null=True)
     navami = models.DateField(_('Date of Navami Puja'), blank=True, null=True)
-    dashami = models.DateField(_('Date of Dashami Puja'), blank=True, null=True)
+    dashami = models.DateField(
+        _('Date of Dashami Puja'), blank=True, null=True)
 
-    #Puja Timings
-    shashtit = models.TimeField(_('Start Time of Shashti Puja'), blank=True, null=True)
-    shashtite = models.TimeField(_('End Time of Shashti Puja'), blank=True, null=True)
+    # Puja Timings
+    shashtit = models.TimeField(
+        _('Start Time of Shashti Puja'), blank=True, null=True)
+    shashtite = models.TimeField(
+        _('End Time of Shashti Puja'), blank=True, null=True)
 
-    saptamit = models.TimeField(_('Start Time of Saptami Puja'), blank=True, null=True)
-    saptamite = models.TimeField(_('End Time of Saptami Puja'), blank=True, null=True)
+    saptamit = models.TimeField(
+        _('Start Time of Saptami Puja'), blank=True, null=True)
+    saptamite = models.TimeField(
+        _('End Time of Saptami Puja'), blank=True, null=True)
 
-    ashtamit = models.TimeField(_('Start Time of Ashtami Puja'), blank=True, null=True)
-    ashtamite = models.TimeField(_('End Time of Ashtami Puja'), blank=True, null=True)
-    mahabhog = models.BooleanField(_('Maha Bhog is there ?'),help_text=_('Click only when Maha Bhog is organised.'),default=False)
-    mahabhogdttime = models.DateTimeField(_('Maha Bhog Date and Time'),help_text=_('Fill this only when "Maha Bhog checkbox" is clicked.'),null=True,blank=True)
+    ashtamit = models.TimeField(
+        _('Start Time of Ashtami Puja'), blank=True, null=True)
+    ashtamite = models.TimeField(
+        _('End Time of Ashtami Puja'), blank=True, null=True)
+    mahabhog = models.BooleanField(_('Maha Bhog is there ?'), help_text=_(
+        'Click only when Maha Bhog is organised.'), default=False)
+    mahabhogdttime = models.DateTimeField(_('Maha Bhog Date and Time'), help_text=_(
+        'Fill this only when "Maha Bhog checkbox" is clicked.'), null=True, blank=True)
 
-    sandhit = models.TimeField(_('Start Time of Sandhi Puja'), blank=True, null=True)
-    sandhite = models.TimeField(_('End Time of Sandhi Puja'), blank=True, null=True)
+    sandhit = models.TimeField(
+        _('Start Time of Sandhi Puja'), blank=True, null=True)
+    sandhite = models.TimeField(
+        _('End Time of Sandhi Puja'), blank=True, null=True)
 
-    navamit = models.TimeField(_('Start Time of Navami Puja'), blank=True, null=True)
-    navamite = models.TimeField(_('End Time of Navami Puja'), blank=True, null=True)
+    navamit = models.TimeField(
+        _('Start Time of Navami Puja'), blank=True, null=True)
+    navamite = models.TimeField(
+        _('End Time of Navami Puja'), blank=True, null=True)
 
-    dashamit = models.TimeField(_('Start Time of Dashami Puja'), blank=True, null=True)
-    dashamite = models.TimeField(_('End Time of Dashami Puja'), blank=True, null=True)
+    dashamit = models.TimeField(
+        _('Start Time of Dashami Puja'), blank=True, null=True)
+    dashamite = models.TimeField(
+        _('End Time of Dashami Puja'), blank=True, null=True)
 
     class Meta:
         ordering = ('-year',)
-    
+
     def __str__(self):
         return f'{self.year}'
 
@@ -144,14 +169,15 @@ class Year(models.Model):
         return mark_safe(f'<a href="pdf/{self.pujadatetime.url}" onclick="return showAddAnotherPopup(this)" class="submit-row">Click Here</a>')
 
     def delete(self, *args, **kwargs):
-        if os.path.exists(os.path.join(settings.MEDIA_ROOT,str(self.yearpic.url))):
-            os.remove(os.path.join(settings.MEDIA_ROOT,str(self.yearpic.url)))
+        if os.path.exists(os.path.join(settings.MEDIA_ROOT, str(self.yearpic.url))):
+            os.remove(os.path.join(settings.MEDIA_ROOT, str(self.yearpic.url)))
         return super().delete(*args, **kwargs)
 
 
 def get_default_year():
     from datetime import datetime
     return Year.objects.get_or_create(year=int(datetime.now().strftime("%Y")))
+
 
 def get_video_id(video_url):
     from urllib.parse import urlparse
@@ -161,56 +187,69 @@ def get_video_id(video_url):
     else:
         return queryset.path[1:]
 
+
 class Videos(models.Model):
     """
     Stores a single Video entry, related to :model:`main.Year`
     according the day of uploading (Maha Shashti, Maha Saptami, Maha Ashtami, Maha Navami, Maha Dashami)
     """
-    yearmodel = models.ForeignKey(Year,verbose_name= _('Year'),null=True, default=get_default_year,on_delete=models.SET_NULL)
+    yearmodel = models.ForeignKey(Year, verbose_name=_(
+        'Year'), null=True, default=get_default_year, on_delete=models.SET_NULL)
     day = models.CharField(
         _('Day of Uploading'),
-        null=True, 
+        null=True,
         blank=True,
         choices=(
-            ('E','Ekum'),
-            ('DI','Dvitia'),
-            ('T','Tritiya'),
-            ('C','Maha Chathurti'),
-            ('P','Maha Panchami'),
-            ('S','Maha Shashti'),
-            ('SA','Maha Saptami'),
-            ('A','Maha Ashtami'),
-            ('SAN','Sandhi Puja'),
-            ('N','Maha Navami'),
-            ('D','Maha Dashami')
+            ('E', 'Ekum'),
+            ('DI', 'Dvitia'),
+            ('T', 'Tritiya'),
+            ('C', 'Maha Chathurti'),
+            ('P', 'Maha Panchami'),
+            ('S', 'Maha Shashti'),
+            ('SA', 'Maha Saptami'),
+            ('A', 'Maha Ashtami'),
+            ('SAN', 'Sandhi Puja'),
+            ('N', 'Maha Navami'),
+            ('D', 'Maha Dashami')
         ),
         max_length=50,
         default='S'
     )
-    
-    test = models.BooleanField(_('Test'), default=False, help_text=_('Check this only when you are testing the webhook'))
-    
-    streamingplatform = models.CharField(_('Streaming Platform'),null=True, blank=True,choices=(('F','Facebook'),('Y','YouTube')),max_length=10,default="Y")
-    streamingvideoheader = models.CharField(_('Live Streaming Video Header'),null=True,blank=True,max_length=600)
-    
-    streamingvideolink = models.URLField(_('Live Video Link'))
-    live = models.BooleanField(_('Live Video'), help_text=_('Check this only if the video is live'), default=True)
-    videoid = models.CharField(_('Facebook/YouTube Video ID'),max_length=500, null=True, blank=True)
-    usernamefb = models.CharField(_('Facebook User ID'),max_length=500, null=True, blank=True)
-    embeedlink = models.URLField(_('Embeed Link of Posts or Video'),null=True, blank=True)
-    
-    streamingvideodescription = models.TextField(_('Streaming Video Short Description'), help_text='This is optional', null=True,blank=True)
 
-    
+    test = models.BooleanField(_('Test'), default=False, help_text=_(
+        'Check this only when you are testing the webhook'))
+
+    streamingplatform = models.CharField(_('Streaming Platform'), null=True, blank=True, choices=(
+        ('F', 'Facebook'), ('Y', 'YouTube')), max_length=10, default="Y")
+    streamingvideoheader = models.CharField(
+        _('Live Streaming Video Header'), null=True, blank=True, max_length=600)
+
+    streamingvideolink = models.URLField(_('Live Video Link'))
+    live = models.BooleanField(_('Live Video'), help_text=_(
+        'Check this only if the video is live'), default=True)
+    videoid = models.CharField(
+        _('Facebook/YouTube Video ID'), max_length=500, null=True, blank=True)
+    usernamefb = models.CharField(
+        _('Facebook User ID'), max_length=500, null=True, blank=True)
+    embeedlink = models.URLField(
+        _('Embeed Link of Posts or Video'), null=True, blank=True)
+
+    streamingvideodescription = models.TextField(
+        _('Streaming Video Short Description'), help_text='This is optional', null=True, blank=True)
+
     def __str__(self):
         try:
-            aname = self.streamingvideoheader + ' ' +str(Year.objects.values('year').filter(id=self.yearmodel.id).get()['year'] )
-        except: aname = "Deleted Year" + " " + self.streamingvideoheader + " " + f'({self.day})'
+            aname = self.streamingvideoheader + ' ' + \
+                str(Year.objects.values('year').filter(
+                    id=self.yearmodel.id).get()['year'])
+        except:
+            aname = "Deleted Year" + " " + \
+                self.streamingvideoheader + " " + f'({self.day})'
         return aname
-    
+
     def get_absolute_url(self):
         return reverse('Videos', args=[self.yearmodel.year, self.day])
-    
+
     def video_posts(self):
         '''This is method to generate the facebook video in an iframe'''
         if self.usernamefb and self.videoid:
@@ -220,13 +259,13 @@ class Videos(models.Model):
             return mark_safe(f'<iframe loading="lazy" src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>')
         else:
             return mark_safe('<h4>No FB/ Youtube Video for now</h4>')
-    
+
     def save(self, *args, **kwargs):
         if self.streamingplatform == 'F':
-            if 'youtube.com'  in self.streamingvideolink or 'youtube' in self.streamingvideolink:
+            if 'youtube.com' in self.streamingvideolink or 'youtube' in self.streamingvideolink:
                 raise ValidationError(
-                _('Please put Facebook Url !'),
-            )
+                    _('Please put Facebook Url !'),
+                )
             if self.streamingvideolink[-1] != '/':
                 self.streamingvideolink = self.streamingvideolink + '/'
             a = self.streamingvideolink.lstrip('https://www.facebook.com/')
@@ -238,10 +277,10 @@ class Videos(models.Model):
             self.usernamefb = lista[0]
             self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
         else:
-            if 'facebook.com'  in self.streamingvideolink or 'facebook' in self.streamingvideolink:
+            if 'facebook.com' in self.streamingvideolink or 'facebook' in self.streamingvideolink:
                 raise ValidationError(
-                _('Please put YouTube Url !'),
-            )
+                    _('Please put YouTube Url !'),
+                )
             if self.videoid == None or self.videoid == "" or self.videoid == " ":
                 self.videoid = get_video_id(self.streamingvideolink)
             self.videoid = get_video_id(self.streamingvideolink)
@@ -251,14 +290,15 @@ class Videos(models.Model):
         if self.live:
             Videos.objects.update(live=False)
             self.live = self.live
-        
+
         if not Videos.objects.filter(id=self.id).exists():
             webhook = dict_webhook[self.day] if not self.test else settings.TEST
             if webhook.lower().startswith('https://discord.com/api'):
-                webhook = webhook[len('https://discord.com/api'): ]
+                webhook = webhook[len('https://discord.com/api'):]
             embed = Embed(
-                title = self.streamingvideoheader.capitalize(),
-                color = dict_colors[self.day] if not self.test else Color.default(),
+                title=self.streamingvideoheader.capitalize(),
+                color=dict_colors[self.day] if not self.test else Color.default(
+                ),
                 url=f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live'
             )
             description = f'```A new puja video for the year {self.yearmodel.year} has gone live```'
@@ -269,9 +309,10 @@ class Videos(models.Model):
                 icon_url='https://cdn.discordapp.com/avatars/853644680486191106/ee39d19c48c4ff53bb4d75e667ff2df3.png'
             )
             embed.description = f'{description}\n\n{description1}\n{description2}'
-            a=discord_api_req(path=webhook,method='post',data={'content': f'<@&{dict_roles[self.day]}>', 'embeds': [embed.to_dict()], 'allowed_mentions': AllowedMentions(everyone=True, roles=True, users = True).to_dict()})
+            a = discord_api_req(path=webhook, method='post', data={'content': f'<@&{dict_roles[self.day]}>', 'embeds': [
+                                embed.to_dict()], 'allowed_mentions': AllowedMentions(everyone=True, roles=True, users=True).to_dict()})
             print(a)
         return super().save(*args, **kwargs)
-    
+
     class Meta:
         verbose_name_plural = "Videos"

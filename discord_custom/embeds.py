@@ -10,6 +10,7 @@ __all__ = (
     'Embed',
 )
 
+
 def parse_time(timestamp: Optional[str]) -> Optional[datetime.datetime]:
     if timestamp:
         return datetime.datetime.fromisoformat(timestamp)
@@ -38,7 +39,8 @@ class EmbedProxy:
         return len(self.__dict__)
 
     def __repr__(self) -> str:
-        inner = ', '.join((f'{k}={v!r}' for k, v in self.__dict__.items() if not k.startswith('_')))
+        inner = ', '.join(
+            (f'{k}={v!r}' for k, v in self.__dict__.items() if not k.startswith('_')))
         return f'EmbedProxy({inner})'
 
     def __getattr__(self, attr: str) -> _EmptyEmbed:
@@ -286,7 +288,8 @@ class Embed:
         elif isinstance(value, int):
             self._colour = Colour(value=value)
         else:
-            raise TypeError(f'Expected discord.Colour, int, or Embed.Empty but received {value.__class__.__name__} instead.')
+            raise TypeError(
+                f'Expected discord.Colour, int, or Embed.Empty but received {value.__class__.__name__} instead.')
 
     color = colour
 
@@ -299,7 +302,8 @@ class Embed:
         if isinstance(value, (datetime.datetime, _EmptyEmbed)):
             self._timestamp = value
         else:
-            raise TypeError(f"Expected datetime.datetime or Embed.Empty received {value.__class__.__name__} instead")
+            raise TypeError(
+                f"Expected datetime.datetime or Embed.Empty received {value.__class__.__name__} instead")
 
     @property
     def footer(self) -> _EmbedFooterProxy:
@@ -617,9 +621,11 @@ class Embed:
         else:
             if timestamp:
                 if timestamp.tzinfo:
-                    result['timestamp'] = timestamp.astimezone(tz=datetime.timezone.utc).isoformat()
+                    result['timestamp'] = timestamp.astimezone(
+                        tz=datetime.timezone.utc).isoformat()
                 else:
-                    result['timestamp'] = timestamp.replace(tzinfo=datetime.timezone.utc).isoformat()
+                    result['timestamp'] = timestamp.replace(
+                        tzinfo=datetime.timezone.utc).isoformat()
 
         # add in the non raw attribute ones
         if self.type:

@@ -1,12 +1,13 @@
-from django.conf import settings
-from urllib import request, parse
 import json
+from urllib import parse, request
+
+from django.conf import settings
 
 
 def discord_api_req(
     path: str,
     method: str = 'post' or 'get',
-    data: dict=None, 
+    data: dict = None,
     content_type: str = 'application/json'
 ):
     base_api = 'https://discord.com/api'
@@ -24,9 +25,9 @@ def discord_api_req(
         )
     if method == 'get':
         req = request.Request(
-                url=base_api+path,
-                headers=headers,
-                method='GET'
+            url=base_api+path,
+            headers=headers,
+            method='GET'
         )
     if data:
         data = json.dumps(data)
