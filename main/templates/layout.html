@@ -15,8 +15,8 @@
     <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
     <meta property="og:type" content="Website">
     <meta property="og:description" content="{% block description %}{% endblock description %} {% blocktranslate %}Shaw Durga Puja is website to live telecast the Durga Puja of our home. This is our{% endblocktranslate %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
-    <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}">
     <meta property="og:image:type" content="image/png" />
     <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}"> {% if LANGUAGE_CODE == 'en' %}
     <meta property="og:locale" content="en_us" />
@@ -26,8 +26,8 @@
 
     <meta name="twitter:title" content="{% trans 'Shaw Durga Puja' %}">
     <meta name="twitter:description" content="{% block descriptiontwitter %}{% endblock descriptiontwitter %} {% trans 'Shaw Durga Puja is website to live telecast the Durga Puja of our home. This is our' %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
-    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}">
+    <meta name="twitter:card" content="summary">
 
     <meta property="og:site_name" content="{% trans 'Shaw Durga Puja' %} | {{title}}">
     <meta name="twitter:image:alt" content="{% trans 'Durga Maa Photo' %}">
@@ -35,7 +35,7 @@
 
     <meta itemprop="name" content="{% trans 'Shaw Durga Puja' %}">
     <meta itemprop="description" content="{% blocktranslate %}Shaw Durga Puja is website to live telecast the Durga Puja of our home. This is our{% endblocktranslate %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
-    <meta itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/default.png' %}">
+    <meta itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}">
     <meta name="author" content="HATSUNE MIKU#0001">
     <meta name="copyright" content="Dhruva Shaw">
     <meta name="apple-mobile-web-app-capable" content="yes">
