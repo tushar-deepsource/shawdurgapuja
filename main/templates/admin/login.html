@@ -1,7 +1,7 @@
 {% extends "admin/login.html" %} {% load i18n static %} {% block extrastyle %} {{ block.super }}
 <style>
     body {
-        background-image: url('https://i.imgur.com/mktY446.jpeg') !important;
+        background-image: url('{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "assets/img/IMG_9692.webp" %}') !important;
         background-position: center !important;
         background-size: cover !important;
         background-repeat: no-repeat !important;
