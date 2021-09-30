@@ -112,7 +112,7 @@
                     <li><a class="text-primary" href='{% url "admin:login" %}' title="Admin Login" target="_blank">{% trans 'Admin Login' %}</a></li>
                     {% endif %}
 
-                    <li><a class="text-primary" href='{% url "ChangeLang" %}' title="{% trans 'Change Language' %}">{% ifequal LANGUAGE_CODE 'en' %}English{% else %}বাংলা ভাষা{% endifequal %}</a></li>
+                    <li><a class="text-primary" href='{% url "ChangeLang" %}' title="{% trans 'Change Language' %}">{% ifequal LANGUAGE_CODE 'en' %}বাংলা ভাষা{% else %}English{% endifequal %}</a></li>
 
 
                 </ul>
