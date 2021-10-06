@@ -15,9 +15,9 @@
     <meta property="og:title" content="{% trans 'Shaw Durga Puja' %} | {{title}} ">
     <meta property="og:type" content="Website">
     <meta property="og:description" content="{% block description %}{% endblock description %} {% blocktranslate %}Shaw Durga Puja is website to live telecast the Durga Puja of our home. This is our{% endblocktranslate %} {{ current_year_puja|ordinal }} {% trans 'year' %}">
-    <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}">
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}">
-    <meta property="og:image:type" content="image/png" />
+    <!-- <meta property="og:image" itemprop="image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/logo_alt.jpg' %}"> -->
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static 'assets/img/banner.jpg' %}">
+    <meta property="og:image:type" content="image/jpg" />
     <meta property="og:url" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}"> {% if LANGUAGE_CODE == 'en' %}
     <meta property="og:locale" content="en_us" />
     <meta property="og:locale" content="en" /> {% else %}
