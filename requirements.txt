@@ -30,7 +30,7 @@ html5lib==1.1
 httptools==0.2.0
 idna==3.2
 kombu==5.1.0
-multidict==5.1.0
+multidict==5.2.0
 pdfkit==0.6.1
 Pillow==8.3.2
 prompt-toolkit==3.0.20
