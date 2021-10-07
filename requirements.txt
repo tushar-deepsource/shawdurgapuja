@@ -51,7 +51,7 @@ soupsieve==2.2.1
 sqlparse==0.4.1
 typing-extensions==3.10.0.2
 uhashring==2.1
-urllib3==1.26.6
+urllib3==1.26.7
 uvicorn==0.15.0
 vine==5.0.0
 watchgod==0.7
