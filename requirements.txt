@@ -20,7 +20,7 @@ Django==3.2.8
 django-admin-list-filter-dropdown==1.0.3
 django-appconf==1.0.5
 django-bmemcached==0.3.0
-django-colorfield==0.4.3
+django-colorfield==0.4.4
 django-compressor==2.4.1
 django-htmlmin==0.11.0
 docutils==0.17.1
