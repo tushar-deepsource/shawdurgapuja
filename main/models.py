@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.utils.html import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
+from discord_custom.embeds import Embed
 
 from .request_get_processor import get_request
 

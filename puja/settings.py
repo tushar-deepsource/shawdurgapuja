@@ -25,7 +25,7 @@ if ENV_EXISTS:
 
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['*']
-    SECRET_KEY = ''.join(secrets.choice(string.ascii_letters + string.digits + str(secrets.randbits(7))) for i in range(10))
+    SECRET_KEY = 'SECRECT'
     DATABASES = {'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL'))}
 
