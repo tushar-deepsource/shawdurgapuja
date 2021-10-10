@@ -103,7 +103,7 @@ class Year(models.Model):
     Model to store the Year of Durga Puja live links and its correspondence 
     '''
     year = models.IntegerField(_('Year'), unique=True, validators=[
-                               MinValueValidator(2003), max_value_current_year], blank=True, null=True)
+                               MinValueValidator(2003), max_value_current_year])
 
     colourback = ColorField(_('colourback'), default='rgb(73, 109, 137)', blank=True, null=True)
     colourtext = ColorField(_('colourtext'), default='#FFF00C', blank=True, null=True)
