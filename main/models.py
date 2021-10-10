@@ -168,10 +168,10 @@ class Year(models.Model):
         '''A button to view the pdf puja schedule file'''
         return mark_safe(f'<a href="pdf/{self.pujadatetime.url}" onclick="return showAddAnotherPopup(this)" class="submit-row">Click Here</a>')
 
-    def delete(self, *args, **kwargs):
-        if os.path.exists(os.path.join(settings.MEDIA_ROOT, str(self.yearpic.url))):
-            os.remove(os.path.join(settings.MEDIA_ROOT, str(self.yearpic.url)))
-        return super().delete(*args, **kwargs)
+    # def delete(self, *args, **kwargs):
+    #     if os.path.exists(os.path.join(settings.MEDIA_ROOT, str(self.yearpic.url))):
+    #         os.remove(os.path.join(settings.MEDIA_ROOT, str(self.yearpic.url)))
+    #     return super().delete(*args, **kwargs)
 
 
 def get_default_year():
