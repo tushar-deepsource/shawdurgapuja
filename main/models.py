@@ -221,7 +221,7 @@ class Videos(models.Model):
         'Check this only when you are testing the webhook'))
 
     streamingplatform = models.CharField(_('Streaming Platform'), null=True, blank=True, choices=(
-        ('F', 'Facebook'), ('Y', 'YouTube')), max_length=10, default="Y")
+        ('F', 'Facebook'), ('Y', 'YouTube')), max_length=10, default="F")
     streamingvideoheader = models.CharField(
         _('Live Streaming Video Header'), null=True, blank=True, max_length=600)
 
