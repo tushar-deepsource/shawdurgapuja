@@ -1,7 +1,6 @@
 {% extends "layout.html" %}{% load compress %}{% load static %}{% load i18n %}{% load tz %} {% block description %}View puja videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock description %} {% block descriptiontwitter %}View puja
 videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descriptiontwitter %} {% block body %} {% compress css %}
 <link href="{% static 'css/videos.css' %}" rel="stylesheet"> {% endcompress %} {% compress js %} {% endcompress %}
-
 <div class="row aos-init " style="margin-bottom: 20px;margin-top: 20px;">
     <div class="col-sm-3">
         <nav class="navbar overflow-auto" id="navid">
@@ -47,9 +46,9 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
 
 
         <!-- Trigger the modal with a button -->
-        <button type="button" id="navbutton" class="btn" data-toggle="modal" data-target="#mobilenav" style="margin-bottom: 20px;"><b>Click Here</b> &nbsp;<i class="icofont-navigation-menu"></i></button>
+        <button type="button" id="navbutton" class="btn" data-bs-toggle="modal" data-bs-target="#mobilenav" style="margin-bottom: 20px;"><b>Click Here</b> &nbsp;<i class="icofont-navigation-menu"></i></button>
         <!-- Modal -->
-        <div id="mobilenav" class="modal fade" role="dialog">
+        <div id="mobilenav" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="mobilenavLabel" aria-hidden="true">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -81,7 +80,7 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
                         </nav>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
 
