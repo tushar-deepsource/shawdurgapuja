@@ -361,6 +361,7 @@ def handler500(request, *args, **argv):
     )
     embed.description = '```args: {}```\n\nargv: {}```'.format(args, argv)
     discord_api_req(path=webhook, method='post', data={'content': f'<@571889108046184449>', 'embeds': [embed.to_dict()], 'allowed_mentions': AllowedMentions(everyone=True, roles=True, users=True).to_dict()})
+    print(args,argv)
     x = datetime.datetime.now()
     return render(
         request,
