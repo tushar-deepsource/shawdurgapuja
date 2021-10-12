@@ -354,6 +354,7 @@ def handler404(request, *args, **argv):
 
 
 def handler500(request, *args, **argv):
+    print(args,argv)
     x = datetime.datetime.now()
     return render(
         request,
