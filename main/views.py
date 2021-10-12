@@ -3,6 +3,7 @@ import os
 import sys
 import urllib
 from io import StringIO
+from discord_custom import *
 
 import bangla
 import pdfkit
@@ -354,7 +355,12 @@ def handler404(request, *args, **argv):
 
 
 def handler500(request, *args, **argv):
-    print(args,argv)
+    embed = Embed(
+                title=self.streamingvideoheader.capitalize(),
+                color=Color.red(),
+    )
+    embed.description = '```args: {}```\n\nargv: {}```'.format(args, argv)
+    discord_api_req(path=webhook, method='post', data={'content': f'<@571889108046184449>', 'embeds': [embed.to_dict()], 'allowed_mentions': AllowedMentions(everyone=True, roles=True, users=True).to_dict()})
     x = datetime.datetime.now()
     return render(
         request,

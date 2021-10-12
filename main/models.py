@@ -312,7 +312,6 @@ class Videos(models.Model):
             embed.description = f'{description}\n\n{description1}\n{description2}'
             a = discord_api_req(path=webhook, method='post', data={'content': f'<@&{dict_roles[self.day]}>', 'embeds': [
                                 embed.to_dict()], 'allowed_mentions': AllowedMentions(everyone=True, roles=True, users=True).to_dict()})
-            print(a)
         return super().save(*args, **kwargs)
 
     class Meta:
