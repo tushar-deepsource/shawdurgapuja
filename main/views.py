@@ -20,6 +20,7 @@ from django.utils import translation
 from django.utils.functional import keep_lazy
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from .templatetags import *
 
 from .models import *
 
@@ -164,10 +165,8 @@ def schedulepdf(request, year):
 def home(request):
     name1 = "Videos List"
     year = Year.objects.all()
-    videos = Videos.objects.filter(test=False).select_related(
-        'yearmodel').distinct('yearmodel')
-    videoslive = Videos.objects.select_related('yearmodel').values(
-        'yearmodel', 'live').filter(live=True, test=False)
+    videos = Videos.objects.filter(test=False).select_related('yearmodel').distinct('yearmodel')
+    videoslive = Videos.objects.select_related('yearmodel').values('yearmodel', 'live').filter(live=True, test=False)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(year, 6)
