@@ -20,7 +20,6 @@ from django.utils import translation
 from django.utils.functional import keep_lazy
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
-from .templatetags import *
 
 from .models import *
 
