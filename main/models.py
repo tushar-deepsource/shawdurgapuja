@@ -303,7 +303,7 @@ class Videos(models.Model):
                 url=f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live'
             )
             description = f'```A new puja video for the year {self.yearmodel.year} has gone live```'
-            description1 = f'> ``See the video`` : [Click Here]({self.embeedlink}) <a:liveyellow:853661056592117792>'
+            description1 = f'> ``See the video`` : [Click Here]({self.streamingvideolink}) <a:liveyellow:853661056592117792>'
             description2 = f'> ``See the video in the site`` : [Click Here](https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
             embed.set_author(
                 name=dict_days[self.day],

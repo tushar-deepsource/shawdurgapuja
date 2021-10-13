@@ -158,9 +158,13 @@
                         <a href="#header" class="scrollto footer-logo"><img loading="lazy" src="{% static 'assets/img/default.png' %}" alt=""></a>
                         <h3>{% trans 'Shaw Durga Puja' %}</h3>
                         <hr/>
-                        <h5> {% trans 'Made with' %} <i class='bx bxs-heart'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" title="Github Repository" target="_blank"><i class='bx bxl-github'></i></a> +
-                            <a href="https://discord.gg/kSarfqb9hk" title="Discord Community" target="_blank"><i class='bx bxl-discord'></i></a> &nbsp;
+                        <h5> {% trans 'Made with' %} <i class='bx bxs-heart text-danger'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" title="Github Repository" target="_blank"><i class='bx bxl-github' style="color: #ffffff;"></i></a>                            +
+                            <a href="https://discord.gg/kSarfqb9hk" title="Discord Community" target="_blank"><i class='bx bxl-discord' style="color: #5865F2;"></i></a> &nbsp;
                         </h5>
+                        <h4>
+                            <a href="https://www.facebook.com/shawdurgapuja" title="facebook" target="_blank"><i class='bx bxl-facebook-circle' style="color: #1877F2;"></i></a>
+                            <a href="https://www.youtube.com/channel/UCvmmsdVeNcuuYYA1ZAb8vfw" title="YouTube" target="_blank"><i class='bx bxl-youtube' style="color: #FF0000;"></i></a>
+                        </h4>
                         <h2>
                             <a href="{% url 'QrcodeGen' %}" title="Qrcode to the live puja" target="_blank"><i class='bx bx-qr-scan'></i></a> <a href="{% url 'RSS' %}" title="RSS Feed" target="_blank"><i class='bx bx-rss'></i></a>
                             <a href="{% url 'Sitemap' %}" title="Sitemap" target="_blank"><i class='bx bx-sitemap'></i></a>
