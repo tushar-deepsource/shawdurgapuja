@@ -356,7 +356,7 @@ def handler404(request, *args, **argv):
 
 def handler500(request, *args, **argv):
     embed = Embed(
-                title=self.streamingvideoheader.capitalize(),
+                title='Error',
                 color=Color.red(),
     )
     embed.description = '```args: {}```\n\nargv: {}```'.format(args, argv)
