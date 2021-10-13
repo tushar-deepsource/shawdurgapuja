@@ -38,6 +38,8 @@ else:
         default=os.getenv('DATABASE_URL'))}
     ALLOWED_HOSTS = ['*']
     SECRET_KEY = os.environ['SECRET_KEY']
+    
+SENTRY_URL = os.environ['SENTRY_URL']
 
 sentry_sdk.init(
     dsn=os.environ['SENTRY_DSN'],
