@@ -347,7 +347,7 @@ class Videos(models.Model):
                 raise ValidationError(
                     _("Please put YouTube Url !"),
                 )
-            if self.videoid == None or self.videoid == "" or self.videoid == " ":
+            if self.videoid is None or self.videoid == "" or self.videoid == " ":
                 self.videoid = get_video_id(self.streamingvideolink)
             self.videoid = get_video_id(self.streamingvideolink)
             a = get_video_id(self.streamingvideolink)
