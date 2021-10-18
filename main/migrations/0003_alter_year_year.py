@@ -2,20 +2,29 @@
 
 import django.core.validators
 from django.db import migrations, models
+
 import main.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_auto_20211011_0001'),
+        ("main", "0002_auto_20211011_0001"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='year',
-            name='year',
-            field=models.IntegerField(default=2021, unique=True, validators=[django.core.validators.MinValueValidator(2003), main.models.max_value_current_year], verbose_name='Year'),
+            model_name="year",
+            name="year",
+            field=models.IntegerField(
+                default=2021,
+                unique=True,
+                validators=[
+                    django.core.validators.MinValueValidator(2003),
+                    main.models.max_value_current_year,
+                ],
+                verbose_name="Year",
+            ),
             preserve_default=False,
         ),
     ]
