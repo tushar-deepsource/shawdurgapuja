@@ -107,7 +107,7 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
     {% if show %}
     <!-- ==Video Play code starts== -->
     <div class="col-lg  overflow-auto mt-3" style="height: 500px;overflow-x: hidden !important; margin-right: 20px;">
-        {% for videos in videos reversed %}
+        {% for videos in videos %}
         <span style="margin-top:20px; text-align:center;" {% if videos.live %}id="live" {% endif %}>
             <h3><u>{{videos.streamingvideoheader}}</u> {% if videos.live %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</h3>
         </span>
