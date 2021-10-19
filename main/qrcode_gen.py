@@ -12,17 +12,18 @@ class QrGen:
         self.data = data
         self.logo = logo
         self.files_logo = os.path.join(
-            settings.BASE_DIR, 'main', 'static', 'assets', 'img', 'default_qrcode.png')
+            settings.BASE_DIR, "main", "static", "assets", "img", "default_qrcode.png"
+        )
 
     def gen_qr_code(self):
-        filename = 'with_logo.png' if self.files_logo else 'withoutout_logo.png'
+        filename = "with_logo.png" if self.files_logo else "withoutout_logo.png"
 
-        url = pyqrcode.QRCode(self.data, error='H')
-        url.png(os.path.join(settings.BASE_DIR, 'main', filename), scale=10)
+        url = pyqrcode.QRCode(self.data, error="H")
+        url.png(os.path.join(settings.BASE_DIR, "main", filename), scale=10)
 
-        im = Image.open(os.path.join(settings.BASE_DIR, 'main', filename))
+        im = Image.open(os.path.join(settings.BASE_DIR, "main", filename))
         im = im.convert("RGBA")
-        im.save(os.path.join(settings.BASE_DIR, 'main', filename), scale=10)
+        im.save(os.path.join(settings.BASE_DIR, "main", filename), scale=10)
 
         if self.logo:
             logo1 = Image.open(self.files_logo)
@@ -39,10 +40,10 @@ class QrGen:
             region = region.resize((xmax - xmin, ymax - ymin))
             im.paste(region, (xmin, ymin, xmax, ymax))
 
-            im.save(os.path.join(settings.BASE_DIR, 'main', filename), scale=10)
+            im.save(os.path.join(settings.BASE_DIR, "main", filename), scale=10)
 
-        with open(os.path.join(settings.BASE_DIR, 'main', filename), 'rb') as f:
+        with open(os.path.join(settings.BASE_DIR, "main", filename), "rb") as f:
             data = f.read()
         sync_to_async(os.remove(os.path.join(
-            settings.BASE_DIR, 'main', filename)))
+            settings.BASE_DIR, "main", filename)))
         return data

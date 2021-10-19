@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'puja.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "puja.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -17,9 +17,9 @@ def main():
         ) from exc
     if not os.path.isdir(os.path.join(Path(__file__).resolve().parent)):
         os.mkdir(os.path.join(Path(__file__).resolve().parent))
-    os.environ['ASYNC_RUN'] = 'False'
+    os.environ["ASYNC_RUN"] = "False"
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

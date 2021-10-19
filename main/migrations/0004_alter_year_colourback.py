@@ -7,13 +7,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0003_alter_year_year'),
+        ("main", "0003_alter_year_year"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='year',
-            name='colourback',
-            field=colorfield.fields.ColorField(blank=True, default='#496D89', max_length=18, null=True, verbose_name='colourback'),
+            model_name="year",
+            name="colourback",
+            field=colorfield.fields.ColorField(
+                blank=True,
+                default="#496D89",
+                max_length=18,
+                null=True,
+                verbose_name="colourback",
+            ),
         ),
     ]
