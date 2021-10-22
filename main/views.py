@@ -370,10 +370,7 @@ def qrcode(request, logo=2):
     current_site = get_current_site(request)
     domain = current_site.domain
     return HttpResponse(
-        QrGen(
-            "https://" + domain +
-            reverse("Redirect"), logo == 1
-        ).gen_qr_code(),
+        QrGen("https://" + domain + reverse("Redirect"), logo == 1).gen_qr_code(),
         content_type="image/jpeg",
     )
 
