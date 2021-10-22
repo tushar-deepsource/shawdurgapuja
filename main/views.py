@@ -99,7 +99,7 @@ def scheduleprint(request, year, one: int = None):
         "yearpassed": year,
         "view": "schedule",
         "title": f"Durga Puja Schedule for {year}",
-        "one": True if one != 1 else False,
+        "one": one != 1,
         "current_year_puja": keep_lazy(durgapujayear()),
     }
 
@@ -267,7 +267,7 @@ def video(request, year, day):
     else:
         videos = Videos.objects.filter(
             yearmodel=yearid, day=day, test=False).all()
-    show = False if videos.count() <= 0 else True
+    show = not videos.count() <= 0
 
     livevideo = (
         Videos.objects.filter(yearmodel=yearid, live=True, test=False)
@@ -370,10 +370,7 @@ def qrcode(request, logo=2):
     current_site = get_current_site(request)
     domain = current_site.domain
     return HttpResponse(
-        QrGen(
-            "https://" + domain +
-            reverse("Redirect"), True if logo == 1 else False
-        ).gen_qr_code(),
+        QrGen("https://" + domain + reverse("Redirect"), logo == 1).gen_qr_code(),
         content_type="image/jpeg",
     )
 
