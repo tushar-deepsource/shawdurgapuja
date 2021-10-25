@@ -13,6 +13,8 @@ from .models import Videos, Year
 
 
 # Register your models here.
+
+@admin.register(Year)
 class YearAdmin(admin.ModelAdmin):
     list_display = (
         "year",
@@ -99,7 +101,7 @@ class YearAdmin(admin.ModelAdmin):
         ),
     )
 
-
+@admin.register(Videos)
 class VideosAdmin(admin.ModelAdmin):
     list_display = (
         "streamingvideoheader",
@@ -220,7 +222,7 @@ class VideosAdmin(admin.ModelAdmin):
     # Registering the custom actions
     actions = [make_videos_live, make_videos_offline, maketest, removefromtest]
 
-
+@admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
     def delete_admin_logs(self, request, queryset):
         querysetmsg = queryset.delete()
@@ -244,9 +246,5 @@ class LogEntryAdmin(admin.ModelAdmin):
 
 
 admin.site.unregister(Group)
-
-admin.site.register(Year, YearAdmin)
-admin.site.register(Videos, VideosAdmin)
-admin.site.register(LogEntry, LogEntryAdmin)
 
 admin.site.site_header = admin.site.site_title = "Shaw Durga Puja Live"

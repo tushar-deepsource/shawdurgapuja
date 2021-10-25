@@ -8,9 +8,14 @@ import sentry_sdk
 from django.utils.translation import ugettext_lazy as _
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
+from .django_logging import LOGGING
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+if not os.path.exists(BASE_DIR / 'logs'):
+    os.makedirs(BASE_DIR / 'logs')
 
 dotenv_file = BASE_DIR / ".env"
 ENV_EXISTS = os.path.isfile(dotenv_file)
@@ -256,3 +261,7 @@ DJANGO_ALLOW_ASYNC_UNSAFE = True
 
 SESSION_COOKIE_AGE = 1 * 60 * 60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Logging
+LOGGING = LOGGING
+logging.config.dictConfig(LOGGING)
