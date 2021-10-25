@@ -1,4 +1,5 @@
 import ast
+import logging
 import os
 from pathlib import Path
 
@@ -8,14 +9,14 @@ import sentry_sdk
 from django.utils.translation import ugettext_lazy as _
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
+
 from .django_logging import LOGGING
-import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if not os.path.exists(BASE_DIR / 'logs'):
-    os.makedirs(BASE_DIR / 'logs')
+if not os.path.exists(BASE_DIR / "logs"):
+    os.makedirs(BASE_DIR / "logs")
 
 dotenv_file = BASE_DIR / ".env"
 ENV_EXISTS = os.path.isfile(dotenv_file)
