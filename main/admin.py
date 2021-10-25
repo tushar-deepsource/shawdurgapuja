@@ -11,8 +11,8 @@ from django_admin_listfilter_dropdown.filters import (
 
 from .models import Videos, Year
 
-
 # Register your models here.
+
 
 @admin.register(Year)
 class YearAdmin(admin.ModelAdmin):
@@ -100,6 +100,7 @@ class YearAdmin(admin.ModelAdmin):
             },
         ),
     )
+
 
 @admin.register(Videos)
 class VideosAdmin(admin.ModelAdmin):
@@ -221,6 +222,7 @@ class VideosAdmin(admin.ModelAdmin):
 
     # Registering the custom actions
     actions = [make_videos_live, make_videos_offline, maketest, removefromtest]
+
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
