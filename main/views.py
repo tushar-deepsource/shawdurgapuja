@@ -45,9 +45,8 @@ def changelang(request):
     if old_lang == "en":
         translation.activate("bn")
         return redirect(l.replace("en", "bn"))
-    else:
-        translation.activate("en")
-        return redirect(l.replace("bn", "en"))
+    translation.activate("en")
+    return redirect(l.replace("bn", "en"))
 
 
 # Images Api, which generates the cards images
@@ -225,7 +224,7 @@ def video(request, year, day):
     day = day.upper()
     if day in ("E", "DI", "T", "C", "P"):
         return redirect(reverse("Videos", args=[int(year), "MAA"]))
-    elif day == "S":
+    if day == "S":
         dayname = "Shashti"
     elif day == "SA":
         dayname = "Sapatami"

@@ -206,8 +206,7 @@ def get_video_id(video_url):
     queryset = urlparse(video_url)
     if "youtube.com/watch?v=" in video_url:
         return queryset.query[2:]
-    else:
-        return queryset.path[1:]
+    return queryset.path[1:]
 
 
 class Videos(models.Model):
@@ -313,12 +312,11 @@ class Videos(models.Model):
             return mark_safe(
                 f'<iframe loading="lazy" src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>'
             )
-        elif self.embeedlink and self.streamingplatform == "Y":
+        if self.embeedlink and self.streamingplatform == "Y":
             return mark_safe(
                 f'<iframe loading="lazy" src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>'
             )
-        else:
-            return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
+        return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
 
     def save(self, *args, **kwargs):
         if self.streamingplatform == "F":
