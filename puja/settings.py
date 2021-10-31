@@ -32,16 +32,18 @@ if ENV_EXISTS:
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ["*"]
     SECRET_KEY = "SECRECT"
-    DATABASES = {"default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"))}
+    DATABASES = {
+        "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    }
 
 else:
     PRODUCTION_SERVER = True
 
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-    DATABASES = {"default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"))}
+    DATABASES = {
+        "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    }
     ALLOWED_HOSTS = ["*"]
     SECRET_KEY = os.environ["SECRET_KEY"]
 
@@ -114,44 +116,41 @@ WSGI_APPLICATION = "puja.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DEBUG = ast.literal_eval(os.environ.get(
-    "DEBUG", "False").strip("\n").capitalize())
+DEBUG = ast.literal_eval(
+    os.environ.get("DEBUG", "False").strip("\n").capitalize())
 if not DEBUG:
-    MIDDLEWARE = (
-        [MIDDLEWARE[0]]
-        + ["whitenoise.middleware.WhiteNoiseMiddleware"]
-        + MIDDLEWARE[1:]
-    )
-    INSTALLED_APPS = (
-        INSTALLED_APPS[0:-1] +
-        ["whitenoise.runserver_nostatic"] + [INSTALLED_APPS[-1]]
-    )
-elif ast.literal_eval(os.environ.get("WHITENOISE", "True").strip("\n").capitalize()):
-    MIDDLEWARE = (
-        [MIDDLEWARE[0]]
-        + ["whitenoise.middleware.WhiteNoiseMiddleware"]
-        + MIDDLEWARE[1:]
-    )
-    INSTALLED_APPS = (
-        INSTALLED_APPS[0:-1] +
-        ["whitenoise.runserver_nostatic"] + [INSTALLED_APPS[-1]]
-    )
+    MIDDLEWARE = ([MIDDLEWARE[0]] +
+                  ["whitenoise.middleware.WhiteNoiseMiddleware"] +
+                  MIDDLEWARE[1:])
+    INSTALLED_APPS = (INSTALLED_APPS[0:-1] +
+                      ["whitenoise.runserver_nostatic"] + [INSTALLED_APPS[-1]])
+elif ast.literal_eval(
+        os.environ.get("WHITENOISE", "True").strip("\n").capitalize()):
+    MIDDLEWARE = ([MIDDLEWARE[0]] +
+                  ["whitenoise.middleware.WhiteNoiseMiddleware"] +
+                  MIDDLEWARE[1:])
+    INSTALLED_APPS = (INSTALLED_APPS[0:-1] +
+                      ["whitenoise.runserver_nostatic"] + [INSTALLED_APPS[-1]])
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -228,7 +227,7 @@ LANGUAGES = (
     ("en", _("English")),
 )
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"), )
 
 HOMECOMING = os.environ.get("HOMECOMING")
 SHASHTI = os.environ.get("SHASHTI")
