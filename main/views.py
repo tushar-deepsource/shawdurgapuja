@@ -168,9 +168,6 @@ def schedulepdf(request, year):
 @require_GET
 @sync_to_async
 def home(request):
-    def revrse_list_fnc(list_to_reverse: list) -> list:
-        list_to_reverse.sort(revrse=True)
-        return list_to_reverse
 
     name1 = "Videos List"
     year = Year.objects.all()
