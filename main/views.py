@@ -386,7 +386,7 @@ def handler500(request, *args, **argv):
         method="post",
         data={
             "content":
-            f"<@571889108046184449>",
+            "<@571889108046184449>",
             "embeds": [embed.to_dict()],
             "allowed_mentions":
             AllowedMentions(everyone=True, roles=True, users=True).to_dict(),
