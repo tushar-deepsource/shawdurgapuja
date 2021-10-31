@@ -26,10 +26,9 @@ class StaticViewSitemap(Sitemap):
     def location(self, item):
         if item in ("Home", "Redirect"):
             return reverse(item)
-        elif item[0].lower() in ("s", "A", "a", "Y"):
+        if item[0].lower() in ("s", "A", "a", "Y"):
             return reverse(str(item.split("/")[0]), args=[int(item.split("/")[1])])
-        else:
-            return reverse(
-                str(item.split("/")[0]),
-                args=[int(item.split("/")[1]), item.split("/")[2]],
-            )
+        return reverse(
+            str(item.split("/")[0]),
+            args=[int(item.split("/")[1]), item.split("/")[2]],
+        )
