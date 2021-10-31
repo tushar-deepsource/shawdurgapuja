@@ -7,7 +7,8 @@ from main.models import Year
 class StaticViewSitemap(Sitemap):
     changefreq = "yearly"
 
-    def priority(self, item):
+    @staticmethod
+    def priority(item):
         return 1.0 if item[0] in ("H", "s", "R") else 0.80
 
     def items(self):
