@@ -31,3 +31,4 @@ class StaticViewSitemap(Sitemap):
             args=[int(item.split("/")[1]),
                   item.split("/")[2]],
         )
+
