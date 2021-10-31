@@ -87,7 +87,6 @@ MIDDLEWARE = [
     "django.contrib.admindocs.middleware.XViewMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "main.request_get_processor.RequestMiddleware",
     "django.middleware.cache.FetchFromCacheMiddleware",
     "htmlmin.middleware.MarkRequestMiddleware",
 ]

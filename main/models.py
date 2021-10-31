@@ -16,9 +16,6 @@ from django.utils.translation import gettext_lazy as _
 from discord_custom import *
 from discord_custom.embeds import Embed
 
-from .request_get_processor import get_request
-
-
 def current_year():
     return datetime.date.today().year
 
@@ -200,8 +197,8 @@ class Year(models.Model):
         ordering = ("-year", )
 
     def __str__(self):
-        return f"{self.year}"
-
+        return str(self.year)
+    
     def view_puja_dates_and_time(self):
         """A button to view the pdf puja schedule file"""
         return mark_safe(
@@ -371,11 +368,11 @@ class Videos(models.Model):
                 title=self.streamingvideoheader.capitalize(),
                 color=dict_colors[self.day]
                 if not self.test else Color.default(),
-                url=f'https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
+                url=f'https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
             )
             description = f"```A new puja video for the year {self.yearmodel.year} has gone live```"
             description1 = f"> ``See the video`` : [Click Here]({self.streamingvideolink}) <a:liveyellow:853661056592117792>"
-            description2 = f'> ``See the video in the site`` : [Click Here](https://{get_current_site(get_request()).domain}{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
+            description2 = f'> ``See the video in the site`` : [Click Here](https://awdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
             embed.set_author(
                 name=dict_days[self.day],
                 icon_url="https://cdn.discordapp.com/avatars/853644680486191106/ee39d19c48c4ff53bb4d75e667ff2df3.png",
