@@ -16,6 +16,7 @@ from django.utils.translation import gettext_lazy as _
 from discord_custom import *
 from discord_custom.embeds import Embed
 
+
 def current_year():
     return datetime.date.today().year
 
@@ -198,7 +199,7 @@ class Year(models.Model):
 
     def __str__(self):
         return str(self.year)
-    
+
     def view_puja_dates_and_time(self):
         """A button to view the pdf puja schedule file"""
         return mark_safe(
