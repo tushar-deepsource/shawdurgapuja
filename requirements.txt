@@ -1,4 +1,4 @@
-﻿aiohttp==3.7.4.post0
+﻿aiohttp==3.8.0
 amqp==5.0.6
 asgiref==3.4.1
 async-timeout==4.0.0
