@@ -35,7 +35,7 @@ multidict==5.1.0
 pdfkit==1.0.0
 Pillow==8.4.0
 prompt-toolkit==3.0.24
-psycopg2==2.9.2
+psycopg2==2.9.3
 pypng==0.0.21
 PyQRCode==1.2.1
 python-binary-memcached==0.30.1
