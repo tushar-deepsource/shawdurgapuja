@@ -19,10 +19,12 @@ def discord_api_req(
     }
     if method == "post":
         req = request.Request(url=base_api + path,
-                              headers=headers, method="POST")
+                              headers=headers,
+                              method="POST")
     if method == "get":
         req = request.Request(url=base_api + path,
-                              headers=headers, method="GET")
+                              headers=headers,
+                              method="GET")
     if data:
         data = json.dumps(data)
         data = data.encode()
