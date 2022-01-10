@@ -14,7 +14,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         from django.conf import settings
-        from django.db import connection
 
         self.engine = settings.DATABASES["default"]["ENGINE"]
         self.db = settings.DATABASES["default"]["NAME"]

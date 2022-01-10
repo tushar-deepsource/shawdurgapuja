@@ -2,11 +2,10 @@ import datetime
 import os
 import sys
 import urllib
-from io import StringIO
 
 import bangla
 import pdfkit
-from asgiref.sync import async_to_sync, sync_to_async
+from asgiref.sync import sync_to_async
 from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
