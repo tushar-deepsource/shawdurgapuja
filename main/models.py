@@ -1,16 +1,12 @@
-import asyncio
 import datetime
-import os
 
 from colorfield.fields import ColorField
 from django.conf import settings
-from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe
-from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 
 from discord_custom import *

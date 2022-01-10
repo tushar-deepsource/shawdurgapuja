@@ -1,5 +1,5 @@
 import json
-from urllib import parse, request
+from urllib import request
 
 from django.conf import settings
 
