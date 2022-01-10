@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 from celery.decorators import task
 
 from .request_discord import *
