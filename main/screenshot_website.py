@@ -5,10 +5,10 @@ from __future__ import annotations
 import asyncio
 import io
 
-# Dependency Imports
-from pyppeteer import launch
 import pyppeteer
 
+# Dependency Imports
+from pyppeteer import launch
 
 
 async def screenshot(self, ctx, link: str, wait: int = 3):

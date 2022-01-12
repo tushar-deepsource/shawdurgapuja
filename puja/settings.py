@@ -207,9 +207,11 @@ if PRODUCTION_SERVER:
     SECURE_REFERRER_POLICY = "same-origin"
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379') #expected port, otherwise you can alter it
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION":
+        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"
+                       ),  # expected port, otherwise you can alter it
     }
 }
 
