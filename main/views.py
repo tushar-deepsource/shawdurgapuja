@@ -4,12 +4,15 @@ import sys
 import urllib
 
 import bangla
+from functools import lru_cache
+
 import pdfkit
 from asgiref.sync import sync_to_async
 from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import Http404, HttpResponse
@@ -27,6 +30,7 @@ from .models import *
 
 @login_required
 @sync_to_async
+@cache_page(60 * 15)
 def user_logout(request):
     logout(request)
     messages.success(request, "You have been successfully logged out!")
@@ -34,6 +38,7 @@ def user_logout(request):
 
 
 @sync_to_async
+@cache_page(60 * 15)
 def changelang(request):
     old_lang = translation.to_locale(translation.get_language())
     l = (request.META.get("HTTP_REFERER")
@@ -49,18 +54,21 @@ def changelang(request):
 
 
 @require_GET
+@cache_page(60 * 15)
 def getimages(request):
     return HttpResponse(generate_thumbnail(request), content_type="image/jpeg")
 
 
 # Create your views here.
 @sync_to_async
+@cache_page(60 * 15)
 def homeredirect(request):
     return redirect(reverse("Home"))
 
 
 @require_GET
 @sync_to_async
+@cache_page(60 * 15)
 def schedule(request, year):
     name1 = f"Durga Puja Schedule for {year}"
     try:
@@ -83,6 +91,7 @@ def schedule(request, year):
 
 @require_GET
 @sync_to_async
+@cache_page(60 * 15)
 def scheduleprint(request, year, one: int = None):
     try:
         year_model = Year.objects.filter(year=year).get()
@@ -100,7 +109,7 @@ def scheduleprint(request, year, one: int = None):
 
     return render(request, "schedulepdf.html", params)
 
-
+@cache_page(60 * 15)
 def schedulepdf(request, year):
     try:
         yearobj = Year.objects.filter(year=year).get()
@@ -166,6 +175,7 @@ def schedulepdf(request, year):
 
 @require_GET
 @sync_to_async
+@cache_page(60 * 15)
 def home(request):
 
     name1 = "Videos List"
@@ -201,6 +211,7 @@ def home(request):
 
 @require_GET
 @sync_to_async
+@cache_page(60 * 15)
 def video(request, year, day):
     try:
         yearid = Year.objects.values("id").filter(year=int(year)).get()["id"]
@@ -286,6 +297,7 @@ def video(request, year, day):
 
 @require_GET
 @sync_to_async
+@cache_page(60 * 15)
 def about_year(request, year):
     try:
         yearid = Year.objects.filter(year=int(year)).get()
@@ -312,6 +324,7 @@ def about_year(request, year):
 
 
 @sync_to_async
+@cache_page(60 * 15)
 def redirect_view_puja(request):
     # Year
     x = datetime.datetime.now()
@@ -343,6 +356,7 @@ def redirect_view_puja(request):
 
 
 @sync_to_async
+@cache_page(60 * 15)
 def qrcode(request, logo=2):
     from .qrcode_gen import QrGen
 
@@ -355,7 +369,8 @@ def qrcode(request, logo=2):
     )
 
 
-# Error 404
+
+@cache_page(60 * 15)
 def handler404(request, *args, **argv):
     x = datetime.datetime.now()
     return render(
@@ -369,11 +384,9 @@ def handler404(request, *args, **argv):
             "system_message": argv.get("exception"),
         },
     )
+    
 
-
-# Error 500
-
-
+@cache_page(60 * 15)
 def handler500(request, *args, **argv):
     embed = Embed(
         title="Error",
@@ -385,13 +398,12 @@ def handler500(request, *args, **argv):
         method="post",
         data={
             "content":
-            "<@571889108046184449>",
+            "<@887549958931247137>",
             "embeds": [embed.to_dict()],
             "allowed_mentions":
             AllowedMentions(everyone=True, roles=True, users=True).to_dict(),
         },
     )
-    print(args, argv)
     x = datetime.datetime.now()
     return render(
         request,
@@ -404,12 +416,12 @@ def handler500(request, *args, **argv):
         },
     )
 
-
+@lru_cache
 def durgapujayear():
     return relativedelta(datetime.datetime.now(),
                          datetime.datetime(2001, 1, 1)).years
 
-
+@lru_cache
 def generate_thumbnail(request_obj):
     request = request_obj
     if os.path.isdir(os.path.join(settings.MEDIA_ROOT, "yearpic")):

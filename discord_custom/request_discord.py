@@ -2,8 +2,9 @@ import json
 from urllib import request
 
 from django.conf import settings
+from functools import lru_cache
 
-
+@lru_cache
 def discord_api_req(
     path: str,
     method: str = "post" or "get",
