@@ -16,7 +16,6 @@ async def screenshot(self, ctx, link: str, wait: int = 3):
     Screenshots a given link.
     If no time is given, it will wait 3 seconds to screenshot
     """
-
     browser = await launch()
     page = await browser.newPage()
     await page.setViewport({"width": 1280, "height": 720})
