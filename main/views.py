@@ -188,7 +188,6 @@ def home(request):
     page = request.GET.get("page", 1)
     paginator = Paginator(year, 6)
 
-    # videos = [revrse_list_fnc([j for j in i ]) for i in videos]
     try:
         page_obj = paginator.page(page)
     except PageNotAnInteger:
