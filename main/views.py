@@ -2,17 +2,15 @@ import datetime
 import os
 import sys
 import urllib
-
-import bangla
 from functools import lru_cache
 
+import bangla
 import pdfkit
 from asgiref.sync import sync_to_async
 from dateutil.relativedelta import *
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import cache_page
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import Http404, HttpResponse
@@ -20,6 +18,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import keep_lazy
+from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_GET
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
@@ -108,6 +107,7 @@ def scheduleprint(request, year, one: int = None):
     }
 
     return render(request, "schedulepdf.html", params)
+
 
 @cache_page(60 * 15)
 def schedulepdf(request, year):
@@ -369,7 +369,6 @@ def qrcode(request, logo=2):
     )
 
 
-
 @cache_page(60 * 15)
 def handler404(request, *args, **argv):
     x = datetime.datetime.now()
@@ -384,7 +383,7 @@ def handler404(request, *args, **argv):
             "system_message": argv.get("exception"),
         },
     )
-    
+
 
 @cache_page(60 * 15)
 def handler500(request, *args, **argv):
@@ -416,10 +415,12 @@ def handler500(request, *args, **argv):
         },
     )
 
+
 @lru_cache
 def durgapujayear():
     return relativedelta(datetime.datetime.now(),
                          datetime.datetime(2001, 1, 1)).years
+
 
 @lru_cache
 def generate_thumbnail(request_obj):
