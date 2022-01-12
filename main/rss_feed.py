@@ -12,23 +12,16 @@ class YearFeed(Feed):
     def get_object(self, request, *args, **kwargs):
         return Year.objects.all()
 
-    @staticmethod
-    def title(obj):
+    def title(self, obj):
         return f"YEAR - {obj[0].year}"
 
-    # def link(self, obj):
-    #     return obj.get_absolute_url()
-
-    @staticmethod
-    def description(obj):
+    def description(self, obj):
         return obj[
             0].yeardesc or f"See all the puja videos of the YEAR {obj[0].year}"
 
-    @staticmethod
-    def items(obj):
+    def items(self, obj):
         return Videos.objects.filter(yearmodel=obj[0].id,
                                      test=False).order_by("-yearmodel")
 
-    @staticmethod
-    def item_copyright():
+    def item_copyright(self):
         return "Copyright (c) 2019, Shaw Durga Puja"
