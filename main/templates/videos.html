@@ -13,32 +13,32 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
 
             <ul class="selecton brdr-b-primary mb-70 navbar-nav" data-aos="fade-right">
                 {% if maahome %}
-                <div class="container {% ifequal day 'MAA' %}active1{% endifequal %}" style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="container {% if day == 'MAA' %}active1{% endif %}" style="margin-top: 20px; margin-bottom: 20px;">
                     <li class="nav-item scrollto overflow-x" id="li"><a href="{% url 'Videos' year=yearpassed day='MAA' %}#live" title="MAA HOMECOMING" class="overflow-x"><b>{% trans 'Maa Durga Homecoming' %} &nbsp; {% if livevideo.day in 'E,DI,T,C,P' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 {% endif %}
-                <div class="container {% ifequal dayname 'SHASHTI' %}active1{% endifequal %}">
-                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='S' %}#live" title="SHASHTI PUJA"><b>{% trans 'Maha Shashti' %} &nbsp; {% ifequal livevideo.day 'S' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                <div class="container {% if dayname == 'SHASHTI' %}active1{% endif %}">
+                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='S' %}#live" title="SHASHTI PUJA"><b>{% trans 'Maha Shashti' %} &nbsp; {% if livevideo.day == 'S' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 <hr/>
-                <div class="container {% ifequal dayname 'SAPATAMI' %}active1{% endifequal %}">
-                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='SA' %}#live" title="SAPTAMI PUJA"><b>{% trans 'Maha Sapatami' %} &nbsp; {% ifequal livevideo.day 'SA' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                <div class="container {% if dayname == 'SAPATAMI' %}active1{% endif %}">
+                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='SA' %}#live" title="SAPTAMI PUJA"><b>{% trans 'Maha Sapatami' %} &nbsp; {% if livevideo.day == 'SA' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 <hr/>
-                <div class="container {% ifequal dayname 'ASHTAMI' %}active1{% endifequal %}">
-                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='A' %}#live" title="ASHTAMI PUJA"><b>{% trans 'Maha Ashtami' %} &nbsp; {% ifequal livevideo.day 'A' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                <div class="container {% if dayname == 'ASHTAMI' %}active1{% endif %}">
+                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='A' %}#live" title="ASHTAMI PUJA"><b>{% trans 'Maha Ashtami' %} &nbsp; {% if livevideo.day == 'A' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 <hr/>
-                <div class="container {% ifequal dayname 'SANDHI' %}active1{% endifequal %}">
-                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='SAN' %}#live" title="SANDHI PUJA"><b>{% trans 'Sandhi Puja' %} &nbsp; {% ifequal livevideo.day 'SAN' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                <div class="container {% if dayname == 'SANDHI' %}active1{% endif %}">
+                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='SAN' %}#live" title="SANDHI PUJA"><b>{% trans 'Sandhi Puja' %} &nbsp; {% if livevideo.day == 'SAN' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 <hr/>
-                <div class="container {% ifequal dayname 'NAVAMI' %}active1{% endifequal %}">
-                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='N' %}#live" title="NAVAMI PUJA"><b>{% trans 'Maha Navami' %} &nbsp; {% ifequal livevideo.day 'N' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                <div class="container {% if dayname == 'NAVAMI' %}active1{% endif %}">
+                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='N' %}#live" title="NAVAMI PUJA"><b>{% trans 'Maha Navami' %} &nbsp; {% if livevideo.day == 'N' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 <hr/>
-                <div class="container {% ifequal dayname 'DASHAMI' %}active1{% endifequal %}">
-                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='D' %}#live" title="DASHAMI PUJA"><b>{% trans 'Maha Dashami' %} &nbsp; {% ifequal livevideo.day 'D' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                <div class="container {% if dayname == 'DASHAMI' %}active1{% endif %}">
+                    <li class="nav-item scrollto" id="li"><a href="{% url 'Videos' year=yearpassed day='D' %}#live" title="DASHAMI PUJA"><b>{% trans 'Maha Dashami' %} &nbsp; {% if livevideo.day == 'D' %}<div class="btn btn-danger live" id="id"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                 </div>
                 <hr/>
             </ul>
@@ -62,19 +62,19 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
 
                             <ul class="selecton brdr-b-primary mb-70 navbar-nav">
                                 {% if maahome %}
-                                <li class="nav-item scrollto {% ifequal day 'MAA' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='MAA' %}#live" title="MAA HOMECOMING"><b>{% trans 'Maa Durga Homecoming' %} &nbsp; {% if livevideo.day in 'E,DI,T,C,P' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
+                                <li class="nav-item scrollto {% if day == 'MAA' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='MAA' %}#live" title="MAA HOMECOMING"><b>{% trans 'Maa Durga Homecoming' %} &nbsp; {% if livevideo.day in 'E,DI,T,C,P' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/> {% endif %}
-                                <li class="nav-item scrollto {% ifequal dayname 'SHASHTI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='S' %}#live" title="SAHSHTI PUJA"><b>{% trans 'Maha Shashti' %} &nbsp; {% ifequal livevideo.day 'S' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                                <li class="nav-item scrollto {% if dayname == 'SHASHTI' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='S' %}#live" title="SAHSHTI PUJA"><b>{% trans 'Maha Shashti' %} &nbsp; {% if livevideo.day == 'S' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/>
-                                <li class="nav-item scrollto {% ifequal dayname 'SAPATAMI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='SA' %}#live" title="SAPTAMI PUJA"><b>{% trans 'Maha Sapatami' %} &nbsp; {% ifequal livevideo.day 'SA' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                                <li class="nav-item scrollto {% if dayname == 'SAPATAMI' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='SA' %}#live" title="SAPTAMI PUJA"><b>{% trans 'Maha Sapatami' %} &nbsp; {% if livevideo.day == 'SA' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/>
-                                <li class="nav-item scrollto {% ifequal dayname 'ASHTAMI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='A' %}#live" title="ASHTAMI PUJA"><b>{% trans 'Maha Ashtami' %} &nbsp; {% ifequal livevideo.day 'A' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                                <li class="nav-item scrollto {% if dayname == 'ASHTAMI' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='A' %}#live" title="ASHTAMI PUJA"><b>{% trans 'Maha Ashtami' %} &nbsp; {% if livevideo.day == 'A' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/>
-                                <li class="nav-item scrollto {% ifequal dayname 'SANDHI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='SAN' %}#live" title="SANDHI PUJA"><b>{% trans 'Sandhi Puja' %} &nbsp; {% ifequal livevideo.day 'SAN' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                                <li class="nav-item scrollto {% if dayname == 'SANDHI' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='SAN' %}#live" title="SANDHI PUJA"><b>{% trans 'Sandhi Puja' %} &nbsp; {% if livevideo.day == 'SAN' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/>
-                                <li class="nav-item scrollto {% ifequal dayname 'NAVAMI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='N' %}#live" title="NAVAMI PUJA"><b>{% trans 'Maha Navami' %} &nbsp; {% ifequal livevideo.day 'N' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                                <li class="nav-item scrollto {% if dayname == 'NAVAMI' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='N' %}#live" title="NAVAMI PUJA"><b>{% trans 'Maha Navami' %} &nbsp; {% if livevideo.day == 'N' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/>
-                                <li class="nav-item scrollto {% ifequal dayname 'DASHAMI' %}active1{% endifequal %}" id="li"><a href="{% url 'Videos' year=yearpassed day='D' %}#live" title="DASHAMI PUJA"><b>{% trans 'Maha Dashami' %} &nbsp; {% ifequal livevideo.day 'D' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}</b></a></li>
+                                <li class="nav-item scrollto {% if dayname == 'DASHAMI' %}active1{% endif %}" id="li"><a href="{% url 'Videos' year=yearpassed day='D' %}#live" title="DASHAMI PUJA"><b>{% trans 'Maha Dashami' %} &nbsp; {% if livevideo.day == 'D' %}<div class="btn btn-danger live" id="live"><b>{% trans 'LIVE' %}</b></div>{% endif %}</b></a></li>
                                 <hr/>
                             </ul>
                         </nav>
@@ -94,9 +94,7 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
             &nbsp; &nbsp;M<br/>&nbsp; &nbsp;A<br/>&nbsp; &nbsp;H<br/>&nbsp; &nbsp;A<br/>
         </div>
         {% endif %} {% for i in dayname %}
-        <div class="row" {% ifequal forloop.counter 1 %}style="margin-top: 60px; margin-right:5px;" {% endifequal %}{% ifequal forloop.counter lengthday %}style="margin-bottom: 60px; margin-right:5px;" {% endifequal %}>
-            &nbsp; &nbsp;{{i}}
-        </div>
+        <div class="row" style="{% if forloop.counter == 1 %}margin-top: 60px; margin-right:5px;{% endif %} {% if forloop.counter == lengthday %}margin-bottom: 60px; margin-right:5px;{% endif %}"> &nbsp; &nbsp;{{i}} </div>
         {% endfor %} {% if dayname == 'SANDHI' %}
         <div class="row" style="margin-top: 60px;">
             &nbsp; &nbsp;P<br/>&nbsp; &nbsp;U<br/>&nbsp; &nbsp;J<br/>&nbsp; &nbsp;A<br/>
@@ -127,7 +125,7 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
         <div class="container">
             <div class="section-title" data-aos="fade-up">
                 <img loading="lazy" style="margin-top: 110px;" src="{% static 'assets/img/default1.png' %}" alt="Durga Maa" class="img-fluid">
-                <h3 style="margin-top: 10px;">{% trans 'The' %} <strong style="color:rgb(253, 194, 0);">{% trans 'video' %}</strong> {% trans 'for' %} <strong style="color:rgb(253, 164, 0);">{% ifequal dayname 'SANDHI' %}{{dayname}} {% trans 'PUJA' %}{% else %}{% trans 'MAHA' %} {{dayname}} {% trans 'PUJA' %}{% endifequal %}</strong>
+                <h3 style="margin-top: 10px;">{% trans 'The' %} <strong style="color:rgb(253, 194, 0);">{% trans 'video' %}</strong> {% trans 'for' %} <strong style="color:rgb(253, 164, 0);">{% if dayname == 'SANDHI' %}{{dayname}} {% trans 'PUJA' %}{% else %}{% trans 'MAHA' %} {{dayname}} {% trans 'PUJA' %}{% endif %}</strong>
                     <span>{% trans "hasn't been" %}</span>
                     <strong style="color:rgb(253, 194, 0);">{% trans 'uploaded' %}</strong> {% trans 'or' %} <strong style="color:rgb(253, 194, 0);">{% trans 'gone live.' %}</strong></h3>
                 <p style="color:rgb(253, 194, 0);">{% trans "Why don't you check the " %}<strong style="color:rgb(253, 164, 0);">{% timezone "Asia/Calcutta" %}{{yearpassed}}{% endtimezone %} {% trans "year's schedule" %}</strong> {% trans "in the meantime" %}</p>

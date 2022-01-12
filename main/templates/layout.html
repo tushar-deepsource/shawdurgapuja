@@ -91,14 +91,14 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
-                    <li {% ifequal view "Home" %}class="active" {% endifequal %}><a href="{% url 'Home' %}">{% trans 'Home' %}</a></li>
-                    <li {% ifequal view "about" %}class="active" {% endifequal %}><a href="{% url 'About Year' year=2000 %}" onclick="replacehrefwithdate(this);" title="{% blocktrans %}About the {{yearpassed}} year puja{% endblocktrans %}">{% trans 'About the current year puja' %}</a></li>
+                    <li class="{% if view == 'Home' %}active {% endif %}"><a href="{% url 'Home' %}">{% trans 'Home' %}</a></li>
+                    <li class="{% if view == 'about' %}active {% endif %}"><a href="{% url 'About Year' year=2000 %}" onclick="replacehrefwithdate(this);" title="{% blocktrans %}About the {{yearpassed}} year puja{% endblocktrans %}">{% trans 'About the current year puja' %}</a></li>
 
                     <li class="nav-logo">
                         <a href="{% url 'Home' %}" title="HomePage"><img loading="lazy" src="{% static 'assets/img/default1.png' %}" alt="{% trans 'Durga Maa Photo' %}" style="width:100%"></a>
                     </li>
 
-                    <li {% ifequal view "schedule" %}class="active" {% endifequal %}><a href='{% url "schedule" year=2000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
+                    <li class="{% if view == 'schedule' %}active{% endif %}"><a href='{% url "schedule" year=2000 %}' onclick="changegetyear(this); return false;" title="{% blocktrans %}View the current {{yearpassed}} schedule{% endblocktrans %}">{% trans 'See current year schedule' %}</a></li>
 
                     {% if user.is_authenticated %}
                     <div class="nav-item dropdown">
@@ -112,7 +112,7 @@
                     <li><a class="text-primary" href='{% url "admin:login" %}' title="Admin Login" target="_blank">{% trans 'Admin Login' %}</a></li>
                     {% endif %}
 
-                    <li><a class="text-primary" href='{% url "ChangeLang" %}' title="{% trans 'Change Language' %}">{% ifequal LANGUAGE_CODE 'en' %}বাংলা ভাষা{% else %}English{% endifequal %}</a></li>
+                    <li><a class="text-primary" href='{% url "ChangeLang" %}' title="{% trans 'Change Language' %}">{% if LANGUAGE_CODE == 'en' %}বাংলা ভাষা{% else %}English{% endif %}</a></li>
 
 
                 </ul>
@@ -137,10 +137,10 @@
     </main>
 
     <!-- End #main -->
-    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
         new Crate({
-            server: '836841841114480651',
-            channel: '836962068019413012',
+            server: '922006581334405180', // Shaw Durga Puja
+            channel: '922006581372157960', // #『📚・info』
             location: ['bottom', 'left'],
             notificationsL: true,
             indicator: true,
@@ -159,7 +159,7 @@
                         <h3>{% trans 'Shaw Durga Puja' %}</h3>
                         <hr/>
                         <h5> {% trans 'Made with' %} <i class='bx bxs-heart text-danger'></i> {% trans 'on' %} <a href="https://github.com/Dhruvacube/shawdurgapuja" title="Github Repository" target="_blank"><i class='bx bxl-github' style="color: #ffffff;"></i></a>                            +
-                            <a href="https://discord.gg/kSarfqb9hk" title="Discord Community" target="_blank"><i class='bx bxl-discord' style="color: #5865F2;"></i></a> &nbsp;
+                            <a href="https://discord.gg/bKyNt7MGn8" title="Discord Community" target="_blank"><i class='bx bxl-discord' style="color: #5865F2;"></i></a> &nbsp;
                         </h5>
                         <h4>
                             <a href="https://www.facebook.com/shawdurgapuja" title="facebook" target="_blank"><i class='bx bxl-facebook-circle' style="color: #1877F2;"></i></a>

@@ -6,7 +6,7 @@ from pathlib import Path
 import dj_database_url
 import dotenv
 import sentry_sdk
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
@@ -170,7 +170,7 @@ USE_I18N = True
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 BROKER_URL = os.environ.get("REDIS_URL", "redis://localhost:6379")
-CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL", "redis://localhost:6379")
+CELERY_RESULT_BACKEND = os.environ.get("CLOUDAMQP_URL", "amqp://localhost")
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
@@ -206,16 +206,12 @@ if PRODUCTION_SERVER:
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
 
-    CACHES = {
-        "default": {
-            "BACKEND": "django_bmemcached.memcached.BMemcached",
-            "LOCATION": os.environ.get("MEMCACHEDCLOUD_SERVERS").split(","),
-            "OPTIONS": {
-                "username": os.environ.get("MEMCACHEDCLOUD_USERNAME"),
-                "password": os.environ.get("MEMCACHEDCLOUD_PASSWORD"),
-            },
-        }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379') #expected port, otherwise you can alter it
     }
+}
 
 if os.getenv("DATABASE_URL")[0] == "m":
     DATABASES["default"]["OPTIONS"] = {
@@ -260,4 +256,4 @@ DJANGO_ALLOW_ASYNC_UNSAFE = True
 
 SESSION_COOKIE_AGE = 1 * 60 * 60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-logging.config.dictConfig(LOGGING)
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

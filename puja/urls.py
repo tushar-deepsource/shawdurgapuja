@@ -1,10 +1,9 @@
 from django.conf import settings
-from django.conf.urls import url
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
-from django.urls import include, path, register_converter
+from django.urls import include, path, register_converter, re_path
 from django.utils.translation import gettext_lazy as _
 
 from main import converters
@@ -20,7 +19,7 @@ register_converter(converters.FourDigitYearConverter, "yyyy")
 urlpatterns = [
     path("admin/doc/", include("django.contrib.admindocs.urls")),
     path("admin/", admin.site.urls),
-    url(r"^logout/$", user_logout, name="signout"),
+    re_path(r"^logout/$", user_logout, name="signout"),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="Sitemap"),
     path("qrcode/", qrcode, name="QrcodeGen"),
     path("qrcode/<int:logo>/", qrcode, name="QrcodeGenLogo"),
@@ -39,9 +38,9 @@ urlpatterns = (i18n_patterns(
          scheduleprint,
          name="schedule img"),
     path(_("schedulepdf/<yyyy:year>/"), schedulepdf, name="schedule pdf"),
-    url(_(r"^rss/latest$"), YearFeed(), name="RSS"),
+    re_path(_(r"^rss/latest$"), YearFeed(), name="RSS"),
     path(_("redirect/"), redirect_view_puja, name="Redirect"),
-    url(_(r"^getimages$"), getimages, name="GetImages"),
+    re_path(_(r"^getimages$"), getimages, name="GetImages"),
     path(_("changelang/"), changelang, name="ChangeLang"),
 ) + urlpatterns +
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

@@ -24,9 +24,9 @@
                     <img loading="lazy" class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" />
                 </div>
                 <div class="card-body">
-                    <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %} {% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}
-                        <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}{% endfor %}</h2>
-                    {% for video in videos|slice:forloop.counter reversed %}{% ifequal year.id video.yearmodel.id %}
+                    <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %} {% for videoslive in videoslive %}{% if year.id == videoslive.yearmodel %}
+                        <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endif %}{% endfor %}</h2>
+                    {% for video in videos|slice:forloop.counter reversed %}{% if year.id == video.yearmodel.id %}
                     <p>
                         <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
                     </p>
@@ -34,7 +34,7 @@
                     <p>
                         <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
                     </p>
-                    {% endifequal %} {% empty %}
+                    {% endif %} {% empty %}
                     <p>
                         <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
                     </p>
@@ -54,9 +54,9 @@
                     <img loading="lazy" class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" alt="Year {{year}}" />
                 </div>
                 <div class="card-body">
-                    <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %}{% for videoslive in videoslive %}{% ifequal year.id videoslive.yearmodel %}
-                        <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endifequal %}{% endfor %}</h2>
-                    {% for video in videos|slice:forloop.counter reversed %}{% ifequal year.id video.yearmodel.id %}
+                    <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %}{% for videoslive in videoslive %}{% if year.id == videoslive.yearmodel %}
+                        <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endif %}{% endfor %}</h2>
+                    {% for video in videos|slice:forloop.counter reversed %}{% if year.id == video.yearmodel.id %}
                     <p>
                         <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
                     </p>
@@ -64,7 +64,7 @@
                     <p>
                         <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
                     </p>
-                    {% endifequal %} {% empty %}
+                    {% endif %} {% empty %}
                     <p>
                         <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
                     </p>
