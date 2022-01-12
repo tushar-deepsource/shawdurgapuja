@@ -135,8 +135,12 @@ videos for {{dayname}} puja of {{yearpassed}} year Durga Puja.{% endblock descri
         </div>
     </div>
     {% endif %}
-    <hr/>
-
+    <hr/> {% if show %}
+    <div class="container">
+        <script src="https://utteranc.es/client.js" repo="Dhruvacube/shawdurgapuja-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+        </script>
+    </div>
+    {% endif %}
 
 </div>
 {% endblock %}
