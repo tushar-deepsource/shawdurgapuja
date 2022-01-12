@@ -6,6 +6,7 @@ import dj_database_url
 import dotenv
 import sentry_sdk
 from django.utils.translation import gettext_lazy as _
+from .django_logging import LOGGING
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
@@ -256,3 +257,4 @@ DJANGO_ALLOW_ASYNC_UNSAFE = True
 SESSION_COOKIE_AGE = 1 * 60 * 60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+LOGGING = LOGGING
