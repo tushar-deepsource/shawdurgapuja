@@ -6,9 +6,10 @@ import dj_database_url
 import dotenv
 import sentry_sdk
 from django.utils.translation import gettext_lazy as _
-from .django_logging import LOGGING
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
+
+from .django_logging import LOGGING
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
