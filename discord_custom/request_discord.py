@@ -1,8 +1,9 @@
 import json
+from functools import lru_cache
 from urllib import request
 
 from django.conf import settings
-from functools import lru_cache
+
 
 @lru_cache
 def discord_api_req(
