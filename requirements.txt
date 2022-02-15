@@ -60,7 +60,7 @@ sqlparse==0.4.2
 tqdm==4.62.3
 tzdata==2021.5
 urllib3==1.26.8
-uvicorn==0.16.0
+uvicorn==0.17.4
 vine==5.0.0
 wcwidth==0.2.5
 webencodings==0.5.1
