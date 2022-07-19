@@ -59,7 +59,7 @@ soupsieve==2.3.1
 sqlparse==0.4.2
 tqdm==4.62.3
 tzdata==2021.5
-urllib3==1.26.8
+urllib3==1.26.10
 uvicorn==0.17.4
 vine==5.0.0
 wcwidth==0.2.5
