@@ -23,7 +23,7 @@ if not os.path.exists(BASE_DIR / "logs"):
 dotenv_file = BASE_DIR / ".env"
 ENV_EXISTS = os.path.isfile(dotenv_file)
 if ENV_EXISTS:
-    
+
     dotenv.load_dotenv(dotenv_file)
 
     if not os.path.exists(BASE_DIR / "media"):
@@ -208,7 +208,8 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION":
-        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"),  # expected port, otherwise you can alter it
+        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"
+                       ),  # expected port, otherwise you can alter it
     }
 }
 
