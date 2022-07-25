@@ -69,6 +69,20 @@
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet"> {% endcompress %}
 
+    <script async src="https://arc.io/widget.min.js#s543iP18"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZZR43H71Q"></script>
+    {% compress js %}
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CZZR43H71Q');
+    </script>
+    {% endcompress %}
+    <script async src="https://arc.io/widget.min.js#s543iP18"></script>
+
 
 </head>
 {% compress css %}

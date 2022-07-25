@@ -11,12 +11,12 @@ import pyppeteer
 from pyppeteer import launch
 
 
-async def screenshot(self, ctx, link: str, wait: int = 3):
+async def screenshot(link: str, wait: int = 3):
     """
     Screenshots a given link.
     If no time is given, it will wait 3 seconds to screenshot
     """
-    browser = await launch()
+    browser = await launch(headless=True)
     page = await browser.newPage()
     await page.setViewport({"width": 1280, "height": 720})
     try:

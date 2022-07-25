@@ -1,4 +1,4 @@
-{% extends "admin/login.html" %} {% load i18n static %} {% block extrastyle %} {{ block.super }}
+{% extends "admin/login.html" %}{% load compress %} {% load i18n static %} {% block extrastyle %} {{ block.super }}
 <style>
     body {
         background-image: url('{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "assets/img/IMG_9692.webp" %}') !important;
@@ -21,6 +21,18 @@
     }
 </style>
 {% endblock %} {% block branding %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CZZR43H71Q"></script>
+{% compress js %}
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CZZR43H71Q');
+</script>
+{% endcompress %}
+<script async src="https://arc.io/widget.min.js#s543iP18"></script>
 <h1>
     <span style="color: #57C5A5 !important ; font-weight: bold;">Shaw Durga Puja</span>
     <br />

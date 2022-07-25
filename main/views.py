@@ -482,3 +482,8 @@ def generate_thumbnail(request_obj):
     sync_to_async(os.remove(output_image1))
     sync_to_async(os.remove(main_image))
     return image_data
+
+@sync_to_async
+@cache_page(60 * 15)
+def serve_arc(request):
+    return render(request, "arc-sw.js", content_type="application/javascript")

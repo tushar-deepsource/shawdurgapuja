@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+import asyncio
 import os
 import sys
 from pathlib import Path
 
+if sys.platform == "win32" and sys.version_info >= (3, 8, 0):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "puja.settings")

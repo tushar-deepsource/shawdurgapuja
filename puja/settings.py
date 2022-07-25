@@ -1,5 +1,6 @@
 import ast
 import os
+import secrets
 from pathlib import Path
 
 import dj_database_url
@@ -14,15 +15,15 @@ from .django_logging import LOGGING
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = secrets.token_urlsafe(20)
+
 if not os.path.exists(BASE_DIR / "logs"):
     os.makedirs(BASE_DIR / "logs")
 
 dotenv_file = BASE_DIR / ".env"
 ENV_EXISTS = os.path.isfile(dotenv_file)
 if ENV_EXISTS:
-    import secrets
-    import string
-
+    
     dotenv.load_dotenv(dotenv_file)
 
     if not os.path.exists(BASE_DIR / "media"):
@@ -30,7 +31,6 @@ if ENV_EXISTS:
 
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ["*"]
-    SECRET_KEY = "SECRECT"
     DATABASES = {
         "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
     }
@@ -44,7 +44,6 @@ else:
         "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
     }
     ALLOWED_HOSTS = ["*"]
-    SECRET_KEY = os.environ["SECRET_KEY"]
 
 SENTRY_URL = os.environ["SENTRY_URL"]
 
@@ -209,8 +208,7 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION":
-        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"
-                       ),  # expected port, otherwise you can alter it
+        os.environ.get("REDIS_URL", "redis://127.0.0.1:6379"),  # expected port, otherwise you can alter it
     }
 }
 
