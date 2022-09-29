@@ -8,7 +8,7 @@ attrs==22.1.0
 backports.zoneinfo==0.2.1
 bangla==0.0.2
 beautifulsoup4==4.11.1
-billiard==3.6.4.0
+billiard==4.0.2
 Brotli==1.0.9
 celery==5.2.7
 certifi==2022.6.15
