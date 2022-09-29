@@ -69,4 +69,4 @@ whitenoise==6.2.0
 wrapt==1.14.1
 yarl==1.7.2
 zipp==3.8.1
-uvloop==0.16.0; sys_platform != "win32"
+uvloop==0.17.0; sys_platform != "win32"
