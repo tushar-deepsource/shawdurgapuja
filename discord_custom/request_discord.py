@@ -9,7 +9,7 @@ from django.conf import settings
 def discord_api_req(
     path: str,
     method: str = "post" or "get",
-    data = None,
+    data=None,
     content_type: str = "application/json",
 ):
     base_api = "https://discord.com/api"
@@ -19,7 +19,7 @@ def discord_api_req(
         "Authorization": f"Bot {settings.TOKEN}",
         "Content-Type": content_type,
     }
-    print(data, 'hi')
+    print(data, "hi")
     if method == "post":
         req = request.Request(url=base_api + path,
                               headers=headers,
