@@ -175,7 +175,6 @@ def schedulepdf(request, year):
 
 @require_GET
 @sync_to_async
-@cache_page(60 * 15)
 def home(request):
 
     name1 = "Videos List"
