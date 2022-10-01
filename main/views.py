@@ -488,7 +488,10 @@ def generate_thumbnail(request_obj):
 def serve_arc(request):
     return render(request, "arc-sw.js", content_type="application/javascript")
 
+
 @sync_to_async
 @cache_page(60 * 15)
 def serve_auth_dns(request):
-    return render(request, "3381C685CDBA944E82A7AE6F1444D4D2.txt", content_type="text/plain")
+    return render(request,
+                  "3381C685CDBA944E82A7AE6F1444D4D2.txt",
+                  content_type="text/plain")

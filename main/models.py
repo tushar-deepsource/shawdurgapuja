@@ -1,17 +1,18 @@
 import datetime
 import urllib.parse
+from typing import Union
 
 from colorfield.fields import ColorField
-from discord_custom import *
-from discord_custom.embeds import Embed
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe
-from typing import Union
 from django.utils.translation import gettext_lazy as _
+
+from discord_custom import *
+from discord_custom.embeds import Embed
 
 
 def current_year():
@@ -210,9 +211,10 @@ def get_default_year():
 
 def get_video_id(video_url: str) -> Union[str, None]:
     if "youtube.com/watch?v=" in video_url:
-        return urllib.parse.parse_qs(urllib.parseurlparse(video_url).query)['v'][0]
+        return urllib.parse.parse_qs(
+            urllib.parseurlparse(video_url).query)["v"][0]
     elif "youtu.be/" in video_url:
-        return video_url.lstrip('/').split("/")[-1]
+        return video_url.lstrip("/").split("/")[-1]
 
 
 class Videos(models.Model):
@@ -306,11 +308,12 @@ class Videos(models.Model):
         return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
 
     def save(self, *args, **kwargs):
-        self.streamingvideolink = self.streamingvideolink.rstrip('/')
+        self.streamingvideolink = self.streamingvideolink.rstrip("/")
         if self.streamingplatform == "F":
             self.embeedlink = f"https://www.facebook.com/plugins/video.php?href={urllib.parse.quote_plus(self.streamingplatform)}&show_text=false&width=734&height=504&appId"
         else:
-            self.embeedlink = "https://www.youtube.com/embed/" + get_video_id(self.streamingvideolink).strip()
+            self.embeedlink = ("https://www.youtube.com/embed/" +
+                               get_video_id(self.streamingvideolink).strip())
 
         if self.live:
             Videos.objects.update(live=False)
