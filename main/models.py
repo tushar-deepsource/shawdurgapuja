@@ -1,16 +1,17 @@
 import datetime
+import urllib.parse
 
 from colorfield.fields import ColorField
+from discord_custom import *
+from discord_custom.embeds import Embed
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe
+from typing import Union
 from django.utils.translation import gettext_lazy as _
-
-from discord_custom import *
-from discord_custom.embeds import Embed
 
 
 def current_year():
@@ -207,13 +208,11 @@ def get_default_year():
     return Year.objects.get_or_create(year=int(datetime.now().strftime("%Y")))
 
 
-def get_video_id(video_url):
-    from urllib.parse import urlparse
-
-    queryset = urlparse(video_url)
+def get_video_id(video_url: str) -> Union[str, None]:
     if "youtube.com/watch?v=" in video_url:
-        return queryset.query[2:]
-    return queryset.path[1:]
+        return urllib.parse.parse_qs(urllib.parseurlparse(video_url).query)['v'][0]
+    elif "youtu.be/" in video_url:
+        return video_url.lstrip('/').split("/")[-1]
 
 
 class Videos(models.Model):
@@ -275,18 +274,9 @@ class Videos(models.Model):
         help_text=_("Check this only if the video is live"),
         default=True,
     )
-    videoid = models.CharField(_("Facebook/YouTube Video ID"),
-                               max_length=500,
-                               null=True,
-                               blank=True)
-    usernamefb = models.CharField(_("Facebook User ID"),
-                                  max_length=500,
-                                  null=True,
-                                  blank=True)
-    embeedlink = models.URLField(_("Embeed Link of Posts or Video"),
+    embeedlink = models.URLField(_("Embed Link of Posts or Video"),
                                  null=True,
                                  blank=True)
-
     streamingvideodescription = models.TextField(
         _("Streaming Video Short Description"),
         help_text="This is optional",
@@ -309,41 +299,18 @@ class Videos(models.Model):
 
     def video_posts(self):
         """This is method to generate the facebook video in an iframe"""
-        if self.usernamefb and self.videoid:
-            url = f"https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId"
-            return mark_safe(
-                f'<iframe loading="lazy" src="{url}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>'
-            )
-        if self.embeedlink and self.streamingplatform == "Y":
+        if self.embeedlink and self.streamingplatform:
             return mark_safe(
                 f'<iframe loading="lazy" src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>'
             )
         return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
 
     def save(self, *args, **kwargs):
+        self.streamingvideolink = self.streamingvideolink.rstrip('/')
         if self.streamingplatform == "F":
-            if ("youtube.com" in self.streamingvideolink
-                    or "youtube" in self.streamingvideolink):
-                raise ValidationError(_("Please put Facebook Url !"), )
-            if self.streamingvideolink[-1] != "/":
-                self.streamingvideolink = self.streamingvideolink + "/"
-            a = self.streamingvideolink.lstrip("https://www.facebook.com/")
-            lista = a.split("/")
-            if len(lista) == 4:
-                self.videoid = lista[-2]
-            elif len(lista) == 3:
-                self.videoid = lista[-1]
-            self.usernamefb = lista[0]
-            self.embeedlink = f"https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId"
+            self.embeedlink = f"https://www.facebook.com/plugins/video.php?href={urllib.parse.quote_plus(self.streamingplatform)}&show_text=false&width=734&height=504&appId"
         else:
-            if ("facebook.com" in self.streamingvideolink
-                    or "facebook" in self.streamingvideolink):
-                raise ValidationError(_("Please put YouTube Url !"), )
-            if self.videoid is None or self.videoid == "" or self.videoid == " ":
-                self.videoid = get_video_id(self.streamingvideolink)
-            self.videoid = get_video_id(self.streamingvideolink)
-            a = get_video_id(self.streamingvideolink)
-            self.embeedlink = "https://www.youtube.com/embed/" + a.strip()
+            self.embeedlink = "https://www.youtube.com/embed/" + get_video_id(self.streamingvideolink).strip()
 
         if self.live:
             Videos.objects.update(live=False)
@@ -368,18 +335,26 @@ class Videos(models.Model):
                 icon_url="https://cdn.discordapp.com/avatars/853644680486191106/ee39d19c48c4ff53bb4d75e667ff2df3.png",
             )
             embed.description = f"{description}\n\n{description1}\n{description2}"
-            a = discord_api_req(
-                path=webhook,
-                method="post",
-                data={
-                    "content":
-                    f"<@&{dict_roles[self.day]}>",
-                    "embeds": [embed.to_dict()],
-                    "allowed_mentions":
-                    AllowedMentions(everyone=True, roles=True,
-                                    users=True).to_dict(),
-                },
-            )
+            # print({
+            #         "content":
+            #         f"<@&{dict_roles[self.day]}>",
+            #         "embeds": [embed.to_dict()],
+            #         "allowed_mentions":
+            #         AllowedMentions(everyone=True, roles=True,
+            #                         users=True).to_dict(),
+            #     }, 'hi')
+            # a = discord_api_req(
+            #     path=webhook,
+            #     method="post",
+            #     data={
+            #         "content":
+            #         f"<@&{dict_roles[self.day]}>",
+            #         "embeds": [embed.to_dict()],
+            #         "allowed_mentions":
+            #         AllowedMentions(everyone=True, roles=True,
+            #                         users=True).to_dict(),
+            #     },
+            # )
         return super().save(*args, **kwargs)
 
     class Meta:

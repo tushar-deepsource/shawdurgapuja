@@ -10,12 +10,12 @@ from django.utils.translation import gettext_lazy as _
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
-from .django_logging import LOGGING
+# from .django_logging import LOGGING
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY') or secrets.token_urlsafe(20)
+SECRET_KEY = 'SECRECT' or os.environ.get('SECRET_KEY') or secrets.token_urlsafe(20)
 
 if not os.path.exists(BASE_DIR / "logs"):
     os.makedirs(BASE_DIR / "logs")
@@ -257,4 +257,4 @@ DJANGO_ALLOW_ASYNC_UNSAFE = True
 SESSION_COOKIE_AGE = 1 * 60 * 60
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-LOGGING = LOGGING
+# LOGGING = LOGGING
