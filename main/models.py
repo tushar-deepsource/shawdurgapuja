@@ -211,7 +211,8 @@ def get_default_year():
 
 def get_video_id(video_url: str) -> Union[str, None]:
     if "youtube.com/watch?v=" in video_url:
-        return urllib.parse.parse_qs(urllib.parse.urlparse(video_url).query)['v'][0]
+        return urllib.parse.parse_qs(
+            urllib.parse.urlparse(video_url).query)["v"][0]
     elif "youtu.be/" in video_url:
         return video_url.lstrip("/").split("/")[-1]
 
@@ -307,9 +308,15 @@ class Videos(models.Model):
         return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
 
     def save(self, *args, **kwargs):
-        if self.streamingplatform == 'F' and ("youtube.com" in self.streamingvideolink or "youtu.be" in self.streamingvideolink or "youtube" in self.streamingvideolink or "youtu" in self.streamingvideolink):
+        if self.streamingplatform == "F" and (
+                "youtube.com" in self.streamingvideolink
+                or "youtu.be" in self.streamingvideolink
+                or "youtube" in self.streamingvideolink
+                or "youtu" in self.streamingvideolink):
             raise ValidationError(_("Please put a Facebook Url !"), )
-        if self.streamingplatform == 'Y' and ("facebook.com"  in self.streamingvideolink or "fb.watch" in self.streamingvideolink):
+        if self.streamingplatform == "Y" and (
+                "facebook.com" in self.streamingvideolink
+                or "fb.watch" in self.streamingvideolink):
             raise ValidationError(_("Please put a YouTube Url !"), )
         self.streamingvideolink = self.streamingvideolink.rstrip("/")
         if self.streamingplatform == "F":
@@ -345,9 +352,12 @@ class Videos(models.Model):
                 path=webhook,
                 method="post",
                 data={
-                    "content": f"<@&{dict_roles[self.day]}>",
+                    "content":
+                    f"<@&{dict_roles[self.day]}>",
                     "embeds": [embed.to_dict()],
-                    "allowed_mentions": AllowedMentions(everyone=True, roles=True,users=True).to_dict(),
+                    "allowed_mentions":
+                    AllowedMentions(everyone=True, roles=True,
+                                    users=True).to_dict(),
                 },
             )
         return super().save(*args, **kwargs)
