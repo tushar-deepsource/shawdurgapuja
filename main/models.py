@@ -215,12 +215,6 @@ def get_video_id(video_url: str) -> Union[str, None]:
     elif "youtu.be/" in video_url:
         return video_url.lstrip("/").split("/")[-1]
 
-def validate_url(value):
-    if ("youtube.com", "youtu.be", "youtube", "youtu") in value:
-        raise ValidationError(_("Please put a Facebook Url !"), )
-    if ("facebook.com", "fb.watch") in value:
-         raise ValidationError(_("Please put a YouTube Url !"), )
-
 
 class Videos(models.Model):
     """
@@ -275,7 +269,7 @@ class Videos(models.Model):
                                             blank=True,
                                             max_length=600)
 
-    streamingvideolink = models.URLField(_("Live Video Link"), validators=[validate_url])
+    streamingvideolink = models.URLField(_("Live Video Link"))
     live = models.BooleanField(
         _("Live Video"),
         help_text=_("Check this only if the video is live"),
@@ -313,6 +307,10 @@ class Videos(models.Model):
         return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
 
     def save(self, *args, **kwargs):
+        if self.streamingplatform == 'F' and ("youtube.com" in self.streamingvideolink or "youtu.be" in self.streamingvideolink or "youtube" in self.streamingvideolink or "youtu" in self.streamingvideolink):
+            raise ValidationError(_("Please put a Facebook Url !"), )
+        if self.streamingplatform == 'Y' and ("facebook.com"  in self.streamingvideolink or "fb.watch" in self.streamingvideolink):
+            raise ValidationError(_("Please put a YouTube Url !"), )
         self.streamingvideolink = self.streamingvideolink.rstrip("/")
         if self.streamingplatform == "F":
             self.embeedlink = f"https://www.facebook.com/plugins/video.php?height=504&href={urllib.parse.quote_plus(self.streamingvideolink)}&show_text=false&width=734&t=0"
