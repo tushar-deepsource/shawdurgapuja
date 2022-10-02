@@ -210,9 +210,15 @@ def get_default_year():
 
 def get_video_id(video_url: str) -> Union[str, None]:
     if "youtube.com/watch?v=" in video_url:
-        return urllib.parse.parse_qs(urllib.parseurlparse(video_url).query)['v'][0]
+        return urllib.parse.parse_qs(urllib.parse.urlparse(video_url).query)['v'][0]
     elif "youtu.be/" in video_url:
         return video_url.lstrip('/').split("/")[-1]
+
+def validate_url(value):
+    if ("youtube.com", "youtu.be", "youtube", "youtu") in value:
+        raise ValidationError(_("Please put a Facebook Url !"), )
+    if ("facebook.com", "fb.watch") in value:
+         raise ValidationError(_("Please put a YouTube Url !"), )
 
 
 class Videos(models.Model):
@@ -268,7 +274,7 @@ class Videos(models.Model):
                                             blank=True,
                                             max_length=600)
 
-    streamingvideolink = models.URLField(_("Live Video Link"))
+    streamingvideolink = models.URLField(_("Live Video Link"), validators=[validate_url])
     live = models.BooleanField(
         _("Live Video"),
         help_text=_("Check this only if the video is live"),
@@ -299,16 +305,16 @@ class Videos(models.Model):
 
     def video_posts(self):
         """This is method to generate the facebook video in an iframe"""
-        if self.embeedlink and self.streamingplatform:
+        if self.embeedlink:
             return mark_safe(
-                f'<iframe loading="lazy" src="{self.embeedlink}" width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>'
+                f'<iframe loading="lazy" src="{self.embeedlink}"  width="734" height="504" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>'
             )
         return mark_safe("<h4>No FB/ Youtube Video for now</h4>")
 
     def save(self, *args, **kwargs):
         self.streamingvideolink = self.streamingvideolink.rstrip('/')
         if self.streamingplatform == "F":
-            self.embeedlink = f"https://www.facebook.com/plugins/video.php?href={urllib.parse.quote_plus(self.streamingplatform)}&show_text=false&width=734&height=504&appId"
+            self.embeedlink = f"https://www.facebook.com/plugins/video.php?height=504&href={urllib.parse.quote_plus(self.streamingvideolink)}&show_text=false&width=734&t=0"
         else:
             self.embeedlink = "https://www.youtube.com/embed/" + get_video_id(self.streamingvideolink).strip()
 
@@ -329,32 +335,21 @@ class Videos(models.Model):
             )
             description = f"```A new puja video for the year {self.yearmodel.year} has gone live```"
             description1 = f"> ``See the video`` : [Click Here]({self.streamingvideolink}) <a:liveyellow:853661056592117792>"
-            description2 = f'> ``See the video in the site`` : [Click Here](https://awdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
+            description2 = f'> ``See the video in the site`` : [Click Here](https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live)'
             embed.set_author(
                 name=dict_days[self.day],
                 icon_url="https://cdn.discordapp.com/avatars/853644680486191106/ee39d19c48c4ff53bb4d75e667ff2df3.png",
             )
             embed.description = f"{description}\n\n{description1}\n{description2}"
-            # print({
-            #         "content":
-            #         f"<@&{dict_roles[self.day]}>",
-            #         "embeds": [embed.to_dict()],
-            #         "allowed_mentions":
-            #         AllowedMentions(everyone=True, roles=True,
-            #                         users=True).to_dict(),
-            #     }, 'hi')
-            # a = discord_api_req(
-            #     path=webhook,
-            #     method="post",
-            #     data={
-            #         "content":
-            #         f"<@&{dict_roles[self.day]}>",
-            #         "embeds": [embed.to_dict()],
-            #         "allowed_mentions":
-            #         AllowedMentions(everyone=True, roles=True,
-            #                         users=True).to_dict(),
-            #     },
-            # )
+            discord_api_req(
+                path=webhook,
+                method="post",
+                data={
+                    "content": f"<@&{dict_roles[self.day]}>",
+                    "embeds": [embed.to_dict()],
+                    "allowed_mentions": AllowedMentions(everyone=True, roles=True,users=True).to_dict(),
+                },
+            )
         return super().save(*args, **kwargs)
 
     class Meta:

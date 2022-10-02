@@ -1,4 +1,4 @@
-{% extends "layout.html" %}{% load compress static i18n %}{% block body %} {% compress css %}
+{% extends "layout.html" %}{% load compress static i18n extra %}{% block body %} {% compress css %}
 <style>
     .topright {
         position: absolute;
@@ -26,20 +26,24 @@
                 <div class="card-body">
                     <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %} {% for videoslive in videoslive %}{% if year.id == videoslive.yearmodel %}
                         <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endif %}{% endfor %}</h2>
-                        {% for video in videos %}   
-                        {% if year.year == video.yearmodel.year %}
-                                <p>
-                                    <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
-                                </p>
+                        {% if videos|get_latest_video:year.year %}
+                            {% with videos|get_latest_video:year.year as video %}
+                            <p>
+                                <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
+                            </p>
+                            {% endwith %}
+                        {% else %}
+                            <p>
+                                <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
+                            </p>
                         {% endif %}
-                        {% endfor %}
                 </div>
                 <hr/>
             </div>
         </div>
         {% endfor %}
     </div>
-    {% comment %} {% if not yearmodel|slice:"3:"|length == 0 %}
+    {% if not yearmodel|slice:"3:"|length == 0 %}
     <div class="row my-2 mx-2 text-center mt-3 d-flex justify-content-center">
         {% for year in yearmodel|slice:"3:" %}
         <div class="col-md-6 col-lg-2 text-center aos-init mx-3">
@@ -48,26 +52,24 @@
                     <img loading="lazy" class="rounded-circle" src="{% url 'GetImages' %}?text={{year}}&back=%23{{year.colourback|slice:'1:'}}&textc=%23{{year.colourtext|slice:'1:'}}" width="140" height="140" data-aos="fade-down" alt="Year {{year}}" />
                 </div>
                 <div class="card-body">
-                    <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %}{% for videoslive in videoslive %}{% if year.id == videoslive.yearmodel %}
+                    <h2 data-aos="zoom-in">{% blocktrans %}{{year}}{% endblocktrans %} {% for videoslive in videoslive %}{% if year.id == videoslive.yearmodel %}
                         <div class="btn btn-danger live"><b>{% trans 'LIVE' %}</b></div>{% endif %}{% endfor %}</h2>
-                    {% for video in videos|slice:forloop.counter reversed %}{% if year.id == video.yearmodel.id %}
-                    <p>
-                        <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
-                    </p>
-                    {% else %}
-                    <p>
-                        <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »h</button></a>
-                    </p>
-                    {% endif %} {% empty %}
-                    <p>
-                        <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »g</button></a>
-                    </p>
-                    {% endfor %}
+                        {% if videos|get_latest_video:year.year %}
+                            {% with videos|get_latest_video:year.year as video %}
+                            <p>
+                                <a class="scrollto" href="{% url 'Videos' year=year.year day=video.day %}#live" data-aos="flip-right" title="GOTO LIVE VIDEOS PAGE"><button class="btn btn-outline-success" data-aos="flip-right">{% trans 'Start Watching' %} »</button></a>
+                            </p>
+                            {% endwith %}
+                        {% else %}
+                            <p>
+                                <a href="#" data-aos="flip-right"><button class="btn btn-outline-dark" data-aos="flip-right">{% trans 'Coming Soon' %} »</button></a>
+                            </p>
+                        {% endif %}
                 </div>
                 <hr/>
             </div>
         </div>
-        {% endfor %}{% endcomment %} {% if yearmodel.has_other_pages %}{% if yearmodel.has_previous %} 
+        {% endfor %} {% if yearmodel.has_other_pages %}{% if yearmodel.has_previous %} 
         <button type="button" class="btn">
             <a class="btn btn-primary topleft" href="?page={{ yearmodel.previous_page_number }}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -79,6 +81,6 @@
             </a>
         </button> {% endif %}{% endif %}
     </div>
-    {% comment %} {% endif %} {% endcomment %}
+    {% endif %}
 </div>
 {% endblock %}

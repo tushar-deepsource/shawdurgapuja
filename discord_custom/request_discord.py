@@ -1,15 +1,14 @@
 import json
-from functools import lru_cache
+from typing import Literal
 from urllib import request
 
 from django.conf import settings
 
 
-@lru_cache
 def discord_api_req(
     path: str,
-    method: str = "post" or "get",
-    data = None,
+    method: Literal["GET", "POST", "PUT", "PATCH", "DELETE"],
+    data=None,
     content_type: str = "application/json",
 ):
     base_api = "https://discord.com/api"
@@ -19,15 +18,7 @@ def discord_api_req(
         "Authorization": f"Bot {settings.TOKEN}",
         "Content-Type": content_type,
     }
-    print(data, 'hi')
-    if method == "post":
-        req = request.Request(url=base_api + path,
-                              headers=headers,
-                              method="POST")
-    if method == "get":
-        req = request.Request(url=base_api + path,
-                              headers=headers,
-                              method="GET")
+    req = request.Request(url=base_api + path,headers=headers,method=method.upper())
     if data:
         data = json.dumps(data)
         data = data.encode()

@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 from discord_custom import *
 
 from .models import *
-
+from .templatetags.extra import get_latest_video
 
 @login_required
 @sync_to_async
