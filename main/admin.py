@@ -129,7 +129,7 @@ class VideosAdmin(admin.ModelAdmin):
         "test",
     )
     search_fields = list_display + list_filter + ("streamingvideolink", )
-    readonly_fields = ("video_posts",)
+    readonly_fields = ("video_posts", )
     list_per_page = 100
 
     fieldsets = (
@@ -236,6 +236,7 @@ class VideosAdmin(admin.ModelAdmin):
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
+
     def delete_admin_logs(self, request, queryset):
         querysetmsg = queryset.delete()
 
