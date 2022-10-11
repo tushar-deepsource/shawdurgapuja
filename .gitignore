@@ -1,4 +1,5 @@
 *.env
+.conf
 *.pyc
 staticfiles
 .vscode
