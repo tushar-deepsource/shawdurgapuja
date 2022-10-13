@@ -335,7 +335,7 @@ class Videos(models.Model):
             if webhook.lower().startswith("https://discord.com/api"):
                 webhook = webhook[len("https://discord.com/api"):]
             embed = Embed(
-                title=self.streamingvideoheader.capitalize(),
+                title=self.streamingvideoheader.title(),
                 color=dict_colors[self.day]
                 if not self.test else Color.default(),
                 url=f'https://shawdurgapuja.herokuapp.com/{reverse("Videos",args=[self.yearmodel.year, self.day])}#live',
