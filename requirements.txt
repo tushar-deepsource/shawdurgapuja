@@ -8,7 +8,7 @@ attrs==22.1.0
 backports.zoneinfo==0.2.1
 bangla==0.0.2
 beautifulsoup4==4.11.1
-billiard==3.6.4.0
+billiard==4.0.2
 Brotli==1.0.9
 celery==5.2.7
 certifi==2022.9.24
@@ -49,7 +49,7 @@ pyppeteer==1.0.2
 PyQRCode==1.2.1
 python-dateutil==2.8.2
 python-dotenv==0.21.0
-pytz==2022.2.1
+pytz==2022.4
 rcssmin==1.1.1
 redis==4.3.4
 rjsmin==1.2.0
@@ -58,7 +58,7 @@ six==1.16.0
 soupsieve==2.3.2.post1
 sqlparse==0.4.3
 tqdm==4.64.1
-tzdata==2022.4
+tzdata==2022.5
 urllib3==1.26.12
 uvicorn==0.18.3
 vine==5.0.0
