@@ -2,6 +2,7 @@ import logging
 
 
 class AutoreloadLogFilter(logging.Filter):
+
     def filter(self, record: logging.LogRecord) -> bool:
         if record.name.find("django.utils.autoreload") != -1:
             return False

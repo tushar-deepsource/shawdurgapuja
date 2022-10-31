@@ -7,6 +7,7 @@ from PIL import Image
 
 
 class QrGen:
+
     def __init__(self, data: str, logo: bool = True):
         self.data = data
         self.logo = logo
