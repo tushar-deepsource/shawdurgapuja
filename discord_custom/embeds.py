@@ -26,6 +26,7 @@ def parse_time(timestamp: Optional[str]) -> Optional[datetime.datetime]:
 
 
 class _EmptyEmbed:
+
     def __bool__(self) -> bool:
         return False
 
@@ -40,6 +41,7 @@ EmptyEmbed: Final = _EmptyEmbed()
 
 
 class EmbedProxy:
+
     def __init__(self, layer: Dict[str, Any]):
         self.__dict__.update(layer)
 
